@@ -303,8 +303,8 @@ class DCMotor extends MotorBase {
         this.setNumber("duty_cycle", value);
     }
     
-    get deviceName(): string {
-        return this.getString("device_name");
+    get driverName(): string {
+        return this.getString("driver_name");
     }
 
     get portName(): string {
@@ -355,8 +355,8 @@ class ServoMotor extends MotorBase {
         this.setString("command", value);
     }
     
-    get deviceName(): string {
-        return this.getString("device_name");
+    get driverName(): string {
+        return this.getString("driver_name");
     }
 
     get portName(): string {

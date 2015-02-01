@@ -30,8 +30,8 @@ class Sensor extends Device {
                         path.join(rootPath, "port_name")
                     ).toString().trim();
 
-                var typeName = fs.readFileSync(
-                        path.join(rootPath, "name")
+                var driverName = fs.readFileSync(
+                        path.join(rootPath, "driver_name")
                     ).toString().trim();
 
                 var i2cDeviceAddress = fs.readFileSync(
@@ -44,7 +44,7 @@ class Sensor extends Device {
                         || (portName === port)
                     ) && (
                         (types == undefined || types == [])
-                        || types.indexOf(typeName) != -1
+                        || types.indexOf(driverName) != -1
                     ) && (
                         (i2cAddress == undefined)
                         || (i2cAddress == i2cDeviceAddress)
@@ -76,7 +76,7 @@ class Sensor extends Device {
     }
 
     public getFloatValue(valueIndex: number): number {
-        return this.getNumber("value" + valueIndex) / Math.pow(10, this.getNumber("dp"));
+        return this.getNumber("value" + valueIndex) / Math.pow(10, this.getNumber("decimals"));
     }
 
     //PROPERTIES
@@ -116,8 +116,8 @@ class Sensor extends Device {
         return this.getString("units");
     }
 
-    get deviceName(): string {
-        return this.getString("device_name");
+    get driverName(): string {
+        return this.getString("driver_name");
     }
 
 
