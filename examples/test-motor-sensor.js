@@ -25,7 +25,7 @@ console.log('--------------------');
 //Read sensor
 console.log('Sensor -------------');
 var sensor = new ev3dev.Sensor();
-[ 'portName', 'numValues', 'typeName',
+[ 'portName', 'numValues', 'driverName',
     'mode', 'modes'
 ].forEach(function (value) {
     console.log(value + ": " + sensor[value]);
