@@ -22,7 +22,7 @@ First, you will need to install some tools. Both building and running the module
 $ npm install -g grunt-cli
 ```
 
-Once you have done this, run `grunt --version` to make sure that everything was installed correctly (you may have to restart your terminal window first). Next you'll need to get the source code. You can `git clone` it to get the most recent changes, or download a release from the releases page. The following commands will need to be executed from the `js` directory of the source tree so `cd` in to that directory before continuing.
+Once you have done this, run `grunt --version` to make sure that everything was installed correctly (you may have to restart your terminal window first). Next you'll need to get the source code. You can `git clone` it to get the most recent changes, or download a release from the releases page. The following commands will need to be executed from the root directory of the source tree so `cd` in to that directory before continuing.
 
 Now we will install the last few tools that we need. The list of dependencies for the module is pre-defined in the `package.json` file, so all we need to do is to tell `npm` to install them for us:
 ```
