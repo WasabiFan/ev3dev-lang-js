@@ -3,7 +3,7 @@
 ///<reference path="io.ts" />
 
 //~autogen autogen-header
-    // Sections of the following code were auto-generated based on spec v0.9.2-pre, rev 1. 
+    // Sections of the following code were auto-generated based on spec v0.9.2-pre, rev 2. 
 //~autogen
 
 class PowerSupply extends Device {
@@ -53,27 +53,27 @@ class PowerSupply extends Device {
     //PROPERTIES
     //~autogen js_generic-get-set classes.powerSupply>currentClass
     get currentNow(): number {
-        return this.getNumber("current_now");
+        return this.readNumber("current_now");
     }
 
     get voltageNow(): number {
-        return this.getNumber("voltage_now");
+        return this.readNumber("voltage_now");
     }
 
     get voltageMaxDesign(): number {
-        return this.getNumber("voltage_max_design");
+        return this.readNumber("voltage_max_design");
     }
 
     get voltageMinDesign(): number {
-        return this.getNumber("voltage_min_design");
+        return this.readNumber("voltage_min_design");
     }
 
     get technology(): string {
-        return this.getString("technology");
+        return this.readString("technology");
     }
 
     get type(): string {
-        return this.getString("type");
+        return this.readString("type");
     }
 
 
@@ -134,20 +134,19 @@ class LED extends Device {
     //PROPERTIES
 
 //~autogen js_generic-get-set classes.led>currentClass
-
     get maxBrightness(): number {
-        return this.getNumber("max_brightness");
+        return this.readNumber("max_brightness");
     }
 
     get brightness(): number {
-        return this.getNumber("brightness");
+        return this.readNumber("brightness");
     }
     set brightness(value: number) {
         this.setNumber("brightness", value);
     }
     
     get trigger(): string {
-        return this.getString("trigger");
+        return this.readString("trigger");
     }
     set trigger(value: string) {
         this.setString("trigger", value);

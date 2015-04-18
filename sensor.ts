@@ -6,14 +6,12 @@ class Sensor extends Device {
     private port: string;
     private sensorDeviceDir = '/sys/class/lego-sensor/';
 
-    private sensorTypes : string[] = [];
-
     private _deviceIndex: number = -1;
     get deviceIndex(): number {
         return this._deviceIndex;
     }
 
-    constructor(port: string, types: string[], i2cAddress?: string) {
+    constructor(port?: string, driverNames?: string[]) {
         super();
 
         this.port = port;
@@ -26,28 +24,17 @@ class Sensor extends Device {
 
                 rootPath = path.join(this.sensorDeviceDir, file);
 
-                var portName = fs.readFileSync(
-                        path.join(rootPath, "port_name")
-                    ).toString().trim();
+                var portName = this.readString("port_name", rootPath);
 
-                var driverName = fs.readFileSync(
-                        path.join(rootPath, "driver_name")
-                    ).toString().trim();
-
-                var i2cDeviceAddress = fs.readFileSync(
-                        path.join(rootPath, "address")
-                    ).toString().trim();
+                var driverName = this.readString("driver_name", rootPath);
 
                 var satisfiesCondition = (
                         (port == ports.INPUT_AUTO)
                         || (port == undefined)
                         || (portName === port)
                     ) && (
-                        (types == undefined || types == [])
-                        || types.indexOf(driverName) != -1
-                    ) && (
-                        (i2cAddress == undefined)
-                        || (i2cAddress == i2cDeviceAddress)
+                        (driverNames == undefined || driverNames == [])
+                        || driverNames.indexOf(driverName) != -1
                     );
                 
                 if (satisfiesCondition) {
@@ -68,56 +55,56 @@ class Sensor extends Device {
             return;
         }
 
-        this.connect(rootPath/*, [this.sensorProperties.portName]*/);
+        this.connect(rootPath);
     }
 
     public getValue(valueIndex: number): number {
-        return this.getNumber("value" + valueIndex);
+        return this.readNumber("value" + valueIndex);
     }
 
     public getFloatValue(valueIndex: number): number {
-        return this.getNumber("value" + valueIndex) / Math.pow(10, this.getNumber("decimals"));
+        return this.getValue(valueIndex) / Math.pow(10, this.decimals);
     }
 
     //PROPERTIES
     //~autogen js_generic-get-set classes.sensor>currentClass
+    set command(value: string) {
+        this.setString("command", value);
+    }
+    
+    get commands(): string[] {
+        return this.readString("commands").split(' ');
+    }
+
     get decimals(): number {
-        return this.getNumber("decimals");
+        return this.readNumber("decimals");
+    }
+
+    get driverName(): string {
+        return this.readString("driver_name");
     }
 
     get mode(): string {
-        return this.getString("mode");
+        return this.readString("mode");
     }
     set mode(value: string) {
         this.setString("mode", value);
     }
     
     get modes(): string[] {
-        return this.getString("modes").split(' ');
-    }
-
-    set command(value: string) {
-        this.setString("command", value);
-    }
-    
-    get commands(): string[] {
-        return this.getString("commands").split(' ');
+        return this.readString("modes").split(' ');
     }
 
     get numValues(): number {
-        return this.getNumber("num_values");
+        return this.readNumber("num_values");
     }
 
     get portName(): string {
-        return this.getString("port_name");
+        return this.readString("port_name");
     }
 
     get units(): string {
-        return this.getString("units");
-    }
-
-    get driverName(): string {
-        return this.getString("driver_name");
+        return this.readString("units");
     }
 
 
@@ -125,21 +112,17 @@ class Sensor extends Device {
 }
 
 class I2CSensor extends Sensor {
-    constructor(port: string, types: string[], i2cAddress: string) {
-        super(port, types, i2cAddress);
+    constructor(port?: string, driverNames?: string[]) {
+        super(port, driverNames);
     }
 
     //~autogen js_generic-get-set classes.i2cSensor>currentClass
     get fwVersion(): string {
-        return this.getString("fw_version");
-    }
-
-    get address(): string {
-        return this.getString("address");
+        return this.readString("fw_version");
     }
 
     get pollMs(): number {
-        return this.getNumber("poll_ms");
+        return this.readNumber("poll_ms");
     }
     set pollMs(value: number) {
         this.setNumber("poll_ms", value);

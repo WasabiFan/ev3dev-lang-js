@@ -35,33 +35,19 @@ class TraceError {
 class Device {
     public deviceRoot: string;
     public connected: boolean = false;
-    //private preloadedValues: any;
 
-    public connect(deviceRootPath: string/*, preloadProperties: string[]*/) {
+    public connect(deviceRootPath: string) {
         this.deviceRoot = deviceRootPath;
-
-        ////Preload specified properties, so that properties that don't change are fast to access
-        //for (var i in preloadProperties) {
-        //    var propertyName = preloadProperties[i];
-        //    try {
-        //        this.preloadedValues[propertyName] = this.readProperty(propertyName);
-        //    }
-        //    catch (e) {
-        //        this.connected = false;
-        //        return;
-        //    }
-        //}
 
         this.connected = true;
     }
 
-    private constructPropertyPath(property: string) {
-        return path.join(this.deviceRoot, property);
+    protected constructPropertyPath(property: string, deviceRoot?: string) {
+        return path.join(deviceRoot || this.deviceRoot, property);
     }
 
-
-    public readNumber(property: string): number {
-        var value = this.readProperty(property);
+    public readNumber(property: string, deviceRoot?: string): number {
+        var value = this.readProperty(property, deviceRoot);
 
         if (typeof value !== 'number')
             return NaN;
@@ -69,39 +55,22 @@ class Device {
         return value;
     }
 
-    public getNumber(property: string): number {
-        //if (typeof this.preloadedValues[property] !== 'undefined')
-        //    return this.preloadedValues[property];
-        //else
-            return this.readNumber(property);
-    }
-
-
-    public readString(property: string): string {
-        var value = this.readProperty(property);
+    public readString(property: string, deviceRoot?: string): string {
+        var value = this.readProperty(property, deviceRoot);
         return String(value);
     }
 
-    public getString(property: string): string {
-        //if (typeof this.preloadedValues[property] !== 'undefined')
-        //    return this.preloadedValues[property];
-        //else
-            return this.readString(property);
-    }
-
-
-    public readProperty(property: string): any {
-        if (!this.connected)
+    public readProperty(property: string, deviceRoot?: string): any {
+        if (!deviceRoot && !this.connected)
             throw new Error('You must be connected to a device before you can read from it.');
 
         var rawValue: string;
-        var propertyPath = this.constructPropertyPath(property);
+        var propertyPath = this.constructPropertyPath(property, deviceRoot);
 
         try {
             rawValue = fs.readFileSync(propertyPath).toString();
         }
         catch (e) {
-            this.connected = false;
             throw new TraceError('There was an error while reading from the property file "' + propertyPath + '".', e);
         }
 
@@ -114,13 +83,6 @@ class Device {
             return numValue;
     }
 
-    public getProperty(property: string): any {
-        //if (typeof this.preloadedValues[property] !== 'undefined')
-        //    return this.preloadedValues[property];
-        //else
-            return this.readProperty(property);
-    }
-
     public setProperty(property: string, value: any): any {
         if (!this.connected)
             throw new Error('You must be connected to a device before you can write to it.');
@@ -131,7 +93,6 @@ class Device {
             fs.writeFileSync(propertyPath, value.toString());
         }
         catch (e) {
-            this.connected = false;
             throw new TraceError('There was an error while writing to the property file "' + propertyPath + '".', e);
         }
     }
