@@ -3,12 +3,20 @@ var ev3dev = require('../bin/index.js');
 
 console.log('Battery ------------');
 var battery = new ev3dev.PowerSupply();
-[ 'currentNow', 'voltageNow', 'voltageMaxDesign',
-    'voltageMinDesign', 'technology', 'type',
-    'currentAmps', 'voltageVolts'
-].forEach(function (value) {
-    console.log(value + ": " + battery[value]);
-});
+
+console.log(' Technology: ' + battery.technology);
+console.log(' Type: ' + battery.type);
+
+console.log(' Current (microamps): ' + battery.measuredCurrent);
+console.log(' Current (amps): ' + battery.currentAmps);
+
+console.log(' Voltage (microvolts): ' + battery.measuredVoltage);
+console.log(' Voltage (volts): ' + battery.voltageVolts);
+
+console.log(' Max voltage (microvolts): ' + battery.maxVoltage);
+console.log(' Min voltage (microvolts): ' + battery.minVoltage);
+
+
 console.log('--------------------')
 console.log('LED ----------------');
 console.log('fading LEDs from green to red...');
@@ -18,9 +26,6 @@ var leds = [];
 ].forEach(function (value) {
     leds.push(new ev3dev.LED(value));
 });
-
-//Just running through the properties isn't helpful as a test
-//    This will transition through the range of colors
 
 for(var i = 0; i < 100; i++) {
     for(var ledI = 0; ledI < leds.length; ledI++) {
@@ -36,8 +41,8 @@ for(var i = 0; i < 100; i++) {
     
     {   //Hack to sleep for time
         //    SHOULD NOT BE USED IN PRODUCTION CODE
-        var stop = new Date().getTime();
-        while(new Date().getTime() < stop + 100) {
+        var start = new Date().getTime();
+        while(new Date().getTime() < start + 100) {
             ;
         }
     }
