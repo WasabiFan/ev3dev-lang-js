@@ -52,19 +52,19 @@ class PowerSupply extends Device {
 
     //PROPERTIES
     //~autogen js_generic-get-set classes.powerSupply>currentClass
-    get currentNow(): number {
+    get measuredCurrent(): number {
         return this.readNumber("current_now");
     }
 
-    get voltageNow(): number {
+    get measuredVoltage(): number {
         return this.readNumber("voltage_now");
     }
 
-    get voltageMaxDesign(): number {
+    get maxVoltage(): number {
         return this.readNumber("voltage_max_design");
     }
 
-    get voltageMinDesign(): number {
+    get minVoltage(): number {
         return this.readNumber("voltage_min_design");
     }
 
@@ -80,11 +80,11 @@ class PowerSupply extends Device {
 //~autogen
 
     get voltageVolts(): number {
-        return this.voltageNow / 1000000;
+        return this.measuredVoltage / 1000000;
     }
 
     get currentAmps(): number {
-        return this.currentNow / 1000000;
+        return this.measuredCurrent / 1000000;
     }
 
 }
