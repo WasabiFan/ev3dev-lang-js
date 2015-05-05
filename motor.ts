@@ -3,7 +3,7 @@
 ///<reference path="io.ts" />
 
 //~autogen autogen-header
-    // Sections of the following code were auto-generated based on spec v0.9.2-pre, rev 2. 
+    // Sections of the following code were auto-generated based on spec v0.9.2-pre, rev 3. 
 //~autogen
 
 class MotorBase extends Device {
@@ -321,9 +321,6 @@ class ServoMotor extends MotorBase {
     //PROPERTIES
 
     //~autogen js_generic-get-set classes.servoMotor>currentClass
-    get command(): string {
-        return this.readString("command");
-    }
     set command(value: string) {
         this.setString("command", value);
     }
@@ -332,25 +329,25 @@ class ServoMotor extends MotorBase {
         return this.readString("driver_name");
     }
 
-    get maxPulseMs(): number {
-        return this.readNumber("max_pulse_ms");
+    get maxPulseSp(): number {
+        return this.readNumber("max_pulse_sp");
     }
-    set maxPulseMs(value: number) {
-        this.setNumber("max_pulse_ms", value);
-    }
-    
-    get midPulseMs(): number {
-        return this.readNumber("mid_pulse_ms");
-    }
-    set midPulseMs(value: number) {
-        this.setNumber("mid_pulse_ms", value);
+    set maxPulseSp(value: number) {
+        this.setNumber("max_pulse_sp", value);
     }
     
-    get minPulseMs(): number {
-        return this.readNumber("min_pulse_ms");
+    get midPulseSp(): number {
+        return this.readNumber("mid_pulse_sp");
     }
-    set minPulseMs(value: number) {
-        this.setNumber("min_pulse_ms", value);
+    set midPulseSp(value: number) {
+        this.setNumber("mid_pulse_sp", value);
+    }
+    
+    get minPulseSp(): number {
+        return this.readNumber("min_pulse_sp");
+    }
+    set minPulseSp(value: number) {
+        this.setNumber("min_pulse_sp", value);
     }
     
     get polarity(): string {
@@ -364,20 +361,24 @@ class ServoMotor extends MotorBase {
         return this.readString("port_name");
     }
 
-    get position(): number {
-        return this.readNumber("position");
+    get positionSp(): number {
+        return this.readNumber("position_sp");
     }
-    set position(value: number) {
-        this.setNumber("position", value);
-    }
-    
-    get rate(): number {
-        return this.readNumber("rate");
-    }
-    set rate(value: number) {
-        this.setNumber("rate", value);
+    set positionSp(value: number) {
+        this.setNumber("position_sp", value);
     }
     
+    get rateSp(): number {
+        return this.readNumber("rate_sp");
+    }
+    set rateSp(value: number) {
+        this.setNumber("rate_sp", value);
+    }
+    
+    get state(): string[] {
+        return this.readString("state").split(' ');
+    }
+
 
 //~autogen
 }
