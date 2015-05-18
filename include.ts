@@ -2,7 +2,7 @@
 
 /*
  * This is a language binding for the ev3dev device APIs. More info at: https://github.com/ev3dev/ev3dev-lang
- * This library complies with spec v0.9.1
+ * This library complies with spec v0.9.2
  */
 
 

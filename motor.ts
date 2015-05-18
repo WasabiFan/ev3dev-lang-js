@@ -254,9 +254,6 @@ class DCMotor extends MotorBase {
     //PROPERTIES
 
     //~autogen js_generic-get-set classes.dcMotor>currentClass
-    get command(): string {
-        return this.readString("command");
-    }
     set command(value: string) {
         this.setString("command", value);
     }
@@ -291,20 +288,32 @@ class DCMotor extends MotorBase {
         return this.readString("port_name");
     }
 
-    get rampDownMs(): number {
-        return this.readNumber("ramp_down_ms");
+    get rampDownSp(): number {
+        return this.readNumber("ramp_down_sp");
     }
-    set rampDownMs(value: number) {
-        this.setNumber("ramp_down_ms", value);
-    }
-    
-    get rampUpMs(): number {
-        return this.readNumber("ramp_up_ms");
-    }
-    set rampUpMs(value: number) {
-        this.setNumber("ramp_up_ms", value);
+    set rampDownSp(value: number) {
+        this.setNumber("ramp_down_sp", value);
     }
     
+    get rampUpSp(): number {
+        return this.readNumber("ramp_up_sp");
+    }
+    set rampUpSp(value: number) {
+        this.setNumber("ramp_up_sp", value);
+    }
+    
+    get state(): string[] {
+        return this.readString("state").split(' ');
+    }
+
+    set stopCommand(value: string) {
+        this.setString("stop_command", value);
+    }
+    
+    get stopCommands(): string[] {
+        return this.readString("stop_commands").split(' ');
+    }
+
 
 //~autogen
     }
