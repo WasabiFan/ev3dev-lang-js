@@ -80,6 +80,10 @@ class Motor extends MotorBase {
         this.command = 'reset';
     }
 
+    public stop() {
+        this.command = 'stop';
+    }
+
     //PROPERTIES
     //~autogen js_generic-get-set classes.motor>currentClass
     set command(value: string) {
@@ -240,6 +244,63 @@ class Motor extends MotorBase {
 
 //~autogen
     
+    public applySpeedSp(newSp: number | MotorSpeedSp) {
+        if (typeof newSp === "number") {
+            this.applySpeedSp(new MotorSpeedSp(newSp));
+        }
+        else {
+            this.speedRegulationEnabled = newSp.regulationEnabled;
+            if (newSp.dutyCycleSp != undefined)
+                this.dutyCycleSp = newSp.dutyCycleSp;
+            if (newSp.speedSp != undefined)
+                this.speedSp = newSp.speedSp;
+        }
+    }
+
+    public sendCommand(commandName: string) {
+
+        if (this.commands.indexOf(commandName) < 0)
+            throw new Error('The command ' + commandName + ' is not supported by the device.');
+
+        this.command = commandName;
+    }
+
+    public runForever(sp?: MotorSpeedSp | number) {
+        if (sp != undefined)
+            this.applySpeedSp(sp);
+
+        this.sendCommand('run-forever');
+    }
+
+    public start(sp?: MotorSpeedSp | number) {
+        this.runForever(sp);
+    }
+
+    public runToPosition(position?: number, speedSp?: MotorSpeedSp | number) {
+        this.runToAbsolutePosition(position, speedSp);
+    }
+
+    public runToAbsolutePosition(position?: number, speedSp?: MotorSpeedSp | number) {
+        if (speedSp != undefined)
+            this.applySpeedSp(speedSp);
+        if (position != undefined)
+            this.positionSp = position;
+
+        this.sendCommand('run-to-abs-pos');
+    }
+
+    public runForDistance(distance?: number, speedSp?: MotorSpeedSp | number) {
+        this.runToRelativePosition(distance, speedSp);
+    }
+
+    public runToRelativePosition(relPos?: number, speedSp?: MotorSpeedSp | number) {
+        if (speedSp != undefined)
+            this.applySpeedSp(speedSp);
+        if (relPos != undefined)
+            this.positionSp = relPos;
+
+        this.sendCommand('run-to-rel-pos');
+    }
 }
 
 //DC Motor
@@ -316,7 +377,7 @@ class DCMotor extends MotorBase {
 
 
 //~autogen
-    }
+}
     
 //Servo Motor
 class ServoMotor extends MotorBase {
@@ -390,4 +451,33 @@ class ServoMotor extends MotorBase {
 
 
 //~autogen
+}
+
+class MotorSpeedSp {
+    public regulationEnabled: string;
+    public dutyCycleSp: number;
+    public speedSp: number;
+
+    constructor(dutyCycleSp?: number) {
+        if (dutyCycleSp != undefined) {
+            this.regulationEnabled = 'off';
+            this.dutyCycleSp = dutyCycleSp;
+        }
+    }
+
+    public static fromRegulated(speedSp: number): MotorSpeedSp {
+        var setpoint = new MotorSpeedSp();
+        setpoint.regulationEnabled = 'on';
+        setpoint.speedSp = speedSp;
+
+        return setpoint;
+    }
+
+    public static fromUnregulated(dutyCycleSp: number): MotorSpeedSp {
+        var setpoint = new MotorSpeedSp();
+        setpoint.regulationEnabled = 'off';
+        setpoint.dutyCycleSp = dutyCycleSp;
+
+        return setpoint;
+    }
 }

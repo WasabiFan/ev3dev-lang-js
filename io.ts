@@ -104,4 +104,10 @@ class Device {
     public setString(property: string, value: string) {
         this.setProperty(property, value);
     }
+
+    public set(propertyDefs: any) {
+        for (var key in propertyDefs) {
+            this.setProperty(key, propertyDefs[key]);
+        }
+    }
 }
