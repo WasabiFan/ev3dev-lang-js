@@ -21,8 +21,9 @@ console.log('--------------------')
 console.log('LED ----------------');
 console.log('fading LEDs from green to red...');
 var leds = [];
-[   'ev3:green:left',  'ev3:red:left',
-    'ev3:green:right', 'ev3:red:right'
+// ev3-<left|right><0:red|1:green>:ev3dev
+[   'ev3-left1:green:ev3dev',  'ev3-left0:red:ev3dev',
+    'ev3-right1:green:ev3dev', 'ev3-right0:red:ev3dev'
 ].forEach(function (value) {
     leds.push(new ev3dev.LED(value));
 });
