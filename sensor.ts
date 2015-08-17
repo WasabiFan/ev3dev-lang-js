@@ -89,7 +89,7 @@ class Sensor extends Device {
     /**
      * Sends a command to the sensor.
      */
-     set command(value: string) {
+    set command(value: string) {
         this.setString("command", value);
     }
     
@@ -128,7 +128,7 @@ class Sensor extends Device {
      * Returns the current mode. Writing one of the values returned by `modes`
      * sets the sensor to that mode.
      */
-     set mode(value: string) {
+    set mode(value: string) {
         this.setString("mode", value);
     }
     
@@ -201,7 +201,7 @@ class I2CSensor extends Sensor {
      * coded as 50 msec. Returns -EOPNOTSUPP if changing polling is not supported.
      * Currently only I2C/NXT sensors support changing the polling period.
      */
-     set pollMs(value: number) {
+    set pollMs(value: number) {
         this.setNumber("poll_ms", value);
     }
     

@@ -97,7 +97,7 @@ class Motor extends MotorBase {
      * Sends a command to the motor controller. See `commands` for a list of
      * possible values.
      */
-     set command(value: string) {
+    set command(value: string) {
         this.setString("command", value);
     }
     
@@ -165,7 +165,7 @@ class Motor extends MotorBase {
      * the motor to rotate in reverse. This value is only used when `speed_regulation`
      * is off.
      */
-     set dutyCycleSp(value: number) {
+    set dutyCycleSp(value: number) {
         this.setNumber("duty_cycle_sp", value);
     }
     
@@ -186,7 +186,7 @@ class Motor extends MotorBase {
      * value if you are using a unsupported device. Valid values are `normal` and
      * `inversed`.
      */
-     set encoderPolarity(value: string) {
+    set encoderPolarity(value: string) {
         this.setString("encoder_polarity", value);
     }
     
@@ -205,7 +205,7 @@ class Motor extends MotorBase {
      * a positive duty cycle will cause the motor to rotate counter-clockwise.
      * Valid values are `normal` and `inversed`.
      */
-     set polarity(value: string) {
+    set polarity(value: string) {
         this.setString("polarity", value);
     }
     
@@ -231,7 +231,7 @@ class Motor extends MotorBase {
      * Likewise, rotating counter-clockwise causes the position to decrease.
      * Writing will set the position to that value.
      */
-     set position(value: number) {
+    set position(value: number) {
         this.setNumber("position", value);
     }
     
@@ -244,7 +244,7 @@ class Motor extends MotorBase {
     /**
      * The proportional constant for the position PID.
      */
-     set positionP(value: number) {
+    set positionP(value: number) {
         this.setNumber("hold_pid/Kp", value);
     }
     
@@ -257,7 +257,7 @@ class Motor extends MotorBase {
     /**
      * The integral constant for the position PID.
      */
-     set positionI(value: number) {
+    set positionI(value: number) {
         this.setNumber("hold_pid/Ki", value);
     }
     
@@ -270,7 +270,7 @@ class Motor extends MotorBase {
     /**
      * The derivative constant for the position PID.
      */
-     set positionD(value: number) {
+    set positionD(value: number) {
         this.setNumber("hold_pid/Kd", value);
     }
     
@@ -289,7 +289,7 @@ class Motor extends MotorBase {
      * can use the value returned by `counts_per_rot` to convert tacho counts to/from
      * rotations or degrees.
      */
-     set positionSp(value: number) {
+    set positionSp(value: number) {
         this.setNumber("position_sp", value);
     }
     
@@ -315,7 +315,7 @@ class Motor extends MotorBase {
      * is on. Reading returns the current value.  Use the `count_per_rot` attribute
      * to convert RPM or deg/sec to tacho counts per second.
      */
-     set speedSp(value: number) {
+    set speedSp(value: number) {
         this.setNumber("speed_sp", value);
     }
     
@@ -336,7 +336,7 @@ class Motor extends MotorBase {
      * when starting the motor. If the maximum duty cycle is limited by `duty_cycle_sp`
      * or speed regulation, the actual ramp time duration will be less than the setpoint.
      */
-     set rampUpSp(value: number) {
+    set rampUpSp(value: number) {
         this.setNumber("ramp_up_sp", value);
     }
     
@@ -357,7 +357,7 @@ class Motor extends MotorBase {
      * when stopping the motor. If the starting duty cycle is less than 100%, the
      * ramp time duration will be less than the full span of the setpoint.
      */
-     set rampDownSp(value: number) {
+    set rampDownSp(value: number) {
         this.setNumber("ramp_down_sp", value);
     }
     
@@ -378,7 +378,7 @@ class Motor extends MotorBase {
      * will use the power specified in `duty_cycle_sp`. Valid values are `on` and
      * `off`.
      */
-     set speedRegulationEnabled(value: string) {
+    set speedRegulationEnabled(value: string) {
         this.setString("speed_regulation", value);
     }
     
@@ -391,7 +391,7 @@ class Motor extends MotorBase {
     /**
      * The proportional constant for the speed regulation PID.
      */
-     set speedRegulationP(value: number) {
+    set speedRegulationP(value: number) {
         this.setNumber("speed_pid/Kp", value);
     }
     
@@ -404,7 +404,7 @@ class Motor extends MotorBase {
     /**
      * The integral constant for the speed regulation PID.
      */
-     set speedRegulationI(value: number) {
+    set speedRegulationI(value: number) {
         this.setNumber("speed_pid/Ki", value);
     }
     
@@ -417,7 +417,7 @@ class Motor extends MotorBase {
     /**
      * The derivative constant for the speed regulation PID.
      */
-     set speedRegulationD(value: number) {
+    set speedRegulationD(value: number) {
         this.setNumber("speed_pid/Kd", value);
     }
     
@@ -444,7 +444,7 @@ class Motor extends MotorBase {
      * Also, it determines the motors behavior when a run command completes. See
      * `stop_commands` for a list of possible values.
      */
-     set stopCommand(value: string) {
+    set stopCommand(value: string) {
         this.setString("stop_command", value);
     }
     
@@ -477,7 +477,7 @@ class Motor extends MotorBase {
      * `run-timed` command. Reading returns the current value. Units are in
      * milliseconds.
      */
-     set timeSp(value: number) {
+    set timeSp(value: number) {
         this.setNumber("time_sp", value);
     }
     
@@ -566,7 +566,7 @@ class DCMotor extends MotorBase {
      * `stop`. Not all commands may be supported, so be sure to check the contents
      * of the `commands` attribute.
      */
-     set command(value: string) {
+    set command(value: string) {
         this.setString("command", value);
     }
     
@@ -607,7 +607,7 @@ class DCMotor extends MotorBase {
      * Valid values are -100 to 100 (-100% to 100%). Reading returns the current
      * setpoint.
      */
-     set dutyCycleSp(value: number) {
+    set dutyCycleSp(value: number) {
         this.setNumber("duty_cycle_sp", value);
     }
     
@@ -620,7 +620,7 @@ class DCMotor extends MotorBase {
     /**
      * Sets the polarity of the motor. Valid values are `normal` and `inversed`.
      */
-     set polarity(value: string) {
+    set polarity(value: string) {
         this.setString("polarity", value);
     }
     
@@ -642,7 +642,7 @@ class DCMotor extends MotorBase {
      * Sets the time in milliseconds that it take the motor to ramp down from 100%
      * to 0%. Valid values are 0 to 10000 (10 seconds). Default is 0.
      */
-     set rampDownSp(value: number) {
+    set rampDownSp(value: number) {
         this.setNumber("ramp_down_sp", value);
     }
     
@@ -657,7 +657,7 @@ class DCMotor extends MotorBase {
      * Sets the time in milliseconds that it take the motor to up ramp from 0% to
      * 100%. Valid values are 0 to 10000 (10 seconds). Default is 0.
      */
-     set rampUpSp(value: number) {
+    set rampUpSp(value: number) {
         this.setNumber("ramp_up_sp", value);
     }
     
@@ -675,7 +675,7 @@ class DCMotor extends MotorBase {
      * Sets the stop command that will be used when the motor stops. Read
      * `stop_commands` to get the list of valid values.
      */
-     set stopCommand(value: string) {
+    set stopCommand(value: string) {
         this.setString("stop_command", value);
     }
     
@@ -713,7 +713,7 @@ class ServoMotor extends MotorBase {
      * to `run` will cause the servo to be driven to the position_sp set in the
      * `position_sp` attribute. Setting to `float` will remove power from the motor.
      */
-     set command(value: string) {
+    set command(value: string) {
         this.setString("command", value);
     }
     
@@ -740,7 +740,7 @@ class ServoMotor extends MotorBase {
      * Valid values are 2300 to 2700. You must write to the position_sp attribute for
      * changes to this attribute to take effect.
      */
-     set maxPulseSp(value: number) {
+    set maxPulseSp(value: number) {
         this.setNumber("max_pulse_sp", value);
     }
     
@@ -763,7 +763,7 @@ class ServoMotor extends MotorBase {
      * where the motor does not turn. You must write to the position_sp attribute for
      * changes to this attribute to take effect.
      */
-     set midPulseSp(value: number) {
+    set midPulseSp(value: number) {
         this.setNumber("mid_pulse_sp", value);
     }
     
@@ -782,7 +782,7 @@ class ServoMotor extends MotorBase {
      * is 600. Valid values are 300 to 700. You must write to the position_sp
      * attribute for changes to this attribute to take effect.
      */
-     set minPulseSp(value: number) {
+    set minPulseSp(value: number) {
         this.setNumber("min_pulse_sp", value);
     }
     
@@ -801,7 +801,7 @@ class ServoMotor extends MotorBase {
      * inversed. i.e `-100` will correspond to `max_pulse_sp`, and `100` will
      * correspond to `min_pulse_sp`.
      */
-     set polarity(value: string) {
+    set polarity(value: string) {
         this.setString("polarity", value);
     }
     
@@ -827,7 +827,7 @@ class ServoMotor extends MotorBase {
      * are -100 to 100 (-100% to 100%) where `-100` corresponds to `min_pulse_sp`,
      * `0` corresponds to `mid_pulse_sp` and `100` corresponds to `max_pulse_sp`.
      */
-     set positionSp(value: number) {
+    set positionSp(value: number) {
         this.setNumber("position_sp", value);
     }
     
@@ -850,7 +850,7 @@ class ServoMotor extends MotorBase {
      * case reading and writing will fail with `-EOPNOTSUPP`. In continuous rotation
      * servos, this value will affect the rate_sp at which the speed ramps up or down.
      */
-     set rateSp(value: number) {
+    set rateSp(value: number) {
         this.setNumber("rate_sp", value);
     }
     

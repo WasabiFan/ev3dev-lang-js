@@ -3,7 +3,7 @@
 ///<reference path="io.ts" />
 
 //~autogen autogen-header
-// Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 1. 
+    // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 1. 
 //~autogen
 
 //~autogen js_generic-class-description classes.powerSupply>currentClass
@@ -97,7 +97,7 @@ class PowerSupply extends Device {
     }
 
 
-    //~autogen
+//~autogen
 
     get voltageVolts(): number {
         return this.measuredVoltage / 1000000;
@@ -281,7 +281,14 @@ class LED extends Device {
     }
     
 
-    //~autogen
+//~autogen
+
+    /**
+     * Sets the LED's brightness to the given percent (0-1) of the max value.
+     */
+    public setBrightnessPct(percent: number) {
+        this.brightness = Math.round(this.maxBrightness * percent);
+    }
 
     /**
      * Sets brightness to maximum value, turning the LED on
@@ -308,51 +315,54 @@ class LED extends Device {
         this.delayOff = offInterval;
     }
     
-    /**
-     * Turns on both built-in red EV3 LEDs
-     */
+    //~autogen js_led-color-methods
+
+    public static setRed(intensity: number) {
+        this.mixColors(1 * (intensity || 1.0), 0 * (intensity || 1.0));
+    }
+    
     public static redOn() {
-        this.redLeft.on();
-        this.redRight.on();
+        this.setRed(1.0);
+    }
+
+    public static setGreen(intensity: number) {
+        this.mixColors(0 * (intensity || 1.0), 1 * (intensity || 1.0));
     }
     
-    /**
-     * Turns off both built-in red EV3 LEDs
-     */
-    public static redOff() {
-        this.redLeft.off();
-        this.redRight.off();
-    }
-    
-    /**
-     * Turns on both built-in green EV3 LEDs
-     */
     public static greenOn() {
-        this.greenLeft.on();
-        this.greenRight.on();
+        this.setGreen(1.0);
+    }
+
+    public static setAmber(intensity: number) {
+        this.mixColors(1 * (intensity || 1.0), 1 * (intensity || 1.0));
     }
     
-    /**
-     * Turns off both built-in green EV3 LEDs
-     */
-    public static greenOff() {
-        this.greenLeft.off();
-        this.greenRight.off();
+    public static amberOn() {
+        this.setAmber(1.0);
+    }
+
+    public static setOrange(intensity: number) {
+        this.mixColors(1 * (intensity || 1.0), 0.7 * (intensity || 1.0));
     }
     
-    /**
-     * Turns on all built-in EV3 LEDs
-     */
-    public static allOn() {
-        this.greenOn();
-        this.redOn();
+    public static orangeOn() {
+        this.setOrange(1.0);
+    }
+
+//~autogen
+
+    public static mixColors(redPercent: number, greenPercent: number) {
+        this.redLeft.setBrightnessPct(redPercent);
+        this.redRight.setBrightnessPct(redPercent);
+
+        this.greenLeft.setBrightnessPct(greenPercent);
+        this.greenRight.setBrightnessPct(greenPercent);
     }
     
     /**
      * Turns off all built-in EV3 LEDs
      */
     public static allOff() {
-        this.greenOff();
-        this.redOff();
+        this.mixColors(0, 0);
     }
 }
