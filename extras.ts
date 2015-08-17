@@ -346,11 +346,19 @@ class LED extends Device {
     }
 
     public static setOrange(intensity: number) {
-        this.mixColors(1 * (intensity || 1.0), 0.7 * (intensity || 1.0));
+        this.mixColors(1 * (intensity || 1.0), 0.5 * (intensity || 1.0));
     }
     
     public static orangeOn() {
         this.setOrange(1.0);
+    }
+
+    public static setYellow(intensity: number) {
+        this.mixColors(0.5 * (intensity || 1.0), 1 * (intensity || 1.0));
+    }
+    
+    public static yellowOn() {
+        this.setYellow(1.0);
     }
 
 //~autogen
