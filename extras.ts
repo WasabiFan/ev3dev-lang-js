@@ -3,7 +3,7 @@
 ///<reference path="io.ts" />
 
 //~autogen autogen-header
-    // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 1. 
+// Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 1. 
 //~autogen
 
 //~autogen js_generic-class-description classes.powerSupply>currentClass
@@ -30,7 +30,7 @@ class PowerSupply extends Device {
     constructor(deviceName: string) {
         super();
 
-        if(deviceName != undefined)
+        if (deviceName != undefined)
             this.deviceName = deviceName;
 
         var rootPath: string;
@@ -97,7 +97,7 @@ class PowerSupply extends Device {
     }
 
 
-//~autogen
+    //~autogen
 
     get voltageVolts(): number {
         return this.measuredVoltage / 1000000;
@@ -119,10 +119,25 @@ class PowerSupply extends Device {
 class LED extends Device {
     private ledDeviceDir = '/sys/class/leds/';
     public deviceName: string;
-
+    
+    /**
+     * Built-in left red EV3 LED
+     */
     public static redLeft = new LED('ev3-left0:red:ev3dev');
-    public static redRight = new LED('ev3-right0:red:ev3dev' );
+
+    /**
+     * Built-in right red EV3 LED
+     */
+    public static redRight = new LED('ev3-right0:red:ev3dev');
+
+    /**
+     * Built-in left green EV3 LED
+     */
     public static greenLeft = new LED('ev3-left1:green:ev3dev');
+
+    /**
+     * Built-in right green EV3 LED
+     */
     public static greenRight = new LED('ev3-right1:green:ev3dev');
 
     get ledProperties(): any {
@@ -164,7 +179,7 @@ class LED extends Device {
 
     //PROPERTIES
 
-//~autogen js_generic-get-set classes.led>currentClass
+    //~autogen js_generic-get-set classes.led>currentClass
     /**
      * Returns the maximum allowable brightness value.
      */
@@ -181,7 +196,7 @@ class LED extends Device {
     /**
      * Sets the brightness level. Possible values are from 0 to `max_brightness`.
      */
-     set brightness(value: number) {
+    set brightness(value: number) {
         this.setNumber("brightness", value);
     }
     
@@ -227,7 +242,7 @@ class LED extends Device {
      * trigger. However, if you set the brightness value to 0 it will
      * also disable the `timer` trigger.
      */
-     set trigger(value: string) {
+    set trigger(value: string) {
         this.setString("trigger", value);
     }
     
@@ -244,7 +259,7 @@ class LED extends Device {
      * 0 and the current brightness setting. The `on` time can
      * be specified via `delay_on` attribute in milliseconds.
      */
-     set delayOn(value: number) {
+    set delayOn(value: number) {
         this.setNumber("delay_on", value);
     }
     
@@ -261,56 +276,83 @@ class LED extends Device {
      * 0 and the current brightness setting. The `off` time can
      * be specified via `delay_off` attribute in milliseconds.
      */
-     set delayOff(value: number) {
+    set delayOff(value: number) {
         this.setNumber("delay_off", value);
     }
     
 
-//~autogen
+    //~autogen
 
-     public on() {
-         this.brightness = this.maxBrightness;
-     }
+    /**
+     * Sets brightness to maximum value, turning the LED on
+     */
+    public on() {
+        this.brightness = this.maxBrightness;
+    }
 
-     public off() {
-         this.brightness = 0;
-     }
+    /**
+     * Sets brightness to 0, turning the LED off
+     */
+    public off() {
+        this.brightness = 0;
+    }
+    
+    /**
+     * Flashes the LED on a timer using the given intervals.
+     */
+    public flash(onInterval: number, offInterval: number) {
+        this.trigger = 'timer';
+        // TODO: Do we need to delay here?
 
-     public flash(onInterval: number, offInterval: number) {
-         this.trigger = 'timer';
-         // TODO: Do we need to delay here?
-
-         this.delayOn = onInterval;
-         this.delayOff = offInterval;
-     }
-
-     public static redOn() {
-         this.redLeft.on();
-         this.redRight.on();
-     }
-
-     public static redOff() {
-         this.redLeft.off();
-         this.redRight.off();
-     }
-
-     public static greenOn() {
-         this.greenLeft.on();
-         this.greenRight.on();
-     }
-
-     public static greenOff() {
-         this.greenLeft.off();
-         this.greenRight.off();
-     }
-
-     public static allOn() {
-         this.greenOn();
-         this.redOn();
-     }
-
-     public static allOff() {
-         this.greenOff();
-         this.redOff();
-     }
+        this.delayOn = onInterval;
+        this.delayOff = offInterval;
+    }
+    
+    /**
+     * Turns on both built-in red EV3 LEDs
+     */
+    public static redOn() {
+        this.redLeft.on();
+        this.redRight.on();
+    }
+    
+    /**
+     * Turns off both built-in red EV3 LEDs
+     */
+    public static redOff() {
+        this.redLeft.off();
+        this.redRight.off();
+    }
+    
+    /**
+     * Turns on both built-in green EV3 LEDs
+     */
+    public static greenOn() {
+        this.greenLeft.on();
+        this.greenRight.on();
+    }
+    
+    /**
+     * Turns off both built-in green EV3 LEDs
+     */
+    public static greenOff() {
+        this.greenLeft.off();
+        this.greenRight.off();
+    }
+    
+    /**
+     * Turns on all built-in EV3 LEDs
+     */
+    public static allOn() {
+        this.greenOn();
+        this.redOn();
+    }
+    
+    /**
+     * Turns off all built-in EV3 LEDs
+     */
+    public static allOff() {
+        this.greenOff();
+        this.redOff();
+    }
 }
