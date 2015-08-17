@@ -286,8 +286,12 @@ class LED extends Device {
     /**
      * Sets the LED's brightness to the given percent (0-1) of the max value.
      */
-    public setBrightnessPct(percent: number) {
-        this.brightness = Math.round(this.maxBrightness * percent);
+    public get brightnessPct(): number{
+        return this.brightness / this.maxBrightness;
+    }
+
+    public set brightnessPct(brightnessPct: number) {
+        this.brightness = Math.round(this.maxBrightness * brightnessPct);
     }
 
     /**
@@ -352,11 +356,11 @@ class LED extends Device {
 //~autogen
 
     public static mixColors(redPercent: number, greenPercent: number) {
-        this.redLeft.setBrightnessPct(redPercent);
-        this.redRight.setBrightnessPct(redPercent);
+        this.redLeft.brightnessPct = redPercent;
+        this.redRight.brightnessPct= redPercent;
 
-        this.greenLeft.setBrightnessPct(greenPercent);
-        this.greenRight.setBrightnessPct(greenPercent);
+        this.greenLeft.brightnessPct = greenPercent;
+        this.greenRight.brightnessPct = greenPercent;
     }
     
     /**
