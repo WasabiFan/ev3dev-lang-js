@@ -68,11 +68,12 @@
 				<h1 id="node-js-language-binding-for-ev3dev-">Node.js Language Binding for ev3dev </h1>
 				<p>This is a Node.js module that exposes the features of the <a href="http://github.com/ev3dev/ev3dev">ev3dev</a> API in an easy-to-use structure. It is part of the &quot;unified&quot; bindings project for ev3dev, which means it follows our abstract API specification. This specification is implemented in multiple languages so that one can easily carry the same code concepts from one language to another.</p>
 				<h2 id="getting-the-module">Getting the Module</h2>
+				<h3 id="installing-the-latest-release-from-npm">Installing the latest release from npm</h3>
 				<p>The easiest way to get the module is to install it through <code>npm</code>:</p>
 				<pre><code>$ npm <span class="hljs-keyword">install</span> ev3dev
 </code></pre><p>And then <code>require()</code> it for use in your code.</p>
+				<h3 id="downloading-the-source-code-and-compiling-yourself">Downloading the source code and compiling yourself</h3>
 				<p>You can also download the source from GitHub directly, either from the releases page or via git. If you do it this way, you will need to follow the building instructions below to make it usable from Node.</p>
-				<h2 id="building-from-source">Building From Source</h2>
 				<p>This module is written in TypeScript, which means it cannot be directly used from JavaScript or Node.js. If you would like to make changes to the module or use a copy of the module from GitHub, you will need to follow these steps to build the module from source. The below steps should work on any modern OS, including Linux, OSX and Windows.</p>
 				<p>First, you will need to install some tools. Both building and running the module will require Node.js and <code>npm</code>, so make sure that you have both installed. Then install grunt, the task runner that we use to build the library:</p>
 				<pre><code>$ npm <span class="hljs-operator"><span class="hljs-keyword">install</span> -<span class="hljs-keyword">g</span> grunt-cli</span>
@@ -82,6 +83,38 @@
 </code></pre><p>The final step is to run the build job. We can invoke the task runner that we installed earlier to do this:</p>
 				<pre><code><span class="hljs-variable">$ </span>grunt tsc
 </code></pre><p>The build job should have put the generated JavaScript in the <code>bin</code> folder.</p>
+				<h2 id="getting-started-with-the-api">Getting started with the API</h2>
+				<p>We recommend that you start by running the files in the <code>examples/</code> subdirectory of the repo so that you can make sure that your system is set up correctly. Assuming you don&#39;t get any errors, you can create your own <code>js</code> file and <code>require</code> the ev3dev module to start writing your own code. For reference, you can take a look at the example scripts or check out the <a href="http://wasabifan.github.io/ev3dev-lang-js/">online documentation</a>.</p>
+				<h2 id="executing-your-node-js-scripts">Executing your Node.js scripts</h2>
+				<p>The simplest way is to run your code from the command line with the <code>node</code> command. This can be done over an SSH session or directly on the brick. To run a <code>.js</code> file, execute:</p>
+				<pre><code class="lang-bash">$ node path/to/file.js
+</code></pre>
+				<p>If you want to be able to execute your scripts from brickman&#39;s file browser, you can add a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix">shebang</a>) and make it executable. You first must add the following code to the top of your <code>.js</code> file:</p>
+				<pre><code><span class="hljs-shebang">#!/usr/bin/env node</span>
+</code></pre><p>You can then make it executable from the command line:</p>
+				<pre><code class="lang-bash">$ chmod +x path/to/file.js
+</code></pre>
+				<p>You should now be able to execute it directly from brickman.</p>
+				<h2 id="use-cases-for-javascript-on-the-ev3">Use cases for JavaScript on the EV3</h2>
+				<p>JavaScript is asynchronous by nature. There is practically no way to &quot;sleep&quot; your code for a certain amount of time, or wait for the operation to finish. This is my design, and both restricts the use cases for Node and JS as well as opens up new scenarios to explore.</p>
+				<p>Situations to use JavaScript:</p>
+				<ul>
+					<li>Servers<ul>
+							<li>Programming a web interface, where you need to serve files</li>
+							<li>Responding to commands sent by an external controller (maybe a PC and browser)</li>
+						</ul>
+					</li>
+					<li>Continuously taking input<ul>
+							<li>Running a job on a timer</li>
+						</ul>
+					</li>
+					<li>Running any code that only occasionally &quot;wakes up&quot;</li>
+				</ul>
+				<p>Situations in which you should use other languages:</p>
+				<ul>
+					<li>Sequential actions that run linearly</li>
+					<li>Precise timing and delay</li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
