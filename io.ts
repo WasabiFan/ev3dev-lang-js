@@ -62,7 +62,7 @@ class Device {
 
     public readProperty(property: string, deviceRoot?: string): any {
         if (!deviceRoot && !this.connected)
-            throw new Error('You must be connected to a device before you can read from it.');
+            throw new Error('You must be connected to a device before you can read from it. This error probably means that the target device was not found.');
 
         var rawValue: string;
         var propertyPath = this.constructPropertyPath(property, deviceRoot);
@@ -85,7 +85,7 @@ class Device {
 
     public setProperty(property: string, value: any): any {
         if (!this.connected)
-            throw new Error('You must be connected to a device before you can write to it.');
+            throw new Error('You must be connected to a device before you can write to it. This error probably means that the target device was not found.');
 
         var propertyPath = this.constructPropertyPath(property);
 

@@ -14,7 +14,6 @@ module.exports = function (grunt) {
                 options: {
                     target: 'es5'
                 }
-                //command: __dirname + '/node_modules/.bin/tsc --target ES5 -out "bin/index.js" @compile.txt'
             }
         },
         typedoc: {

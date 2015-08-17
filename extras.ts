@@ -120,6 +120,11 @@ class LED extends Device {
     private ledDeviceDir = '/sys/class/leds/';
     public deviceName: string;
 
+    public static redLeft = new LED('ev3-left0:red:ev3dev');
+    public static redRight = new LED('ev3-right0:red:ev3dev' );
+    public static greenLeft = new LED('ev3-left1:green:ev3dev');
+    public static greenRight = new LED('ev3-right1:green:ev3dev');
+
     get ledProperties(): any {
         return {
             maxBrightness: 'max_brightness',
@@ -263,4 +268,49 @@ class LED extends Device {
 
 //~autogen
 
+     public on() {
+         this.brightness = this.maxBrightness;
+     }
+
+     public off() {
+         this.brightness = 0;
+     }
+
+     public flash(onInterval: number, offInterval: number) {
+         this.trigger = 'timer';
+         // TODO: Do we need to delay here?
+
+         this.delayOn = onInterval;
+         this.delayOff = offInterval;
+     }
+
+     public static redOn() {
+         this.redLeft.on();
+         this.redRight.on();
+     }
+
+     public static redOff() {
+         this.redLeft.off();
+         this.redRight.off();
+     }
+
+     public static greenOn() {
+         this.greenLeft.on();
+         this.greenRight.on();
+     }
+
+     public static greenOff() {
+         this.greenLeft.off();
+         this.greenRight.off();
+     }
+
+     public static allOn() {
+         this.greenOn();
+         this.redOn();
+     }
+
+     public static allOff() {
+         this.greenOff();
+         this.redOff();
+     }
 }

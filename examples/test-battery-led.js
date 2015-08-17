@@ -20,24 +20,18 @@ console.log(' Min voltage (microvolts): ' + battery.minVoltage);
 console.log('--------------------')
 console.log('LED ----------------');
 console.log('fading LEDs from green to red...');
-var leds = [];
-// ev3-<left|right><0:red|1:green>:ev3dev
-[   'ev3-left1:green:ev3dev',  'ev3-left0:red:ev3dev',
-    'ev3-right1:green:ev3dev', 'ev3-right0:red:ev3dev'
-].forEach(function (value) {
-    leds.push(new ev3dev.LED(value));
-});
 
-for(var i = 0; i < 100; i++) {
-    for(var ledI = 0; ledI < leds.length; ledI++) {
-        var val = (i / 100) * leds[ledI].maxBrightness;
-        if(ledI % 2 == 0)
-            val = (100 - i) / 100 * leds[ledI].maxBrightness; 
-        
-        leds[ledI].brightness = Math.round(val);
-    }
+for (var i = 0; i < 1; i += 0.01) {
+    var brightnessVal = Math.round(i * ev3dev.LED.redLeft.maxBrightness);
+    var invertedBrightnessVal = -brightnessVal + ev3dev.LED.redLeft.maxBrightness;
+
+    ev3dev.LED.redLeft.brightness = brightnessVal;
+    ev3dev.LED.redRight.brightness = brightnessVal;
+
+    ev3dev.LED.greenLeft.brightness = invertedBrightnessVal;
+    ev3dev.LED.greenRight.brightness = invertedBrightnessVal;
     
-    if(i % 10 == 0)
+    if(i % 0.1 == 0)
         console.log(i + '%');
     
     {   //Hack to sleep for time
@@ -51,8 +45,6 @@ for(var i = 0; i < 100; i++) {
 
 console.log('done');
 
-for(var i in leds) {
-    leds[i].brightness = 0;
-}
+ev3dev.LED.allOff();
 
 console.log('--------------------')
