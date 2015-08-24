@@ -21,8 +21,8 @@ console.log('--------------------')
 console.log('LED ----------------');
 console.log('fading LEDs from green to red...');
 
-for (var i = 0; i < 1; i += 0.01) {
-    var brightnessVal = Math.round(i * ev3dev.LED.redLeft.maxBrightness);
+for (var pct = 0; pct < 100; pct += 1) {
+    var brightnessVal = Math.round((pct / 100) * ev3dev.LED.redLeft.maxBrightness);
     var invertedBrightnessVal = -brightnessVal + ev3dev.LED.redLeft.maxBrightness;
 
     ev3dev.LED.redLeft.brightness = brightnessVal;
@@ -30,9 +30,9 @@ for (var i = 0; i < 1; i += 0.01) {
 
     ev3dev.LED.greenLeft.brightness = invertedBrightnessVal;
     ev3dev.LED.greenRight.brightness = invertedBrightnessVal;
-    
-    if(i % 0.1 == 0)
-        console.log(i + '%');
+        
+    if(pct % 10 == 0)
+        console.log(pct + '%');
     
     {   //Hack to sleep for time
         //    SHOULD NOT BE USED IN PRODUCTION CODE
