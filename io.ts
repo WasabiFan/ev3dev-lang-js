@@ -60,6 +60,23 @@ class Device {
         return String(value);
     }
 
+    public readStringArray(property: string, deviceRoot?: string): string[]{
+        return this.readString(property, deviceRoot)
+            .split(' ')
+            .map((value: string) => value.replace(/^\[|\]$/g, ''));
+    }
+
+    public readStringSelector(property: string, deviceRoot?: string): string {
+        var bracketedParts = this.readString(property, deviceRoot)
+            .split(' ')
+            .filter((value: string) => value.match(/^\[|\]$/g) != null);
+
+        if (bracketedParts.length <= 0)
+            return null;
+
+        return bracketedParts[0].replace(/^\[|\]$/g, '');
+    }
+
     public readProperty(property: string, deviceRoot?: string): any {
         if (!deviceRoot && !this.connected)
             throw new Error('You must be connected to a device before you can read from it. This error probably means that the target device was not found.');

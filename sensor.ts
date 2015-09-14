@@ -98,7 +98,7 @@ class Sensor extends Device {
      * Returns -EOPNOTSUPP if no commands are supported.
      */
     get commands(): string[] {
-        return this.readString("commands").split(' ');
+        return this.readStringArray("commands");
     }
 
     /**
@@ -136,7 +136,7 @@ class Sensor extends Device {
      * Returns a list of the valid modes for the sensor.
      */
     get modes(): string[] {
-        return this.readString("modes").split(' ');
+        return this.readStringArray("modes");
     }
 
     /**

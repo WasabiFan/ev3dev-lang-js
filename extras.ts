@@ -3,7 +3,7 @@
 ///<reference path="io.ts" />
 
 //~autogen autogen-header
-    // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 1. 
+    // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2. 
 //~autogen
 
 //~autogen js_generic-class-description classes.powerSupply>currentClass
@@ -204,7 +204,7 @@ class LED extends Device {
      * Returns a list of available triggers.
      */
     get triggers(): string[] {
-        return this.readString("triggers").split(' ');
+        return this.readStringArray("trigger");
     }
 
     /**
@@ -224,7 +224,7 @@ class LED extends Device {
      * also disable the `timer` trigger.
      */
     get trigger(): string {
-        return this.readString("trigger");
+        return this.readStringSelector("trigger");
     }
     /**
      * Sets the led trigger. A trigger

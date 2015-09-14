@@ -3,7 +3,7 @@
 ///<reference path="io.ts" />
 
 //~autogen autogen-header
-    // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 1. 
+    // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2. 
 //~autogen
 
 class MotorBase extends Device {
@@ -122,7 +122,7 @@ class Motor extends MotorBase {
      * This will also have the effect of stopping the motor.
      */
     get commands(): string[] {
-        return this.readString("commands").split(' ');
+        return this.readStringArray("commands");
     }
 
     /**
@@ -426,7 +426,7 @@ class Motor extends MotorBase {
      * `running`, `ramping` `holding` and `stalled`.
      */
     get state(): string[] {
-        return this.readString("state").split(' ');
+        return this.readStringArray("state");
     }
 
     /**
@@ -461,7 +461,7 @@ class Motor extends MotorBase {
      * back' to maintain its position.
      */
     get stopCommands(): string[] {
-        return this.readString("stop_commands").split(' ');
+        return this.readStringArray("stop_commands");
     }
 
     /**
@@ -575,7 +575,7 @@ class DCMotor extends MotorBase {
      * controller.
      */
     get commands(): string[] {
-        return this.readString("commands").split(' ');
+        return this.readStringArray("commands");
     }
 
     /**
@@ -668,7 +668,7 @@ class DCMotor extends MotorBase {
      * `duty_cycle_sp`.
      */
     get state(): string[] {
-        return this.readString("state").split(' ');
+        return this.readStringArray("state");
     }
 
     /**
@@ -684,7 +684,7 @@ class DCMotor extends MotorBase {
      * and `brake`.
      */
     get stopCommands(): string[] {
-        return this.readString("stop_commands").split(' ');
+        return this.readStringArray("stop_commands");
     }
 
 
@@ -860,7 +860,7 @@ class ServoMotor extends MotorBase {
      * * `running`: Indicates that the motor is powered.
      */
     get state(): string[] {
-        return this.readString("state").split(' ');
+        return this.readStringArray("state");
     }
 
 
