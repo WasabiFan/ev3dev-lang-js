@@ -22,7 +22,7 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-shell": "^1.0.1",
-    "grunt-typedoc": "0.2.2",
+    "grunt-typedoc": "0.2.3",
     "grunt-typescript": "^0.7.0",
     "typescript": ">=1.0.0"
   },

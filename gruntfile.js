@@ -22,7 +22,9 @@ module.exports = function (grunt) {
                 options: {
                     out: './docs',
                     name: 'ev3dev-lang for Node.JS',
-                    target: 'es5'
+                    target: 'es5',
+                    disableOutputCheck: '',
+                    exclude: 'export.ts'
                 }
             }
         },
