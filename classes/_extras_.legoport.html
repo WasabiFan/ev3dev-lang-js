@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DCMotor | ev3dev-lang for Node.JS</title>
+	<title>LegoPort | ev3dev-lang for Node.JS</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,13 +57,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_motor_.html">&quot;motor&quot;</a>
+					<a href="../modules/_extras_.html">&quot;extras&quot;</a>
 				</li>
 				<li>
-					<a href="_motor_.dcmotor.html">DCMotor</a>
+					<a href="_extras_.legoport.html">LegoPort</a>
 				</li>
 			</ul>
-			<h1>Class DCMotor</h1>
+			<h1>Class LegoPort</h1>
 		</div>
 	</div>
 </header>
@@ -73,20 +73,39 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The DC motor class provides a uniform interface for using regular DC motors
-							with no fancy controls or feedback. This includes LEGO MINDSTORMS RCX motors
-						and LEGO Power Functions motors.</p>
+						<p>The <code>lego-port</code> class provides an interface for working with input and
+							output ports that are compatible with LEGO MINDSTORMS RCX/NXT/EV3, LEGO
+							WeDo and LEGO Power Functions sensors and motors. Supported devices include
+							the LEGO MINDSTORMS EV3 Intelligent Brick, the LEGO WeDo USB hub and
+						various sensor multiplexers from 3rd party manufacturers.</p>
 					</div>
+					<p>Some types of ports may have multiple modes of operation. For example, the
+						input ports on the EV3 brick can communicate with sensors using UART, I2C
+						or analog validate signals - but not all at the same time. Therefore there
+					are multiple modes available to connect to the different types of sensors.</p>
+					<p>In most cases, ports are able to automatically detect what type of sensor
+						or motor is connected. In some cases though, this must be manually specified
+						using the <code>mode</code> and <code>set_device</code> attributes. The <code>mode</code> attribute affects
+						how the port communicates with the connected device. For example the input
+						ports on the EV3 brick can communicate using UART, I2C or analog voltages,
+						but not all at the same time, so the mode must be set to the one that is
+						appropriate for the connected sensor. The <code>set_device</code> attribute is used to
+						specify the exact type of sensor that is connected. Note: the mode must be
+					correctly set before setting the sensor type.</p>
+					<p>Ports can be found at <code>/sys/class/lego-port/port&lt;N&gt;</code> where <code>&lt;N&gt;</code> is
+						incremented each time a new port is registered. Note: The number is not
+						related to the actual port at all - use the <code>port_name</code> attribute to find
+					a specific port.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_motor_.motorbase.html" class="tsd-signature-type">MotorBase</a>
+						<a href="_io_.device.html" class="tsd-signature-type">Device</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">DCMotor</span>
+								<span class="target">LegoPort</span>
 							</li>
 						</ul>
 					</li>
@@ -99,51 +118,45 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported"><a href="_motor_.dcmotor.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported"><a href="_extras_.legoport.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
+						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_motor_.dcmotor.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#connected" class="tsd-kind-icon">connected</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_motor_.dcmotor.html#devicedir" class="tsd-kind-icon">device<wbr>Dir</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_motor_.dcmotor.html#port" class="tsd-kind-icon">port</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported"><a href="_extras_.legoport.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#connected" class="tsd-kind-icon">connected</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported"><a href="_extras_.legoport.html#port" class="tsd-kind-icon">port</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_extras_.legoport.html#portdevicedir" class="tsd-kind-icon">port<wbr>Device<wbr>Dir</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#command" class="tsd-kind-icon">command</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#commands" class="tsd-kind-icon">commands</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#drivername" class="tsd-kind-icon">driver<wbr>Name</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#dutycycle" class="tsd-kind-icon">duty<wbr>Cycle</a></li>
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#dutycyclesp" class="tsd-kind-icon">duty<wbr>Cycle<wbr>Sp</a></li>
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#polarity" class="tsd-kind-icon">polarity</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#portname" class="tsd-kind-icon">port<wbr>Name</a></li>
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#rampdownsp" class="tsd-kind-icon">ramp<wbr>Down<wbr>Sp</a></li>
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#rampupsp" class="tsd-kind-icon">ramp<wbr>UpSp</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#state" class="tsd-kind-icon">state</a></li>
-								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#stopcommand" class="tsd-kind-icon">stop<wbr>Command</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_motor_.dcmotor.html#stopcommands" class="tsd-kind-icon">stop<wbr>Commands</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_extras_.legoport.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_extras_.legoport.html#drivername" class="tsd-kind-icon">driver<wbr>Name</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported"><a href="_extras_.legoport.html#mode" class="tsd-kind-icon">mode</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_extras_.legoport.html#modes" class="tsd-kind-icon">modes</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_extras_.legoport.html#portname" class="tsd-kind-icon">port<wbr>Name</a></li>
+								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_extras_.legoport.html#setdevice" class="tsd-kind-icon">set<wbr>Device</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_extras_.legoport.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#connect" class="tsd-kind-icon">connect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_motor_.dcmotor.html#constructpropertypath" class="tsd-kind-icon">construct<wbr>Property<wbr>Path</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#readnumber" class="tsd-kind-icon">read<wbr>Number</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#readproperty" class="tsd-kind-icon">read<wbr>Property</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#readstring" class="tsd-kind-icon">read<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#readstringarray" class="tsd-kind-icon">read<wbr>String<wbr>Array</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#readstringselector" class="tsd-kind-icon">read<wbr>String<wbr>Selector</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#set" class="tsd-kind-icon">set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#setnumber" class="tsd-kind-icon">set<wbr>Number</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#setproperty" class="tsd-kind-icon">set<wbr>Property</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_motor_.dcmotor.html#setstring" class="tsd-kind-icon">set<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#connect" class="tsd-kind-icon">connect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_extras_.legoport.html#constructpropertypath" class="tsd-kind-icon">construct<wbr>Property<wbr>Path</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#readnumber" class="tsd-kind-icon">read<wbr>Number</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#readproperty" class="tsd-kind-icon">read<wbr>Property</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#readstring" class="tsd-kind-icon">read<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#readstringarray" class="tsd-kind-icon">read<wbr>String<wbr>Array</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#readstringselector" class="tsd-kind-icon">read<wbr>String<wbr>Selector</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#set" class="tsd-kind-icon">set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#setnumber" class="tsd-kind-icon">set<wbr>Number</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#setproperty" class="tsd-kind-icon">set<wbr>Property</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_extras_.legoport.html#setstring" class="tsd-kind-icon">set<wbr>String</a></li>
 							</ul>
 						</section>
 					</div>
@@ -151,18 +164,17 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new DCMotor<span class="tsd-signature-symbol">(</span>port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_motor_.dcmotor.html" class="tsd-signature-type">DCMotor</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Lego<wbr>Port<span class="tsd-signature-symbol">(</span>port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_extras_.legoport.html" class="tsd-signature-type">LegoPort</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overwrites <a href="_motor_.motorbase.html">MotorBase</a>.<a href="_motor_.motorbase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L553">motor.ts:553</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L407">extras.ts:407</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -171,21 +183,20 @@
 									<h5>port: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_motor_.dcmotor.html" class="tsd-signature-type">DCMotor</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_extras_.legoport.html" class="tsd-signature-type">LegoPort</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported">
 					<a name="_deviceindex" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _device<wbr>Index</h3>
 					<div class="tsd-signature tsd-kind-icon">_device<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_motor_.motorbase.html">MotorBase</a>.<a href="_motor_.motorbase.html#_deviceindex">_deviceIndex</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L13">motor.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L404">extras.ts:404</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -200,17 +211,6 @@
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-					<a name="devicedir" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> device<wbr>Dir</h3>
-					<div class="tsd-signature tsd-kind-icon">device<wbr>Dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="_motor_.motorbase.html">MotorBase</a>.<a href="_motor_.motorbase.html#devicedir">deviceDir</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L11">motor.ts:11</a></li>
-						</ul>
-					</aside>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="deviceroot" class="tsd-anchor"></a>
 					<h3>device<wbr>Root</h3>
@@ -222,85 +222,40 @@
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported">
 					<a name="port" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> port</h3>
 					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_motor_.motorbase.html">MotorBase</a>.<a href="_motor_.motorbase.html#port">port</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L10">motor.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L402">extras.ts:402</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+					<a name="portdevicedir" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> port<wbr>Device<wbr>Dir</h3>
+					<div class="tsd-signature tsd-kind-icon">port<wbr>Device<wbr>Dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L401">extras.ts:401</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported">
-					<a name="command" class="tsd-anchor"></a>
-					<h3>command</h3>
-					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> command<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L569">motor.ts:569</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sets the command for the motor. Possible values are <code>run-forever</code>, <code>run-timed</code> and
-										<code>stop</code>. Not all commands may be supported, so be sure to check the contents
-									of the <code>commands</code> attribute.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-					<a name="commands" class="tsd-anchor"></a>
-					<h3>commands</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> commands<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L577">motor.ts:577</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a list of commands supported by the motor
-									controller.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="deviceindex" class="tsd-anchor"></a>
 					<h3>device<wbr>Index</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> deviceIndex<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_motor_.motorbase.html">MotorBase</a>.<a href="_motor_.motorbase.html#deviceindex">deviceIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L14">motor.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L405">extras.ts:405</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -317,105 +272,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L585">motor.ts:585</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L457">extras.ts:457</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the name of the motor driver that loaded this device. See the list
-									of [supported devices] for a list of drivers.</p>
+									<p>Returns the name of the driver that loaded this device. You can find the
+									complete list of drivers in the [list of port drivers].</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-					<a name="dutycycle" class="tsd-anchor"></a>
-					<h3>duty<wbr>Cycle</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dutyCycle<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L593">motor.ts:593</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Shows the current duty cycle of the PWM signal sent to the motor. Values
-									are -100 to 100 (-100% to 100%).</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-					<a name="dutycyclesp" class="tsd-anchor"></a>
-					<h3>duty<wbr>Cycle<wbr>Sp</h3>
+					<a name="mode" class="tsd-anchor"></a>
+					<h3>mode</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dutyCycleSp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> dutyCycleSp<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> mode<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> mode<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L602">motor.ts:602</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L474">extras.ts:474</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Writing sets the duty cycle setpoint of the PWM signal sent to the motor.
-										Valid values are -100 to 100 (-100% to 100%). Reading returns the current
-									setpoint.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L610">motor.ts:610</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Writing sets the duty cycle setpoint of the PWM signal sent to the motor.
-										Valid values are -100 to 100 (-100% to 100%). Reading returns the current
-									setpoint.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-					<a name="polarity" class="tsd-anchor"></a>
-					<h3>polarity</h3>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> polarity<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> polarity<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L617">motor.ts:617</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sets the polarity of the motor. Valid values are <code>normal</code> and <code>inversed</code>.</p>
+									<p>Reading returns the currently selected mode. Writing sets the mode.
+										Generally speaking when the mode changes any sensor or motor devices
+										associated with the port will be removed new ones loaded, however this
+									this will depend on the individual driver implementing this class.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -423,12 +312,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L623">motor.ts:623</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L483">extras.ts:483</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets the polarity of the motor. Valid values are <code>normal</code> and <code>inversed</code>.</p>
+									<p>Reading returns the currently selected mode. Writing sets the mode.
+										Generally speaking when the mode changes any sensor or motor devices
+										associated with the port will be removed new ones loaded, however this
+									this will depend on the individual driver implementing this class.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -438,6 +330,28 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+					<a name="modes" class="tsd-anchor"></a>
+					<h3>modes</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> modes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L464">extras.ts:464</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a list of the available modes of the port.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -451,148 +365,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L630">motor.ts:630</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L491">extras.ts:491</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the name of the port that the motor is connected to.</p>
+									<p>Returns the name of the port. See individual driver documentation for
+									the name that will be returned.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-					<a name="rampdownsp" class="tsd-anchor"></a>
-					<h3>ramp<wbr>Down<wbr>Sp</h3>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rampDownSp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> rampDownSp<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L638">motor.ts:638</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sets the time in milliseconds that it take the motor to ramp down from 100%
-									to 0%. Valid values are 0 to 10000 (10 seconds). Default is 0.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L645">motor.ts:645</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sets the time in milliseconds that it take the motor to ramp down from 100%
-									to 0%. Valid values are 0 to 10000 (10 seconds). Default is 0.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-					<a name="rampupsp" class="tsd-anchor"></a>
-					<h3>ramp<wbr>UpSp</h3>
-					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rampUpSp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> rampUpSp<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L653">motor.ts:653</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sets the time in milliseconds that it take the motor to up ramp from 0% to
-									100%. Valid values are 0 to 10000 (10 seconds). Default is 0.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L660">motor.ts:660</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sets the time in milliseconds that it take the motor to up ramp from 0% to
-									100%. Valid values are 0 to 10000 (10 seconds). Default is 0.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-					<a name="state" class="tsd-anchor"></a>
-					<h3>state</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> state<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L670">motor.ts:670</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets a list of flags indicating the motor status. Possible
-										flags are <code>running</code> and <code>ramping</code>. <code>running</code> indicates that the motor is
-										powered. <code>ramping</code> indicates that the motor has not yet reached the
-									<code>duty_cycle_sp</code>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported">
-					<a name="stopcommand" class="tsd-anchor"></a>
-					<h3>stop<wbr>Command</h3>
+					<a name="setdevice" class="tsd-anchor"></a>
+					<h3>set<wbr>Device</h3>
 					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> stopCommand<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> setDevice<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L678">motor.ts:678</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L502">extras.ts:502</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets the stop command that will be used when the motor stops. Read
-									<code>stop_commands</code> to get the list of valid values.</p>
+									<p>For modes that support it, writing the name of a driver will cause a new
+										device to be registered for that driver and attached to this port. For
+										example, since NXT/Analog sensors cannot be auto-detected, you must use
+										this attribute to load the correct driver. Returns -EOPNOTSUPP if setting a
+									device is not supported.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -606,25 +411,27 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-					<a name="stopcommands" class="tsd-anchor"></a>
-					<h3>stop<wbr>Commands</h3>
+					<a name="status" class="tsd-anchor"></a>
+					<h3>status</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> stopCommands<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> status<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/motor.ts#L686">motor.ts:686</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/extras.ts#L512">extras.ts:512</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets a list of stop commands. Valid values are <code>coast</code>
-									and <code>brake</code>.</p>
+									<p>In most cases, reading status will return the same value as <code>mode</code>. In
+										cases where there is an <code>auto</code> mode additional values may be returned,
+										such as <code>no-device</code> or <code>error</code>. See individual port driver documentation
+									for the full list of possible values.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -933,7 +740,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_export_.html">"export"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_extras_.html">"extras"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -942,7 +749,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_io_.html">"io"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_motor_.html">"motor"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -952,116 +759,92 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_extras_.led.html" class="tsd-kind-icon">LED</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_motor_.dcmotor.html" class="tsd-kind-icon">DCMotor</a>
+						<a href="_extras_.legoport.html" class="tsd-kind-icon">Lego<wbr>Port</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_extras_.legoport.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#connected" class="tsd-kind-icon">connected</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#devicedir" class="tsd-kind-icon">device<wbr>Dir</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported">
+								<a href="_extras_.legoport.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a>
+								<a href="_extras_.legoport.html#connected" class="tsd-kind-icon">connected</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#port" class="tsd-kind-icon">port</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+								<a href="_extras_.legoport.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported">
+								<a href="_extras_.legoport.html#port" class="tsd-kind-icon">port</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+								<a href="_extras_.legoport.html#portdevicedir" class="tsd-kind-icon">port<wbr>Device<wbr>Dir</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_extras_.legoport.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_extras_.legoport.html#drivername" class="tsd-kind-icon">driver<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_extras_.legoport.html#mode" class="tsd-kind-icon">mode</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_extras_.legoport.html#modes" class="tsd-kind-icon">modes</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_extras_.legoport.html#portname" class="tsd-kind-icon">port<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#command" class="tsd-kind-icon">command</a>
+								<a href="_extras_.legoport.html#setdevice" class="tsd-kind-icon">set<wbr>Device</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#commands" class="tsd-kind-icon">commands</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#drivername" class="tsd-kind-icon">driver<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#dutycycle" class="tsd-kind-icon">duty<wbr>Cycle</a>
-							</li>
-							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#dutycyclesp" class="tsd-kind-icon">duty<wbr>Cycle<wbr>Sp</a>
-							</li>
-							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#polarity" class="tsd-kind-icon">polarity</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#portname" class="tsd-kind-icon">port<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#rampdownsp" class="tsd-kind-icon">ramp<wbr>Down<wbr>Sp</a>
-							</li>
-							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#rampupsp" class="tsd-kind-icon">ramp<wbr>UpSp</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#state" class="tsd-kind-icon">state</a>
-							</li>
-							<li class=" tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#stopcommand" class="tsd-kind-icon">stop<wbr>Command</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#stopcommands" class="tsd-kind-icon">stop<wbr>Commands</a>
+								<a href="_extras_.legoport.html#status" class="tsd-kind-icon">status</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#connect" class="tsd-kind-icon">connect</a>
+								<a href="_extras_.legoport.html#connect" class="tsd-kind-icon">connect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#constructpropertypath" class="tsd-kind-icon">construct<wbr>Property<wbr>Path</a>
+								<a href="_extras_.legoport.html#constructpropertypath" class="tsd-kind-icon">construct<wbr>Property<wbr>Path</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#readnumber" class="tsd-kind-icon">read<wbr>Number</a>
+								<a href="_extras_.legoport.html#readnumber" class="tsd-kind-icon">read<wbr>Number</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#readproperty" class="tsd-kind-icon">read<wbr>Property</a>
+								<a href="_extras_.legoport.html#readproperty" class="tsd-kind-icon">read<wbr>Property</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#readstring" class="tsd-kind-icon">read<wbr>String</a>
+								<a href="_extras_.legoport.html#readstring" class="tsd-kind-icon">read<wbr>String</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#readstringarray" class="tsd-kind-icon">read<wbr>String<wbr>Array</a>
+								<a href="_extras_.legoport.html#readstringarray" class="tsd-kind-icon">read<wbr>String<wbr>Array</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#readstringselector" class="tsd-kind-icon">read<wbr>String<wbr>Selector</a>
+								<a href="_extras_.legoport.html#readstringselector" class="tsd-kind-icon">read<wbr>String<wbr>Selector</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#set" class="tsd-kind-icon">set</a>
+								<a href="_extras_.legoport.html#set" class="tsd-kind-icon">set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#setnumber" class="tsd-kind-icon">set<wbr>Number</a>
+								<a href="_extras_.legoport.html#setnumber" class="tsd-kind-icon">set<wbr>Number</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#setproperty" class="tsd-kind-icon">set<wbr>Property</a>
+								<a href="_extras_.legoport.html#setproperty" class="tsd-kind-icon">set<wbr>Property</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-								<a href="_motor_.dcmotor.html#setstring" class="tsd-kind-icon">set<wbr>String</a>
+								<a href="_extras_.legoport.html#setstring" class="tsd-kind-icon">set<wbr>String</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_motor_.motor.html" class="tsd-kind-icon">Motor</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_motor_.motorbase.html" class="tsd-kind-icon">Motor<wbr>Base</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_motor_.motorspeedsp.html" class="tsd-kind-icon">Motor<wbr>Speed<wbr>Sp</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_motor_.servomotor.html" class="tsd-kind-icon">Servo<wbr>Motor</a>
+						<a href="_extras_.powersupply.html" class="tsd-kind-icon">Power<wbr>Supply</a>
 					</li>
 				</ul>
 			</nav>
