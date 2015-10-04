@@ -1,6 +1,6 @@
 {
   "name": "ev3dev",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "An interface to control an EV3 running ev3dev from JavaScript.",
   "keywords": [
     "ev3dev",
