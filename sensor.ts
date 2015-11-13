@@ -2,7 +2,36 @@
 ///<reference path="include.ts" />
 ///<reference path="io.ts" />
 
-//~autogen js_generic-class-description classes.sensor>currentClass
+class SensorBase extends Device {
+    protected _deviceIndex: number = -1;
+    get deviceIndex(): number {
+        return this._deviceIndex;
+    }
+
+    constructor(deviceTypeDirName: string, nameConvention: string, targetPort?: string, targetDriverName?: string | string[]) {
+        super();
+
+        var propertyConstraints: { [propertyName: string]: any } = {};
+
+        if (targetPort != undefined)
+            propertyConstraints['port_name'] = targetPort;
+
+        if (targetDriverName != undefined)
+            propertyConstraints['device_name'] = [].concat(targetDriverName);
+
+        this.connect(deviceTypeDirName, nameConvention, propertyConstraints);
+
+        if (this.connected) {
+            var matches = new RegExp(nameConvention).exec(this.deviceDirName);
+
+            if (matches != null && matches[0] != undefined) {
+                this._deviceIndex = Number(matches[1]);
+            }
+        }
+    }
+}
+
+//~autogen generic-class-description classes.sensor>currentClass
 /** 
  * The sensor class provides a uniform interface for using most of the
  * sensors available for the EV3. The various underlying device drivers will
@@ -20,60 +49,13 @@
  * program will still work.
  */
 //~autogen
-class Sensor extends Device {
-    private port: string;
-    private sensorDeviceDir = '/sys/class/lego-sensor/';
+class Sensor extends SensorBase {
 
-    private _deviceIndex: number = -1;
-    get deviceIndex(): number {
-        return this._deviceIndex;
-    }
-
-    constructor(port?: string, driverNames?: string[]) {
-        super();
-
-        this.port = port;
-        var rootPath: string;
-
-        try {
-            var availableDevices = fs.readdirSync(this.sensorDeviceDir);
-            for (var i in availableDevices) {
-                var file = availableDevices[i];
-
-                rootPath = path.join(this.sensorDeviceDir, file);
-
-                var portName = this.readString("port_name", rootPath);
-
-                var driverName = this.readString("driver_name", rootPath);
-
-                var satisfiesCondition = (
-                        (port == ports.INPUT_AUTO)
-                        || (port == undefined)
-                        || (portName === port)
-                    ) && (
-                        (driverNames == undefined || driverNames == [])
-                        || driverNames.indexOf(driverName) != -1
-                    );
-                
-                if (satisfiesCondition) {
-                    this._deviceIndex = Number(file.substring('sensor'.length));
-                    break;
-                }
-            }
-
-            if (this.deviceIndex == -1) {
-                this.connected = false;
-                return;
-            }
-        }
-
-        catch (e) {
-            console.log(e);
-            this.connected = false;
-            return;
-        }
-
-        this.connect(rootPath);
+    constructor(port?: string, driverNames?: string[]| string) {
+        //~autogen connect-super-call classes.sensor>currentClass "port,driverNames">extraParams
+        super('lego-sensor', 'sensor(\\d*)', port,driverNames);
+//~autogen
+        
     }
 
     public getValue(valueIndex: number): number {
@@ -85,7 +67,7 @@ class Sensor extends Device {
     }
 
     //PROPERTIES
-    //~autogen js_generic-get-set classes.sensor>currentClass
+    //~autogen generic-get-set classes.sensor>currentClass
     /**
      * Sends a command to the sensor.
      */
@@ -167,7 +149,7 @@ class Sensor extends Device {
 //~autogen
 }
 
-//~autogen js_generic-class-description classes.i2cSensor>currentClass
+//~autogen generic-class-description classes.i2cSensor>currentClass
 /** 
  * A generic interface to control I2C-type EV3 sensors.
  */
@@ -177,7 +159,7 @@ class I2CSensor extends Sensor {
         super(port, driverNames);
     }
 
-    //~autogen js_generic-get-set classes.i2cSensor>currentClass
+    //~autogen generic-get-set classes.i2cSensor>currentClass
     /**
      * Returns the firmware version of the sensor if available. Currently only
      * I2C/NXT sensors support this.

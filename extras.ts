@@ -4,16 +4,16 @@
 
 //~autogen autogen-header
     // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2. 
+
 //~autogen
 
-//~autogen js_generic-class-description classes.powerSupply>currentClass
+//~autogen generic-class-description classes.powerSupply>currentClass
 /** 
  * A generic interface to read data from the system's power_supply class.
  * Uses the built-in legoev3-battery if none is specified.
  */
 //~autogen
 class PowerSupply extends Device {
-    private powerDeviceDir = '/sys/class/power_supply/';
     public deviceName: string = 'legoev3-battery';
 
     constructor(deviceName: string) {
@@ -22,31 +22,11 @@ class PowerSupply extends Device {
         if (deviceName != undefined)
             this.deviceName = deviceName;
 
-        var rootPath: string;
-
-        try {
-            var availableDevices = fs.readdirSync(this.powerDeviceDir);
-
-
-            if (availableDevices.indexOf(this.deviceName) == -1) {
-                this.connected = false;
-                return;
-            }
-
-            rootPath = path.join(this.powerDeviceDir, availableDevices[availableDevices.indexOf(this.deviceName)]);
-        }
-
-        catch (e) {
-            console.log(e);
-            this.connected = false;
-            return;
-        }
-
-        this.connect(rootPath/*, [this.sensorProperties.portName]*/);
+        this.connect('power_supply', deviceName);
     }
 
     //PROPERTIES
-    //~autogen js_generic-get-set classes.powerSupply>currentClass
+    //~autogen generic-get-set classes.powerSupply>currentClass
     /**
      * The measured current that the battery is supplying (in microamps)
      */
@@ -98,7 +78,7 @@ class PowerSupply extends Device {
 
 }
 
-//~autogen js_generic-class-description classes.led>currentClass
+//~autogen generic-class-description classes.led>currentClass
 /** 
  * Any device controlled by the generic LED driver.
  * See https://www.kernel.org/doc/Documentation/leds/leds-class.txt
@@ -106,7 +86,6 @@ class PowerSupply extends Device {
  */
 //~autogen
 class LED extends Device {
-    private ledDeviceDir = '/sys/class/leds/';
     public deviceName: string;
     
     /**
@@ -139,36 +118,15 @@ class LED extends Device {
 
     constructor(deviceName: string) {
         super();
-
-        //if (deviceName != undefined)
+        
         this.deviceName = deviceName;
 
-        var rootPath: string;
-
-        try {
-            var availableDevices = fs.readdirSync(this.ledDeviceDir);
-
-
-            if (availableDevices.indexOf(this.deviceName) == -1) {
-                this.connected = false;
-                return;
-            }
-
-            rootPath = path.join(this.ledDeviceDir, availableDevices[availableDevices.indexOf(this.deviceName)]);
-        }
-
-        catch (e) {
-            console.log(e);
-            this.connected = false;
-            return;
-        }
-
-        this.connect(rootPath);
+        this.connect('leds', deviceName);
     }
 
     //PROPERTIES
 
-    //~autogen js_generic-get-set classes.led>currentClass
+    //~autogen generic-get-set classes.led>currentClass
     /**
      * Returns the maximum allowable brightness value.
      */
@@ -308,47 +266,7 @@ class LED extends Device {
         this.delayOff = offInterval;
     }
     
-    //~autogen js_led-color-methods
-
-    public static setRed(intensity: number) {
-        this.mixColors(1 * (intensity || 1.0), 0 * (intensity || 1.0));
-    }
-    
-    public static redOn() {
-        this.setRed(1.0);
-    }
-
-    public static setGreen(intensity: number) {
-        this.mixColors(0 * (intensity || 1.0), 1 * (intensity || 1.0));
-    }
-    
-    public static greenOn() {
-        this.setGreen(1.0);
-    }
-
-    public static setAmber(intensity: number) {
-        this.mixColors(1 * (intensity || 1.0), 1 * (intensity || 1.0));
-    }
-    
-    public static amberOn() {
-        this.setAmber(1.0);
-    }
-
-    public static setOrange(intensity: number) {
-        this.mixColors(1 * (intensity || 1.0), 0.5 * (intensity || 1.0));
-    }
-    
-    public static orangeOn() {
-        this.setOrange(1.0);
-    }
-
-    public static setYellow(intensity: number) {
-        this.mixColors(0.5 * (intensity || 1.0), 1 * (intensity || 1.0));
-    }
-    
-    public static yellowOn() {
-        this.setYellow(1.0);
-    }
+    //~autogen led-color-methods
 
 //~autogen
 
@@ -368,7 +286,7 @@ class LED extends Device {
     }
 }
 
-//~autogen js_generic-class-description classes.legoPort>currentClass
+//~autogen generic-class-description classes.legoPort>currentClass
 /** 
  * The `lego-port` class provides an interface for working with input and
  * output ports that are compatible with LEGO MINDSTORMS RCX/NXT/EV3, LEGO
@@ -398,9 +316,6 @@ class LED extends Device {
  */
 //~autogen
 class LegoPort extends Device {
-    private portDeviceDir = '/sys/class/lego-port/';
-    protected port: string;
-
     protected _deviceIndex: number = -1;
     get deviceIndex(): number {
         return this._deviceIndex;
@@ -409,47 +324,13 @@ class LegoPort extends Device {
     constructor(port: string) {
         super();
 
-        this.port = port;
-        var rootPath: string;
-
-        try {
-            var availableDevices = fs.readdirSync(this.portDeviceDir);
-            for (var i in availableDevices) {
-                var deviceFile = availableDevices[i];
-
-                rootPath = path.join(this.portDeviceDir, deviceFile);
-                var currentPortName = this.readString('port_name', rootPath);
-
-                var satisfiesCondition = (
-                    (port == ports.OUTPUT_AUTO || port == ports.INPUT_AUTO)
-                    || (port == undefined)
-                    || (currentPortName === port)
-                    );
-
-                if (satisfiesCondition) {
-                    this._deviceIndex = Number(deviceFile.substring('lego-port'.length));
-                    break;
-                }
-            }
-
-            if (this.deviceIndex == -1) {
-                console.log('no device found');
-                this.connected = false;
-                return;
-            }
-        }
-
-        catch (e) {
-            console.log(e);
-            this.connected = false;
-            return;
-        }
-
-        this.connect(rootPath);
+        this.connect('lego-port', 'port(\d*)', {
+            port_name: port
+        });
     }
 
     //PROPERTIES
-    //~autogen js_generic-get-set classes.legoPort>currentClass
+    //~autogen generic-get-set classes.legoPort>currentClass
     /**
      * Returns the name of the driver that loaded this device. You can find the
      * complete list of drivers in the [list of port drivers].

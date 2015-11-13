@@ -4,70 +4,39 @@
 
 //~autogen autogen-header
     // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2. 
+
 //~autogen
 
 class MotorBase extends Device {
-    protected port: string;
-    protected deviceDir = '/sys/class/tacho-motor/'; //Default motor type
-
     protected _deviceIndex: number = -1;
     get deviceIndex(): number {
         return this._deviceIndex;
     }
 
-    private motorBaseProperties = {
-        portName: 'port_name',
-        driver: 'driver_name'
-    };
-
-    constructor(targetPort: string, targetDriverName?: string) {
+    constructor(deviceTypeDirName: string, nameConvention: string, targetPort?: string, targetDriverName?: string | string[]) {
         super();
 
-        this.port = targetPort;
-        var rootPath: string;
+        var propertyConstraints: {[propertyName: string]: any} = {};
 
-        try {
-            var availableDevices = fs.readdirSync(this.deviceDir);
-            for (var i in availableDevices) {
-                var deviceFile = availableDevices[i];
+        if (targetPort != undefined)
+            propertyConstraints['port_name'] = targetPort;
 
-                rootPath = path.join(this.deviceDir, deviceFile);
-                var currentPortName = this.readString(this.motorBaseProperties.portName, rootPath);
-                var currentDriverName = this.readString(this.motorBaseProperties.driver, rootPath);
+        if (targetDriverName != undefined)
+            propertyConstraints['device_name'] = [].concat(targetDriverName);
 
-                var satisfiesCondition = (
-                    (targetPort == ports.OUTPUT_AUTO)
-                    || (targetPort == undefined)
-                    || (currentPortName === targetPort)
-                ) && (
-                    (targetDriverName == undefined || targetDriverName == '')
-                    || currentDriverName == targetDriverName
-                );
+        this.connect(deviceTypeDirName, nameConvention, propertyConstraints);
 
-                if (satisfiesCondition) {
-                    this._deviceIndex = Number(deviceFile.substring('motor'.length));
-                    break;
-                }
-            }
-
-            if (this.deviceIndex == -1) {
-                console.log('no device found');
-                this.connected = false;
-                return;
+        if (this.connected) {
+            var matches = new RegExp(nameConvention).exec(this.deviceDirName);
+            
+            if (matches != null && matches[0] != undefined) {
+                this._deviceIndex = Number(matches[1]);
             }
         }
-
-        catch (e) {
-            console.log(e);
-            this.connected = false;
-            return;
-        }
-
-        this.connect(rootPath);
     }
 }
 
-//~autogen js_generic-class-description classes.motor>currentClass
+//~autogen generic-class-description classes.motor>currentClass
 /** 
  * The motor class provides a uniform interface for using motors with
  * positional and directional feedback such as the EV3 and NXT motors.
@@ -77,10 +46,10 @@ class MotorBase extends Device {
 //~autogen
 class Motor extends MotorBase {
 
-    constructor(port?: string, targetDriverName?: string) {
-        this.deviceDir = '/sys/class/tacho-motor/';
-    
-        super(port, targetDriverName);
+    public constructor(port?: string, targetDriverName?: string[] | string) {
+        //~autogen connect-super-call classes.motor>currentClass "port,targetDriverName">extraParams
+        super('tacho-motor', 'motor(\\d*)', port,targetDriverName);
+//~autogen
     }
 
     public reset() {
@@ -92,7 +61,7 @@ class Motor extends MotorBase {
     }
 
     //PROPERTIES
-    //~autogen js_generic-get-set classes.motor>currentClass
+    //~autogen generic-get-set classes.motor>currentClass
     /**
      * Sends a command to the motor controller. See `commands` for a list of
      * possible values.
@@ -105,21 +74,22 @@ class Motor extends MotorBase {
      * Returns a list of commands that are supported by the motor
      * controller. Possible values are `run-forever`, `run-to-abs-pos`, `run-to-rel-pos`,
      * `run-timed`, `run-direct`, `stop` and `reset`. Not all commands may be supported.
-     * `run-forever` will cause the motor to run until another command is sent.
-     * `run-to-abs-pos` will run to an absolute position specified by `position_sp`
-     * and then stop using the command specified in `stop_command`.
-     * `run-to-rel-pos` will run to a position relative to the current `position` value.
-     * The new position will be current `position` + `position_sp`. When the new
-     * position is reached, the motor will stop using the command specified by `stop_command`.
-     * `run-timed` will run the motor for the amount of time specified in `time_sp`
-     * and then stop the motor using the command specified by `stop_command`.
-     * `run-direct` will run the motor at the duty cycle specified by `duty_cycle_sp`.
-     * Unlike other run commands, changing `duty_cycle_sp` while running *will*
-     * take effect immediately.
-     * `stop` will stop any of the run commands before they are complete using the
-     * command specified by `stop_command`.
-     * `reset` will reset all of the motor parameter attributes to their default value.
-     * This will also have the effect of stopping the motor.
+     * 
+     * - `run-forever` will cause the motor to run until another command is sent.
+     * - `run-to-abs-pos` will run to an absolute position specified by `position_sp`
+     *   and then stop using the command specified in `stop_command`.
+     * - `run-to-rel-pos` will run to a position relative to the current `position` value.
+     *   The new position will be current `position` + `position_sp`. When the new
+     *   position is reached, the motor will stop using the command specified by `stop_command`.
+     * - `run-timed` will run the motor for the amount of time specified in `time_sp`
+     *   and then stop the motor using the command specified by `stop_command`.
+     * - `run-direct` will run the motor at the duty cycle specified by `duty_cycle_sp`.
+     *   Unlike other run commands, changing `duty_cycle_sp` while running *will*
+     *   take effect immediately.
+     * - `stop` will stop any of the run commands before they are complete using the
+     *   command specified by `stop_command`.
+     * - `reset` will reset all of the motor parameter attributes to their default value.
+     *   This will also have the effect of stopping the motor.
      */
     get commands(): string[] {
         return this.readStringArray("commands");
@@ -543,7 +513,7 @@ class Motor extends MotorBase {
     }
 }
 
-//~autogen js_generic-class-description classes.dcMotor>currentClass
+//~autogen generic-class-description classes.dcMotor>currentClass
 /** 
  * The DC motor class provides a uniform interface for using regular DC motors
  * with no fancy controls or feedback. This includes LEGO MINDSTORMS RCX motors
@@ -553,14 +523,14 @@ class Motor extends MotorBase {
 class DCMotor extends MotorBase {
 
     constructor(port: string) {
-        this.deviceDir = '/sys/class/dc-motor/';
-    
-        super(port);
+        //~autogen connect-super-call classes.dcMotor>currentClass "port">extraParams
+        super('dc-motor', 'motor(\\d*)', port);
+//~autogen
     }
 
     //PROPERTIES
 
-    //~autogen js_generic-get-set classes.dcMotor>currentClass
+    //~autogen generic-get-set classes.dcMotor>currentClass
     /**
      * Sets the command for the motor. Possible values are `run-forever`, `run-timed` and
      * `stop`. Not all commands may be supported, so be sure to check the contents
@@ -687,11 +657,28 @@ class DCMotor extends MotorBase {
         return this.readStringArray("stop_commands");
     }
 
+    /**
+     * Writing specifies the amount of time the motor will run when using the
+     * `run-timed` command. Reading returns the current value. Units are in
+     * milliseconds.
+     */
+    get timeSp(): number {
+        return this.readNumber("time_sp");
+    }
+    /**
+     * Writing specifies the amount of time the motor will run when using the
+     * `run-timed` command. Reading returns the current value. Units are in
+     * milliseconds.
+     */
+    set timeSp(value: number) {
+        this.setNumber("time_sp", value);
+    }
+    
 
 //~autogen
 }
 
-//~autogen js_generic-class-description classes.servoMotor>currentClass
+//~autogen generic-class-description classes.servoMotor>currentClass
 /** 
  * The servo motor class provides a uniform interface for using hobby type
  * servo motors.
@@ -700,14 +687,14 @@ class DCMotor extends MotorBase {
 class ServoMotor extends MotorBase {
 
     constructor(port: string) {
-        this.deviceDir = '/sys/class/servo-motor/';
-    
-        super(port);
+        //~autogen connect-super-call classes.servoMotor>currentClass "port">extraParams
+        super('servo-motor', 'motor(\\d*)', port);
+//~autogen
     }
     
     //PROPERTIES
 
-    //~autogen js_generic-get-set classes.servoMotor>currentClass
+    //~autogen generic-get-set classes.servoMotor>currentClass
     /**
      * Sets the command for the servo. Valid values are `run` and `float`. Setting
      * to `run` will cause the servo to be driven to the position_sp set in the

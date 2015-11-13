@@ -34,12 +34,48 @@ class TraceError {
 
 class Device {
     public deviceRoot: string;
+    public deviceDirName: string;
     public connected: boolean = false;
 
-    public connect(deviceRootPath: string) {
-        this.deviceRoot = deviceRootPath;
+    private sysClassDir: string = '/sys/class';
 
-        this.connected = true;
+    public connect(driverName: string, nameConvention: string, propertyConstraints?: { [propertyName: string]: any }) {
+        var nameRegex = new RegExp(nameConvention);
+        
+        var deviceSearchDir = path.join(this.sysClassDir, driverName);
+        var availableDevices: string[] = fs.readdirSync(deviceSearchDir);
+        for (var deviceDirIndex in availableDevices) {
+            var currentDeviceDirName = availableDevices[deviceDirIndex];
+
+            if (!nameRegex.test(currentDeviceDirName))
+                continue;
+
+            var currentDeviceDir = path.join(deviceSearchDir, currentDeviceDirName);
+
+            var satisfiesConstraints: boolean = true;
+            if (propertyConstraints != undefined) {
+                for (var propName in propertyConstraints) {
+                    var propertyValue = this.readProperty(propName, currentDeviceDir);
+                    var constraintValue = propertyConstraints[propName];
+
+                    if (constraintValue instanceof Array) {
+                        if (!constraintValue.contains(propertyValue)) {
+                            satisfiesConstraints = false;
+                        }
+                    }
+                    else if (propertyValue != constraintValue) {
+                        satisfiesConstraints = false;
+                    }
+                }
+            }
+
+            if (!satisfiesConstraints)
+                continue;
+
+            this.deviceRoot = currentDeviceDir;
+            this.deviceDirName = currentDeviceDirName;
+            this.connected = true;
+        }
     }
 
     protected constructPropertyPath(property: string, deviceRoot?: string) {

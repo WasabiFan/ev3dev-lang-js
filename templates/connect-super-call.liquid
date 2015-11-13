@@ -1,0 +1,3 @@
+{% assign conventionRegex = currentClass.systemDeviceNameConvention | replace: '\{\d\}', '(\\d*)'
+ %}{% assign paramLength = extraParams | size
+ %}        super('{{currentClass.systemClassName}}', '{{conventionRegex}}'{% if paramLength > 0 %}, {{extraParams}}{% endif %});
