@@ -63,7 +63,7 @@ $ chmod +x path/to/file.js
 You should now be able to execute it directly from brickman.
 
 ## Use cases for JavaScript on the EV3
-JavaScript is asynchronous by nature. There is practically no way to "sleep" your code for a certain amount of time, or wait for the operation to finish. This is my design, and both restricts the use cases for Node and JS as well as opens up new scenarios to explore.
+JavaScript is asynchronous by nature. There is practically no way to "sleep" your code for a certain amount of time, or wait for the operation to finish. This is by design, and both restricts the use cases for Node and JS as well as opens up new scenarios to explore.
 
 Situations to use JavaScript:
 - Servers
