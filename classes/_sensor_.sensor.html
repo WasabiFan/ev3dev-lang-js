@@ -92,11 +92,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_io_.device.html" class="tsd-signature-type">Device</a>
+						<a href="_sensor_.sensorbase.html" class="tsd-signature-type">SensorBase</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">Sensor</span>
 								<ul class="tsd-hierarchy">
+									<li>
+										<a href="_sensor_.touchsensor.html" class="tsd-signature-type">TouchSensor</a>
+									</li>
 									<li>
 										<a href="_sensor_.i2csensor.html" class="tsd-signature-type">I2CSensor</a>
 									</li>
@@ -113,17 +116,16 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported"><a href="_sensor_.sensor.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported"><a href="_sensor_.sensor.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-not-exported">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_sensor_.sensor.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_sensor_.sensor.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_sensor_.sensor.html#connected" class="tsd-kind-icon">connected</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_sensor_.sensor.html#devicedirname" class="tsd-kind-icon">device<wbr>Dir<wbr>Name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_sensor_.sensor.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_sensor_.sensor.html#port" class="tsd-kind-icon">port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_sensor_.sensor.html#sensordevicedir" class="tsd-kind-icon">sensor<wbr>Device<wbr>Dir</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
@@ -132,7 +134,7 @@
 								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_sensor_.sensor.html#command" class="tsd-kind-icon">command</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_sensor_.sensor.html#commands" class="tsd-kind-icon">commands</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_sensor_.sensor.html#decimals" class="tsd-kind-icon">decimals</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_sensor_.sensor.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_sensor_.sensor.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_sensor_.sensor.html#drivername" class="tsd-kind-icon">driver<wbr>Name</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-not-exported"><a href="_sensor_.sensor.html#mode" class="tsd-kind-icon">mode</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported"><a href="_sensor_.sensor.html#modes" class="tsd-kind-icon">modes</a></li>
@@ -164,17 +166,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sensor<span class="tsd-signature-symbol">(</span>port<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, driverNames<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_sensor_.sensor.html" class="tsd-signature-type">Sensor</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Sensor<span class="tsd-signature-symbol">(</span>port<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, driverNames<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_sensor_.sensor.html" class="tsd-signature-type">Sensor</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overwrites <a href="_sensor_.sensorbase.html">SensorBase</a>.<a href="_sensor_.sensorbase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L30">sensor.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L52">sensor.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -183,7 +186,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> port: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> driverNames: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> driverNames: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_sensor_.sensor.html" class="tsd-signature-type">Sensor</a></h4>
@@ -191,15 +194,16 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-not-exported">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 					<a name="_deviceindex" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _device<wbr>Index</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _device<wbr>Index</h3>
 					<div class="tsd-signature tsd-kind-icon">_device<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_sensor_.sensorbase.html">SensorBase</a>.<a href="_sensor_.sensorbase.html#_deviceindex">_deviceIndex</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L27">sensor.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L6">sensor.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -210,7 +214,18 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#connected">connected</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L37">io.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L38">io.ts:38</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+					<a name="devicedirname" class="tsd-anchor"></a>
+					<h3>device<wbr>Dir<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">device<wbr>Dir<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#devicedirname">deviceDirName</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L37">io.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -221,27 +236,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#deviceroot">deviceRoot</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L36">io.ts:36</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
-					<a name="port" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> port</h3>
-					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L24">sensor.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
-					<a name="sensordevicedir" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> sensor<wbr>Device<wbr>Dir</h3>
-					<div class="tsd-signature tsd-kind-icon">sensor<wbr>Device<wbr>Dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L25">sensor.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L36">io.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -258,7 +253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L92">sensor.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L74">sensor.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -286,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L100">sensor.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L82">sensor.ts:82</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -309,7 +304,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L108">sensor.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L90">sensor.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,17 +317,18 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="deviceindex" class="tsd-anchor"></a>
 					<h3>device<wbr>Index</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> deviceIndex<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_sensor_.sensorbase.html">SensorBase</a>.<a href="_sensor_.sensorbase.html#deviceindex">deviceIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L28">sensor.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L7">sensor.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -349,7 +345,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L116">sensor.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L98">sensor.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -373,7 +369,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L124">sensor.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L106">sensor.ts:106</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -387,7 +383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L131">sensor.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L113">sensor.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -416,7 +412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L138">sensor.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L120">sensor.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -438,7 +434,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L146">sensor.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L128">sensor.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -461,7 +457,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L154">sensor.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L136">sensor.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -484,7 +480,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L162">sensor.ts:162</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L144">sensor.ts:144</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -504,20 +500,31 @@
 					<a name="connect" class="tsd-anchor"></a>
 					<h3>connect</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span>deviceRootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span>driverName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nameConvention<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, propertyConstraints<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#connect">connect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L39">io.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L42">io.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>deviceRootPath: <span class="tsd-signature-type">string</span></h5>
+									<h5>driverName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>nameConvention: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> propertyConstraints: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-index-signature">
+											<h5><span class="tsd-signature-symbol">[</span>propertyName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -535,7 +542,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#constructpropertypath">constructPropertyPath</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L45">io.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L81">io.ts:81</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -561,7 +568,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L83">sensor.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L65">sensor.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -584,7 +591,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/sensor.ts#L79">sensor.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/sensor.ts#L61">sensor.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -608,7 +615,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#readnumber">readNumber</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L49">io.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L85">io.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -635,7 +642,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#readproperty">readProperty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L80">io.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L116">io.ts:116</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -662,7 +669,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#readstring">readString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L58">io.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L94">io.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -689,7 +696,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#readstringarray">readStringArray</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L63">io.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L99">io.ts:99</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -716,7 +723,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#readstringselector">readStringSelector</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L69">io.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L105">io.ts:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -743,7 +750,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#set">set</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L125">io.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L161">io.ts:161</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -767,7 +774,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#setnumber">setNumber</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L117">io.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L153">io.ts:153</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -794,7 +801,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#setproperty">setProperty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L103">io.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L139">io.ts:139</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -821,7 +828,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_io_.device.html">Device</a>.<a href="_io_.device.html#setstring">setString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/untested-updates/io.ts#L121">io.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/io.ts#L157">io.ts:157</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -875,23 +882,20 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_sensor_.sensor.html" class="tsd-kind-icon">Sensor</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
 								<a href="_sensor_.sensor.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 								<a href="_sensor_.sensor.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_sensor_.sensor.html#connected" class="tsd-kind-icon">connected</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+								<a href="_sensor_.sensor.html#devicedirname" class="tsd-kind-icon">device<wbr>Dir<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_sensor_.sensor.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
-								<a href="_sensor_.sensor.html#port" class="tsd-kind-icon">port</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
-								<a href="_sensor_.sensor.html#sensordevicedir" class="tsd-kind-icon">sensor<wbr>Device<wbr>Dir</a>
 							</li>
 							<li class=" tsd-kind-set-signature tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_sensor_.sensor.html#command" class="tsd-kind-icon">command</a>
@@ -902,7 +906,7 @@
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_sensor_.sensor.html#decimals" class="tsd-kind-icon">decimals</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_sensor_.sensor.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
@@ -966,6 +970,12 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_sensor_.sensorbase.html" class="tsd-kind-icon">Sensor<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_sensor_.touchsensor.html" class="tsd-kind-icon">Touch<wbr>Sensor</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
