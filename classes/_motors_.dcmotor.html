@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PowerSupply | ev3dev-lang for Node.JS</title>
+	<title>DCMotor | ev3dev-lang for Node.JS</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,13 +57,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_extras_.html">&quot;extras&quot;</a>
+					<a href="../modules/_motors_.html">&quot;motors&quot;</a>
 				</li>
 				<li>
-					<a href="_extras_.powersupply.html">PowerSupply</a>
+					<a href="_motors_.dcmotor.html">DCMotor</a>
 				</li>
 			</ul>
-			<h1>Class PowerSupply</h1>
+			<h1>Class DCMotor</h1>
 		</div>
 	</div>
 </header>
@@ -73,8 +73,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A generic interface to read data from the system&#39;s power_supply class.
-						Uses the built-in legoev3-battery if none is specified.</p>
+						<p>The DC motor class provides a uniform interface for using regular DC motors
+							with no fancy controls or feedback. This includes LEGO MINDSTORMS RCX motors
+						and LEGO Power Functions motors.</p>
 					</div>
 				</div>
 			</section>
@@ -82,10 +83,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_io_.device.html" class="tsd-signature-type">Device</a>
+						<a href="_motors_.motorbase.html" class="tsd-signature-type">MotorBase</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">PowerSupply</span>
+								<span class="target">DCMotor</span>
 							</li>
 						</ul>
 					</li>
@@ -98,45 +99,51 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="_motors_.dcmotor.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-external">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#connected" class="tsd-kind-icon">connected</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#devicedirname" class="tsd-kind-icon">device<wbr>Dir<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#devicename" class="tsd-kind-icon">device<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_motors_.dcmotor.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#connected" class="tsd-kind-icon">connected</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#devicedirname" class="tsd-kind-icon">device<wbr>Dir<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#currentamps" class="tsd-kind-icon">current<wbr>Amps</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#maxvoltage" class="tsd-kind-icon">max<wbr>Voltage</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#measuredcurrent" class="tsd-kind-icon">measured<wbr>Current</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#measuredvoltage" class="tsd-kind-icon">measured<wbr>Voltage</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#minvoltage" class="tsd-kind-icon">min<wbr>Voltage</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#technology" class="tsd-kind-icon">technology</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.powersupply.html#voltagevolts" class="tsd-kind-icon">voltage<wbr>Volts</a></li>
+								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#command" class="tsd-kind-icon">command</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#commands" class="tsd-kind-icon">commands</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#drivername" class="tsd-kind-icon">driver<wbr>Name</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#dutycycle" class="tsd-kind-icon">duty<wbr>Cycle</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#dutycyclesp" class="tsd-kind-icon">duty<wbr>Cycle<wbr>Sp</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#polarity" class="tsd-kind-icon">polarity</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#portname" class="tsd-kind-icon">port<wbr>Name</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#rampdownsp" class="tsd-kind-icon">ramp<wbr>Down<wbr>Sp</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#rampupsp" class="tsd-kind-icon">ramp<wbr>UpSp</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#state" class="tsd-kind-icon">state</a></li>
+								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#stopcommand" class="tsd-kind-icon">stop<wbr>Command</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#stopcommands" class="tsd-kind-icon">stop<wbr>Commands</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_motors_.dcmotor.html#timesp" class="tsd-kind-icon">time<wbr>Sp</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#connect" class="tsd-kind-icon">connect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_extras_.powersupply.html#constructpropertypath" class="tsd-kind-icon">construct<wbr>Property<wbr>Path</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#readnumber" class="tsd-kind-icon">read<wbr>Number</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#readproperty" class="tsd-kind-icon">read<wbr>Property</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#readstring" class="tsd-kind-icon">read<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#readstringarray" class="tsd-kind-icon">read<wbr>String<wbr>Array</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#readstringselector" class="tsd-kind-icon">read<wbr>String<wbr>Selector</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#set" class="tsd-kind-icon">set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#setnumber" class="tsd-kind-icon">set<wbr>Number</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#setproperty" class="tsd-kind-icon">set<wbr>Property</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_extras_.powersupply.html#setstring" class="tsd-kind-icon">set<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#connect" class="tsd-kind-icon">connect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_motors_.dcmotor.html#constructpropertypath" class="tsd-kind-icon">construct<wbr>Property<wbr>Path</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#readnumber" class="tsd-kind-icon">read<wbr>Number</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#readproperty" class="tsd-kind-icon">read<wbr>Property</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#readstring" class="tsd-kind-icon">read<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#readstringarray" class="tsd-kind-icon">read<wbr>String<wbr>Array</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#readstringselector" class="tsd-kind-icon">read<wbr>String<wbr>Selector</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#set" class="tsd-kind-icon">set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#setnumber" class="tsd-kind-icon">set<wbr>Number</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#setproperty" class="tsd-kind-icon">set<wbr>Property</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.dcmotor.html#setstring" class="tsd-kind-icon">set<wbr>String</a></li>
 							</ul>
 						</section>
 					</div>
@@ -144,32 +151,44 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Power<wbr>Supply<span class="tsd-signature-symbol">(</span>deviceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_extras_.powersupply.html" class="tsd-signature-type">PowerSupply</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">new DCMotor<span class="tsd-signature-symbol">(</span>port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_motors_.dcmotor.html" class="tsd-signature-type">DCMotor</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overwrites <a href="_motors_.motorbase.html">MotorBase</a>.<a href="_motors_.motorbase.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L16">extras.ts:16</a></li>
+									<li>Defined in motors.ts:544</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>deviceName: <span class="tsd-signature-type">string</span></h5>
+									<h5>port: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_extras_.powersupply.html" class="tsd-signature-type">PowerSupply</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_motors_.dcmotor.html" class="tsd-signature-type">DCMotor</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
+					<a name="_deviceindex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _device<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">_device<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_motors_.motorbase.html">MotorBase</a>.<a href="_motors_.motorbase.html#_deviceindex">_deviceIndex</a></p>
+						<ul>
+							<li>Defined in motors.ts:10</li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 					<a name="connected" class="tsd-anchor"></a>
 					<h3>connected</h3>
@@ -192,16 +211,6 @@
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
-					<a name="devicename" class="tsd-anchor"></a>
-					<h3>device<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">device<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L16">extras.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 					<a name="deviceroot" class="tsd-anchor"></a>
 					<h3>device<wbr>Root</h3>
@@ -216,149 +225,441 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="currentamps" class="tsd-anchor"></a>
-					<h3>current<wbr>Amps</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> currentAmps<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+					<a name="command" class="tsd-anchor"></a>
+					<h3>command</h3>
+					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> command<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L74">extras.ts:74</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="maxvoltage" class="tsd-anchor"></a>
-					<h3>max<wbr>Voltage</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> maxVoltage<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L45">extras.ts:45</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="measuredcurrent" class="tsd-anchor"></a>
-					<h3>measured<wbr>Current</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> measuredCurrent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L32">extras.ts:32</a></li>
+									<li>Defined in motors.ts:560</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>The measured current that the battery is supplying (in microamps)</p>
+									<p>Sets the command for the motor. Possible values are <code>run-forever</code>, <code>run-timed</code> and
+										<code>stop</code>. Not all commands may be supported, so be sure to check the contents
+									of the <code>commands</code> attribute.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="commands" class="tsd-anchor"></a>
+					<h3>commands</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> commands<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:568</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a list of commands supported by the motor
+									controller.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="deviceindex" class="tsd-anchor"></a>
+					<h3>device<wbr>Index</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> deviceIndex<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_motors_.motorbase.html">MotorBase</a>.<a href="_motors_.motorbase.html#deviceindex">deviceIndex</a></p>
+								<ul>
+									<li>Defined in motors.ts:11</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="drivername" class="tsd-anchor"></a>
+					<h3>driver<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> driverName<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:576</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the name of the motor driver that loaded this device. See the list
+									of [supported devices] for a list of drivers.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="dutycycle" class="tsd-anchor"></a>
+					<h3>duty<wbr>Cycle</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dutyCycle<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:584</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Shows the current duty cycle of the PWM signal sent to the motor. Values
+									are -100 to 100 (-100% to 100%).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="measuredvoltage" class="tsd-anchor"></a>
-					<h3>measured<wbr>Voltage</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> measuredVoltage<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="dutycyclesp" class="tsd-anchor"></a>
+					<h3>duty<wbr>Cycle<wbr>Sp</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dutyCycleSp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> dutyCycleSp<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L39">extras.ts:39</a></li>
+									<li>Defined in motors.ts:593</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>The measured voltage that the battery is supplying (in microvolts)</p>
+									<p>Writing sets the duty cycle setpoint of the PWM signal sent to the motor.
+										Valid values are -100 to 100 (-100% to 100%). Reading returns the current
+									setpoint.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:601</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Writing sets the duty cycle setpoint of the PWM signal sent to the motor.
+										Valid values are -100 to 100 (-100% to 100%). Reading returns the current
+									setpoint.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="minvoltage" class="tsd-anchor"></a>
-					<h3>min<wbr>Voltage</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> minVoltage<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="polarity" class="tsd-anchor"></a>
+					<h3>polarity</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> polarity<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> polarity<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L51">extras.ts:51</a></li>
+									<li>Defined in motors.ts:608</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the polarity of the motor. Valid values are <code>normal</code> and <code>inversed</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:614</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the polarity of the motor. Valid values are <code>normal</code> and <code>inversed</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="technology" class="tsd-anchor"></a>
-					<h3>technology</h3>
+					<a name="portname" class="tsd-anchor"></a>
+					<h3>port<wbr>Name</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> technology<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> portName<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L57">extras.ts:57</a></li>
+									<li>Defined in motors.ts:621</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the name of the port that the motor is connected to.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="rampdownsp" class="tsd-anchor"></a>
+					<h3>ramp<wbr>Down<wbr>Sp</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rampDownSp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> rampDownSp<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L63">extras.ts:63</a></li>
+									<li>Defined in motors.ts:629</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the time in milliseconds that it take the motor to ramp down from 100%
+									to 0%. Valid values are 0 to 10000 (10 seconds). Default is 0.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:636</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the time in milliseconds that it take the motor to ramp down from 100%
+									to 0%. Valid values are 0 to 10000 (10 seconds). Default is 0.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="rampupsp" class="tsd-anchor"></a>
+					<h3>ramp<wbr>UpSp</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rampUpSp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> rampUpSp<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:644</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the time in milliseconds that it take the motor to up ramp from 0% to
+									100%. Valid values are 0 to 10000 (10 seconds). Default is 0.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:651</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the time in milliseconds that it take the motor to up ramp from 0% to
+									100%. Valid values are 0 to 10000 (10 seconds). Default is 0.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="voltagevolts" class="tsd-anchor"></a>
-					<h3>voltage<wbr>Volts</h3>
+					<a name="state" class="tsd-anchor"></a>
+					<h3>state</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> voltageVolts<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> state<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L70">extras.ts:70</a></li>
+									<li>Defined in motors.ts:661</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a list of flags indicating the motor status. Possible
+										flags are <code>running</code> and <code>ramping</code>. <code>running</code> indicates that the motor is
+										powered. <code>ramping</code> indicates that the motor has not yet reached the
+									<code>duty_cycle_sp</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+					<a name="stopcommand" class="tsd-anchor"></a>
+					<h3>stop<wbr>Command</h3>
+					<ul class="tsd-signatures tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> stopCommand<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:669</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the stop command that will be used when the motor stops. Read
+									<code>stop_commands</code> to get the list of valid values.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="stopcommands" class="tsd-anchor"></a>
+					<h3>stop<wbr>Commands</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> stopCommands<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:677</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a list of stop commands. Valid values are <code>coast</code>
+									and <code>brake</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="timesp" class="tsd-anchor"></a>
+					<h3>time<wbr>Sp</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> timeSp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> timeSp<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:686</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Writing specifies the amount of time the motor will run when using the
+										<code>run-timed</code> command. Reading returns the current value. Units are in
+									milliseconds.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in motors.ts:694</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Writing specifies the amount of time the motor will run when using the
+										<code>run-timed</code> command. Reading returns the current value. Units are in
+									milliseconds.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -684,13 +985,13 @@
 					<li class="label tsd-is-external">
 						<span>Externals</span>
 					</li>
-					<li class="current tsd-kind-external-module tsd-is-external">
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_extras_.html">"extras"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_io_.html">"io"</a>
 					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
+					<li class="current tsd-kind-external-module tsd-is-external">
 						<a href="../modules/_motors_.html">"motors"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
@@ -700,93 +1001,123 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="_extras_.led.html" class="tsd-kind-icon">LED</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="_extras_.legoport.html" class="tsd-kind-icon">Lego<wbr>Port</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="_extras_.powersupply.html" class="tsd-kind-icon">Power<wbr>Supply</a>
+						<a href="_motors_.dcmotor.html" class="tsd-kind-icon">DCMotor</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+								<a href="_motors_.dcmotor.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
+								<a href="_motors_.dcmotor.html#_deviceindex" class="tsd-kind-icon">_device<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#connected" class="tsd-kind-icon">connected</a>
+								<a href="_motors_.dcmotor.html#connected" class="tsd-kind-icon">connected</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#devicedirname" class="tsd-kind-icon">device<wbr>Dir<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#devicename" class="tsd-kind-icon">device<wbr>Name</a>
+								<a href="_motors_.dcmotor.html#devicedirname" class="tsd-kind-icon">device<wbr>Dir<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a>
+								<a href="_motors_.dcmotor.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a>
+							</li>
+							<li class=" tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+								<a href="_motors_.dcmotor.html#command" class="tsd-kind-icon">command</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#currentamps" class="tsd-kind-icon">current<wbr>Amps</a>
+								<a href="_motors_.dcmotor.html#commands" class="tsd-kind-icon">commands</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="_motors_.dcmotor.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#maxvoltage" class="tsd-kind-icon">max<wbr>Voltage</a>
+								<a href="_motors_.dcmotor.html#drivername" class="tsd-kind-icon">driver<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#measuredcurrent" class="tsd-kind-icon">measured<wbr>Current</a>
+								<a href="_motors_.dcmotor.html#dutycycle" class="tsd-kind-icon">duty<wbr>Cycle</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_motors_.dcmotor.html#dutycyclesp" class="tsd-kind-icon">duty<wbr>Cycle<wbr>Sp</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_motors_.dcmotor.html#polarity" class="tsd-kind-icon">polarity</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#measuredvoltage" class="tsd-kind-icon">measured<wbr>Voltage</a>
+								<a href="_motors_.dcmotor.html#portname" class="tsd-kind-icon">port<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_motors_.dcmotor.html#rampdownsp" class="tsd-kind-icon">ramp<wbr>Down<wbr>Sp</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_motors_.dcmotor.html#rampupsp" class="tsd-kind-icon">ramp<wbr>UpSp</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#minvoltage" class="tsd-kind-icon">min<wbr>Voltage</a>
+								<a href="_motors_.dcmotor.html#state" class="tsd-kind-icon">state</a>
+							</li>
+							<li class=" tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
+								<a href="_motors_.dcmotor.html#stopcommand" class="tsd-kind-icon">stop<wbr>Command</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#technology" class="tsd-kind-icon">technology</a>
+								<a href="_motors_.dcmotor.html#stopcommands" class="tsd-kind-icon">stop<wbr>Commands</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#type" class="tsd-kind-icon">type</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.powersupply.html#voltagevolts" class="tsd-kind-icon">voltage<wbr>Volts</a>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_motors_.dcmotor.html#timesp" class="tsd-kind-icon">time<wbr>Sp</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#connect" class="tsd-kind-icon">connect</a>
+								<a href="_motors_.dcmotor.html#connect" class="tsd-kind-icon">connect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
-								<a href="_extras_.powersupply.html#constructpropertypath" class="tsd-kind-icon">construct<wbr>Property<wbr>Path</a>
+								<a href="_motors_.dcmotor.html#constructpropertypath" class="tsd-kind-icon">construct<wbr>Property<wbr>Path</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#readnumber" class="tsd-kind-icon">read<wbr>Number</a>
+								<a href="_motors_.dcmotor.html#readnumber" class="tsd-kind-icon">read<wbr>Number</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#readproperty" class="tsd-kind-icon">read<wbr>Property</a>
+								<a href="_motors_.dcmotor.html#readproperty" class="tsd-kind-icon">read<wbr>Property</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#readstring" class="tsd-kind-icon">read<wbr>String</a>
+								<a href="_motors_.dcmotor.html#readstring" class="tsd-kind-icon">read<wbr>String</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#readstringarray" class="tsd-kind-icon">read<wbr>String<wbr>Array</a>
+								<a href="_motors_.dcmotor.html#readstringarray" class="tsd-kind-icon">read<wbr>String<wbr>Array</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#readstringselector" class="tsd-kind-icon">read<wbr>String<wbr>Selector</a>
+								<a href="_motors_.dcmotor.html#readstringselector" class="tsd-kind-icon">read<wbr>String<wbr>Selector</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#set" class="tsd-kind-icon">set</a>
+								<a href="_motors_.dcmotor.html#set" class="tsd-kind-icon">set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#setnumber" class="tsd-kind-icon">set<wbr>Number</a>
+								<a href="_motors_.dcmotor.html#setnumber" class="tsd-kind-icon">set<wbr>Number</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#setproperty" class="tsd-kind-icon">set<wbr>Property</a>
+								<a href="_motors_.dcmotor.html#setproperty" class="tsd-kind-icon">set<wbr>Property</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_extras_.powersupply.html#setstring" class="tsd-kind-icon">set<wbr>String</a>
+								<a href="_motors_.dcmotor.html#setstring" class="tsd-kind-icon">set<wbr>String</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
+						<a href="_motors_.largemotor.html" class="tsd-kind-icon">Large<wbr>Motor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
+						<a href="_motors_.mediummotor.html" class="tsd-kind-icon">Medium<wbr>Motor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
+						<a href="_motors_.motor.html" class="tsd-kind-icon">Motor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
+						<a href="_motors_.motorbase.html" class="tsd-kind-icon">Motor<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
+						<a href="_motors_.motorspeedsp.html" class="tsd-kind-icon">Motor<wbr>Speed<wbr>Sp</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
+						<a href="_motors_.servomotor.html" class="tsd-kind-icon">Servo<wbr>Motor</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
