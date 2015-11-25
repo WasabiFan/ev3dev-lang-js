@@ -149,6 +149,17 @@ class Sensor extends SensorBase {
 //~autogen
 }
 
+//~autogen generic-class-description classes.touchSensor>currentClass
+/** 
+ * Touch Sensor
+ */
+//~autogen
+class TouchSensor extends Sensor {
+    constructor(port?: string, driverNames?: string[]) {
+        super(port, ["lego-ev3-touch", "lego-nxt-touch"]);
+    }
+}
+
 //~autogen generic-class-description classes.i2cSensor>currentClass
 /** 
  * A generic interface to control I2C-type EV3 sensors.

@@ -513,6 +513,28 @@ class Motor extends MotorBase {
     }
 }
 
+//~autogen generic-class-description classes.largeMotor>currentClass
+/** 
+ * EV3 large servo motor
+ */
+//~autogen
+class LargeMotor extends Motor {
+    constructor(port?: string) {
+        super(port, 'lego-ev3-l-motor');
+    }
+}
+
+//~autogen generic-class-description classes.mediumMotor>currentClass
+/** 
+ * EV3 medium servo motor
+ */
+//~autogen
+class MediumMotor extends Motor {
+    constructor(port?: string) {
+        super(port, 'lego-ev3-m-motor');
+    }
+}
+
 //~autogen generic-class-description classes.dcMotor>currentClass
 /** 
  * The DC motor class provides a uniform interface for using regular DC motors
