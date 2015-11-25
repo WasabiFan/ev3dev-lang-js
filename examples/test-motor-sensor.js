@@ -1,3 +1,5 @@
+#!/usr/bin/node
+
 var ev3dev = require('../bin/index.js');
 
 // Run motor

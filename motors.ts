@@ -875,6 +875,10 @@ export class ServoMotor extends MotorBase {
 //~autogen
 }
 
+/**
+ * Describes a setpoint for a motor's power/speed. Supports both
+ * unregulated (raw power) and regulated (specific speed) modes.
+ */
 export class MotorSpeedSp {
     public regulationEnabled: string;
     public dutyCycleSp: number;

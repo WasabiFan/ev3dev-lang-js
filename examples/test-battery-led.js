@@ -1,6 +1,5 @@
 var ev3dev = require('../bin/index.js');
 
-
 console.log('Battery ------------');
 var battery = new ev3dev.PowerSupply();
 
