@@ -6,6 +6,9 @@ This is a Node.js module that exposes the features of the [ev3dev](http://github
 ## Getting the Module
 
 ### Installing the latest release from npm
+
+**NOTE:** The npm module is currently outdated. We recommend that you build from source until we have published updates to npm.
+
 The easiest way to get the module is to install it through `npm`:
 
 ```
