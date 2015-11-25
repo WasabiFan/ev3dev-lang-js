@@ -1,11 +1,10 @@
-﻿///<reference path="node.d.ts" />
-///<reference path="include.ts" />
-///<reference path="io.ts" />
-
-//~autogen autogen-header
+﻿//~autogen autogen-header
     // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2. 
 
 //~autogen
+
+import IO = require('./io');
+import Device = IO.Device;
 
 //~autogen generic-class-description classes.powerSupply>currentClass
 /** 
@@ -13,7 +12,7 @@
  * Uses the built-in legoev3-battery if none is specified.
  */
 //~autogen
-class PowerSupply extends Device {
+export class PowerSupply extends Device {
     public deviceName: string = 'legoev3-battery';
 
     constructor(deviceName: string) {
@@ -85,7 +84,7 @@ class PowerSupply extends Device {
  * for more details.
  */
 //~autogen
-class LED extends Device {
+export class LED extends Device {
     public deviceName: string;
     
     /**
@@ -315,7 +314,7 @@ class LED extends Device {
  * a specific port.
  */
 //~autogen
-class LegoPort extends Device {
+export class LegoPort extends Device {
     protected _deviceIndex: number = -1;
     get deviceIndex(): number {
         return this._deviceIndex;

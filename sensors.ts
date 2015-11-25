@@ -1,8 +1,7 @@
-﻿///<reference path="node.d.ts" />
-///<reference path="include.ts" />
-///<reference path="io.ts" />
+﻿import IO = require('./io');
+import Device = IO.Device;
 
-class SensorBase extends Device {
+export class SensorBase extends Device {
     protected _deviceIndex: number = -1;
     get deviceIndex(): number {
         return this._deviceIndex;
@@ -49,7 +48,7 @@ class SensorBase extends Device {
  * program will still work.
  */
 //~autogen
-class Sensor extends SensorBase {
+export class Sensor extends SensorBase {
 
     constructor(port?: string, driverNames?: string[]| string) {
         //~autogen connect-super-call classes.sensor>currentClass "port,driverNames">extraParams
@@ -154,7 +153,7 @@ class Sensor extends SensorBase {
  * Touch Sensor
  */
 //~autogen
-class TouchSensor extends Sensor {
+export class TouchSensor extends Sensor {
     constructor(port?: string, driverNames?: string[]) {
         super(port, ["lego-ev3-touch", "lego-nxt-touch"]);
     }
@@ -165,7 +164,7 @@ class TouchSensor extends Sensor {
  * A generic interface to control I2C-type EV3 sensors.
  */
 //~autogen
-class I2CSensor extends Sensor {
+export class I2CSensor extends Sensor {
     constructor(port?: string, driverNames?: string[]) {
         super(port, driverNames);
     }

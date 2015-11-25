@@ -23,11 +23,11 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-shell": "^1.0.1",
     "grunt-typedoc": "0.2.3",
-    "grunt-typescript": "^0.7.0",
+    "grunt-typescript": "^0.8.0",
     "typescript": ">=1.0.0"
   },
   "scripts": {
-    "prepublish": "./node_modules/.bin/grunt tsc"
+    
   },
   "files": [
     "bin/"

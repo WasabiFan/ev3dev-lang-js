@@ -1,5 +1,7 @@
-﻿///<reference path="node.d.ts" />
-///<reference path="include.ts" />
+﻿/// <reference path="node.d.ts" />
+
+import fs = require('fs');
+import path = require('path');
 
 class XError {
     public message: string;
@@ -12,7 +14,7 @@ class XError {
 
 XError['prototype'] = new Error();
 
-class TraceError {
+export class TraceError {
     public innerError: any;
     public message: string;
 
@@ -32,7 +34,7 @@ class TraceError {
     }
 }
 
-class Device {
+export class Device {
     public deviceRoot: string;
     public deviceDirName: string;
     public connected: boolean = false;

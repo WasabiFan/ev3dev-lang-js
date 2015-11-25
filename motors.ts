@@ -1,13 +1,12 @@
-﻿///<reference path="node.d.ts" />
-///<reference path="include.ts" />
-///<reference path="io.ts" />
-
-//~autogen autogen-header
+﻿//~autogen autogen-header
     // Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2. 
 
 //~autogen
 
-class MotorBase extends Device {
+import IO = require('./io');
+import Device = IO.Device;
+
+export class MotorBase extends Device {
     protected _deviceIndex: number = -1;
     get deviceIndex(): number {
         return this._deviceIndex;
@@ -44,7 +43,7 @@ class MotorBase extends Device {
  * most common type of motor, so we just call it `motor`.
  */
 //~autogen
-class Motor extends MotorBase {
+export class Motor extends MotorBase {
 
     public constructor(port?: string, targetDriverName?: string[] | string) {
         //~autogen connect-super-call classes.motor>currentClass "port,targetDriverName">extraParams
@@ -518,7 +517,7 @@ class Motor extends MotorBase {
  * EV3 large servo motor
  */
 //~autogen
-class LargeMotor extends Motor {
+export class LargeMotor extends Motor {
     constructor(port?: string) {
         super(port, 'lego-ev3-l-motor');
     }
@@ -529,7 +528,7 @@ class LargeMotor extends Motor {
  * EV3 medium servo motor
  */
 //~autogen
-class MediumMotor extends Motor {
+export class MediumMotor extends Motor {
     constructor(port?: string) {
         super(port, 'lego-ev3-m-motor');
     }
@@ -542,7 +541,7 @@ class MediumMotor extends Motor {
  * and LEGO Power Functions motors.
  */
 //~autogen
-class DCMotor extends MotorBase {
+export class DCMotor extends MotorBase {
 
     constructor(port: string) {
         //~autogen connect-super-call classes.dcMotor>currentClass "port">extraParams
@@ -706,7 +705,7 @@ class DCMotor extends MotorBase {
  * servo motors.
  */
 //~autogen
-class ServoMotor extends MotorBase {
+export class ServoMotor extends MotorBase {
 
     constructor(port: string) {
         //~autogen connect-super-call classes.servoMotor>currentClass "port">extraParams
@@ -876,7 +875,7 @@ class ServoMotor extends MotorBase {
 //~autogen
 }
 
-class MotorSpeedSp {
+export class MotorSpeedSp {
     public regulationEnabled: string;
     public dutyCycleSp: number;
     public speedSp: number;
