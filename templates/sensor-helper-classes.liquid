@@ -1,0 +1,32 @@
+{% for currentClassMetadata in specialSensorTypes %}{%
+    assign currentClass = currentClassMetadata[1]
+%}
+/** {% for line in currentClass.description %}
+ * {{ line }}{%
+endfor %}
+ */
+export class {{ currentClass.friendlyName | camel_case | capitalize }} extends Sensor {
+    constructor(port?: string) {
+        super(port, {{ currentClass.driverName | json_stringify }});
+    }
+    
+    {% for valueMapping in currentClass.sensorValueMappings %}{%
+        if valueMapping.type contains 'int' or valueMapping.type contains 'float' %}{%
+            assign type = 'number' %}{%
+        elsif valueMapping.type contains 'boolean' or valueMapping.type contains 'bool' %}{%
+            assign type = 'boolean' %}{%
+        else %}{%
+            assign type = 'string' %}{%
+        endif %}
+    /**{% for line in valueMapping.description
+%}
+     * {{ line }}{%
+endfor %}
+     */
+    get {{ valueMapping.name | camel_case }}(): {{ type }} {
+        this.mode = '{{ valueMapping.requiredMode }}';
+        return {{ type | capitalize }}(this.getFloatValue({{ valueMapping.sourceValue }}));
+    }
+    {% endfor %}
+}
+{% endfor %}
