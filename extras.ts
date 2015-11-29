@@ -86,26 +86,6 @@ export class PowerSupply extends Device {
 //~autogen
 export class LED extends Device {
     public deviceName: string;
-    
-    /**
-     * Built-in left red EV3 LED
-     */
-    public static redLeft = new LED('ev3-left0:red:ev3dev');
-
-    /**
-     * Built-in right red EV3 LED
-     */
-    public static redRight = new LED('ev3-right0:red:ev3dev');
-
-    /**
-     * Built-in left green EV3 LED
-     */
-    public static greenLeft = new LED('ev3-left1:green:ev3dev');
-
-    /**
-     * Built-in right green EV3 LED
-     */
-    public static greenRight = new LED('ev3-right1:green:ev3dev');
 
     get ledProperties(): any {
         return {
@@ -258,30 +238,83 @@ export class LED extends Device {
      * Flashes the LED on a timer using the given intervals.
      */
     public flash(onInterval: number, offInterval: number) {
-        this.trigger = 'timer';
-        // TODO: Do we need to delay here?
-
         this.delayOn = onInterval;
         this.delayOff = offInterval;
+        this.trigger = "timer";
     }
-    
-    //~autogen led-color-methods
+}
 
-//~autogen
+export class LEDGroup {
+    private leds: LED[];
 
-    public static mixColors(redPercent: number, greenPercent: number) {
-        this.redLeft.brightnessPct = redPercent;
-        this.redRight.brightnessPct= redPercent;
-
-        this.greenLeft.brightnessPct = greenPercent;
-        this.greenRight.brightnessPct = greenPercent;
+    public constructor(...leds: (string | LED)[]) {
+        this.leds = [];
+        for(var ledObj of leds) {
+            if(typeof ledObj == "string") {
+                var newLed = new LED(<string>ledObj);
+                this.leds.push(newLed);
+            }
+            else {
+                this.leds.push(<LED>ledObj);
+            }
+        }
     }
-    
+
+    public get isConnected(): boolean {
+        return this.leds.every(function(led: LED, index: number, wholeArray: LED[]) {
+            return led.connected;
+        });
+    }
+
     /**
-     * Turns off all built-in EV3 LEDs
+     * Sets the brightness percentages for each LED in the group to the given percentages,
+     * scaling each according to the given percent power scale if provided.
+     * 
+     * @param colorCombination The percent powers to use for each LED, applied to the corresponding index in the LED group.
+     * @param pctPower The scale factor to multiply each value by. Leave undefined or null to default to `1`.
      */
-    public static allOff() {
-        this.mixColors(0, 0);
+    public setColor(colorCombination: number[], pctPower: number) {
+        if(colorCombination.length !== this.leds.length) {
+            throw new Error("The given color values had either too few or too many numbers for this LED group."
+                + " Expected length: " + this.leds.length + "; Given length: " + colorCombination.length);
+        }
+
+        if(pctPower == undefined || pctPower == null) {
+            pctPower = 1;
+        }
+
+        for(var ledIndex = 0; ledIndex < this.leds.length; ledIndex++) {
+            this.leds[ledIndex].brightnessPct = pctPower * colorCombination[ledIndex];
+        }
+    }
+
+    /**
+     * Sets the given property names to the corresponding values on each LED in the group.
+     * 
+     * If the requested property does not exist on the LED object, the property is skipped.
+     * 
+     * @param props A hash containing the key-value pairs of properties to set.
+     */
+    public setProps(props: { [propName: string]: any}) {
+        for(var led of this.leds) {
+            for(var prop in Object.keys(props)) {
+                if(Object.keys(led).indexOf(prop) != -1) {
+                    led[prop] = props[prop];
+                }
+            }
+        }
+    }
+
+    public allOn() {
+        for(var led of this.leds) {
+            led.on();
+        }
+    }
+
+    public allOff() {
+        for(var led of this.leds) {
+            led.off();
+        }
     }
 }
 

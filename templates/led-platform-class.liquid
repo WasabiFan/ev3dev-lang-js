@@ -1,0 +1,17 @@
+export class {{ currentPlatformClassName }} {
+{% for instanceInfo in currentPlatform.led.instances %}
+    public static {{ instanceInfo.name | camel_case }} = new extras.LED("{{instanceInfo.systemName}}");{%
+   endfor %}
+{%
+for groupInfo in currentPlatform.led.groups %}
+    public static {{ groupInfo.name | camel_case }} = new extras.LEDGroup({{ groupInfo.entries | camel_case | prepend_all: '.' | prepend_all: currentPlatformClassName | join: ', ' }});{%
+endfor %}
+{%
+for colorInfo in currentPlatform.led.colors %}
+    public static {{ colorInfo.name | camel_case }}Color = [{{ colorInfo.value | join: ', ' }}];{%
+endfor %}
+
+    public static get isConnected(): boolean {
+        return {{ currentPlatform.led.instances | select: 'name' | camel_case | prepend_all: '.' | prepend_all: currentPlatformClassName | append_all: '.connected' | join: ' && ' }};
+    }
+}
