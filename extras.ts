@@ -87,14 +87,6 @@ export class PowerSupply extends Device {
 export class LED extends Device {
     public deviceName: string;
 
-    get ledProperties(): any {
-        return {
-            maxBrightness: 'max_brightness',
-            brightness: 'brightness',
-            trgger: 'trigger'
-        };
-    }
-
     constructor(deviceName: string) {
         super();
         

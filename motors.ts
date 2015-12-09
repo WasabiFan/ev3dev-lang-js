@@ -12,7 +12,7 @@ export class MotorBase extends Device {
         return this._deviceIndex;
     }
 
-    constructor(deviceTypeDirName: string, nameConvention: string, targetPort?: string, targetDriverName?: string | string[]) {
+    constructor(driverTypeDirName: string, nameConvention: string, targetPort?: string, targetDriverName?: string | string[]) {
         super();
 
         var propertyConstraints: {[propertyName: string]: any} = {};
@@ -21,9 +21,9 @@ export class MotorBase extends Device {
             propertyConstraints['port_name'] = targetPort;
 
         if (targetDriverName != undefined)
-            propertyConstraints['device_name'] = [].concat(targetDriverName);
+            propertyConstraints['driver_name'] = [].concat(targetDriverName);
 
-        this.connect(deviceTypeDirName, nameConvention, propertyConstraints);
+        this.connect(driverTypeDirName, nameConvention, propertyConstraints);
 
         if (this.connected) {
             var matches = new RegExp(nameConvention).exec(this.deviceDirName);

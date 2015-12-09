@@ -61,7 +61,7 @@ export class Device {
                     var constraintValue = propertyConstraints[propName];
 
                     if (constraintValue instanceof Array) {
-                        if (!constraintValue.contains(propertyValue)) {
+                        if (constraintValue.indexOf(propertyValue) === -1) {
                             satisfiesConstraints = false;
                         }
                     }
