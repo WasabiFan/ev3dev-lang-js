@@ -148,16 +148,238 @@ export class Sensor extends SensorBase {
 //~autogen
 }
 
-//~autogen generic-class-description classes.touchSensor>currentClass
+//~autogen sensor-helper-classes
+
 /** 
  * Touch Sensor
  */
-//~autogen
 export class TouchSensor extends Sensor {
-    constructor(port?: string, driverNames?: string[]) {
-        super(port, ["lego-ev3-touch", "lego-nxt-touch"]);
+    constructor(port?: string) {
+        super(port, ["lego-ev3-touch","lego-nxt-touch"]);
     }
+    
+    
+    /**
+     * A boolean indicating whether the current touch sensor is being
+     * pressed.
+     */
+    get isPressed(): boolean {
+        this.mode = 'TOUCH';
+        return Boolean(this.getFloatValue(0));
+    }
+    
 }
+
+/** 
+ * LEGO EV3 color sensor.
+ */
+export class ColorSensor extends Sensor {
+    constructor(port?: string) {
+        super(port, ["lego-ev3-color"]);
+    }
+    
+    
+    /**
+     * Reflected light intensity as a percentage. Light on sensor is red.
+     */
+    get reflectedLightIntensity(): number {
+        this.mode = 'COL-REFLECT';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * Ambient light intensity. Light on sensor is dimly lit blue.
+     */
+    get ambientLightIntensity(): number {
+        this.mode = 'COL-AMBIENT';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * Color detected by the sensor, categorized by overall value.
+     *   - 0: No color
+     *   - 1: Black
+     *   - 2: Blue
+     *   - 3: Green
+     *   - 4: Yellow
+     *   - 5: Red
+     *   - 6: White
+     *   - 7: Brown
+     */
+    get color(): number {
+        this.mode = 'COL-COLOR';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * Red component of the detected color, in the range 0-1020.
+     */
+    get red(): number {
+        this.mode = 'RGB-RAW';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * Green component of the detected color, in the range 0-1020.
+     */
+    get green(): number {
+        this.mode = 'RGB-RAW';
+        return Number(this.getFloatValue(1));
+    }
+    
+    /**
+     * Blue component of the detected color, in the range 0-1020.
+     */
+    get blue(): number {
+        this.mode = 'RGB-RAW';
+        return Number(this.getFloatValue(2));
+    }
+    
+}
+
+/** 
+ * LEGO EV3 ultrasonic sensor.
+ */
+export class UltrasonicSensor extends Sensor {
+    constructor(port?: string) {
+        super(port, ["lego-ev3-us","lego-nxt-us"]);
+    }
+    
+    
+    /**
+     * Measurement of the distance detected by the sensor,
+     * in centimeters.
+     */
+    get distanceCentimeters(): number {
+        this.mode = 'US-DIST-CM';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * Measurement of the distance detected by the sensor,
+     * in inches.
+     */
+    get distanceInches(): number {
+        this.mode = 'US-DIST-IN';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * Value indicating whether another ultrasonic sensor could
+     * be heard nearby.
+     */
+    get otherSensorPresent(): boolean {
+        this.mode = 'US-LISTEN';
+        return Boolean(this.getFloatValue(0));
+    }
+    
+}
+
+/** 
+ * LEGO EV3 gyro sensor.
+ */
+export class GyroSensor extends Sensor {
+    constructor(port?: string) {
+        super(port, ["lego-ev3-gyro"]);
+    }
+    
+    
+    /**
+     * The number of degrees that the sensor has been rotated
+     * since it was put into this mode.
+     */
+    get angle(): number {
+        this.mode = 'GYRO-ANG';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * The rate at which the sensor is rotating, in degrees/second.
+     */
+    get rate(): number {
+        this.mode = 'GYRO-RATE';
+        return Number(this.getFloatValue(0));
+    }
+    
+}
+
+/** 
+ * LEGO EV3 infrared sensor.
+ */
+export class InfraredSensor extends Sensor {
+    constructor(port?: string) {
+        super(port, ["lego-ev3-ir"]);
+    }
+    
+    
+    /**
+     * A measurement of the distance between the sensor and the remote,
+     * as a percentage. 100% is approximately 70cm/27in.
+     */
+    get proximity(): number {
+        this.mode = 'IR-PROX';
+        return Number(this.getFloatValue(0));
+    }
+    
+}
+
+/** 
+ * LEGO NXT Sound Sensor
+ */
+export class SoundSensor extends Sensor {
+    constructor(port?: string) {
+        super(port, ["lego-nxt-sound"]);
+    }
+    
+    
+    /**
+     * A measurement of the measured sound pressure level, as a
+     * percent. Uses a flat weighting.
+     */
+    get soundPressure(): number {
+        this.mode = 'DB';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * A measurement of the measured sound pressure level, as a
+     * percent. Uses A-weighting, which focuses on levels up to 55 dB.
+     */
+    get soundPressureLow(): number {
+        this.mode = 'DBA';
+        return Number(this.getFloatValue(0));
+    }
+    
+}
+
+/** 
+ * LEGO NXT Light Sensor
+ */
+export class LightSensor extends Sensor {
+    constructor(port?: string) {
+        super(port, ["lego-nxt-light"]);
+    }
+    
+    
+    /**
+     * A measurement of the reflected light intensity, as a percentage.
+     */
+    get reflectedLightIntensity(): number {
+        this.mode = 'REFLECT';
+        return Number(this.getFloatValue(0));
+    }
+    
+    /**
+     * A measurement of the ambient light intensity, as a percentage.
+     */
+    get ambientLightIntensity(): number {
+        this.mode = 'AMBIENT';
+        return Number(this.getFloatValue(0));
+    }
+    
+}
+
+//~autogen
 
 //~autogen generic-class-description classes.i2cSensor>currentClass
 /** 
