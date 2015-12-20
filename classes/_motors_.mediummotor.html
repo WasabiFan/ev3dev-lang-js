@@ -112,6 +112,7 @@
 						<section class="tsd-index-section tsd-is-inherited tsd-is-external">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#address" class="tsd-kind-icon">address</a></li>
 								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#command" class="tsd-kind-icon">command</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#commands" class="tsd-kind-icon">commands</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#countperrot" class="tsd-kind-icon">count<wbr>Per<wbr>Rot</a></li>
@@ -121,7 +122,6 @@
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#dutycyclesp" class="tsd-kind-icon">duty<wbr>Cycle<wbr>Sp</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#encoderpolarity" class="tsd-kind-icon">encoder<wbr>Polarity</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#polarity" class="tsd-kind-icon">polarity</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#portname" class="tsd-kind-icon">port<wbr>Name</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#position" class="tsd-kind-icon">position</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#positiond" class="tsd-kind-icon">positionD</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_motors_.mediummotor.html#positioni" class="tsd-kind-icon">positionI</a></li>
@@ -246,6 +246,29 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
 				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="address" class="tsd-anchor"></a>
+					<h3>address</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> address<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_motors_.motor.html">Motor</a>.<a href="_motors_.motor.html#address">address</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/motors.ts#L184">motors.ts:184</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the name of the port that this motor is connected to.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-set-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 					<a name="command" class="tsd-anchor"></a>
 					<h3>command</h3>
@@ -558,29 +581,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a name="portname" class="tsd-anchor"></a>
-					<h3>port<wbr>Name</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> portName<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="_motors_.motor.html">Motor</a>.<a href="_motors_.motor.html#portname">portName</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/motors.ts#L184">motors.ts:184</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the name of the port that the motor is connected to.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1935,6 +1935,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="_motors_.mediummotor.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a>
 							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+								<a href="_motors_.mediummotor.html#address" class="tsd-kind-icon">address</a>
+							</li>
 							<li class=" tsd-kind-set-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="_motors_.mediummotor.html#command" class="tsd-kind-icon">command</a>
 							</li>
@@ -1961,9 +1964,6 @@
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="_motors_.mediummotor.html#polarity" class="tsd-kind-icon">polarity</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-								<a href="_motors_.mediummotor.html#portname" class="tsd-kind-icon">port<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="_motors_.mediummotor.html#position" class="tsd-kind-icon">position</a>

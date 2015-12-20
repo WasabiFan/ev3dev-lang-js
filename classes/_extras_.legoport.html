@@ -94,7 +94,7 @@
 					correctly set before setting the sensor type.</p>
 					<p>Ports can be found at <code>/sys/class/lego-port/port&lt;N&gt;</code> where <code>&lt;N&gt;</code> is
 						incremented each time a new port is registered. Note: The number is not
-						related to the actual port at all - use the <code>port_name</code> attribute to find
+						related to the actual port at all - use the <code>address</code> attribute to find
 					a specific port.</p>
 				</div>
 			</section>
@@ -133,11 +133,11 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.legoport.html#address" class="tsd-kind-icon">address</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.legoport.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.legoport.html#drivername" class="tsd-kind-icon">driver<wbr>Name</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_extras_.legoport.html#mode" class="tsd-kind-icon">mode</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.legoport.html#modes" class="tsd-kind-icon">modes</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.legoport.html#portname" class="tsd-kind-icon">port<wbr>Name</a></li>
 								<li class="tsd-kind-set-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.legoport.html#setdevice" class="tsd-kind-icon">set<wbr>Device</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="_extras_.legoport.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
@@ -173,7 +173,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L354">extras.ts:354</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L346">extras.ts:346</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -195,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">_device<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L351">extras.ts:351</a></li>
+							<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L343">extras.ts:343</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -236,6 +236,29 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="address" class="tsd-anchor"></a>
+					<h3>address</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> address<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L396">extras.ts:396</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the name of the port. See individual driver documentation for
+									the name that will be returned.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
 					<a name="deviceindex" class="tsd-anchor"></a>
 					<h3>device<wbr>Index</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
@@ -245,7 +268,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L352">extras.ts:352</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L344">extras.ts:344</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -262,7 +285,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L370">extras.ts:370</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L362">extras.ts:362</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -286,7 +309,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L387">extras.ts:387</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L379">extras.ts:379</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -302,7 +325,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L396">extras.ts:396</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L388">extras.ts:388</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -333,7 +356,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L377">extras.ts:377</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L369">extras.ts:369</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -342,29 +365,6 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a name="portname" class="tsd-anchor"></a>
-					<h3>port<wbr>Name</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> portName<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L404">extras.ts:404</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the name of the port. See individual driver documentation for
-									the name that will be returned.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -378,7 +378,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L415">extras.ts:415</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L407">extras.ts:407</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -410,7 +410,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L425">extras.ts:425</a></li>
+									<li>Defined in <a href="https://github.com/wasabifan/ev3dev-lang-js/blob/master/extras.ts#L417">extras.ts:417</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -790,6 +790,9 @@
 								<a href="_extras_.legoport.html#deviceroot" class="tsd-kind-icon">device<wbr>Root</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+								<a href="_extras_.legoport.html#address" class="tsd-kind-icon">address</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
 								<a href="_extras_.legoport.html#deviceindex" class="tsd-kind-icon">device<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
@@ -800,9 +803,6 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
 								<a href="_extras_.legoport.html#modes" class="tsd-kind-icon">modes</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-								<a href="_extras_.legoport.html#portname" class="tsd-kind-icon">port<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-set-signature tsd-parent-kind-class tsd-is-external">
 								<a href="_extras_.legoport.html#setdevice" class="tsd-kind-icon">set<wbr>Device</a>
