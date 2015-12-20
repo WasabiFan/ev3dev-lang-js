@@ -335,7 +335,7 @@ export class LEDGroup {
  * 
  * Ports can be found at `/sys/class/lego-port/port<N>` where `<N>` is
  * incremented each time a new port is registered. Note: The number is not
- * related to the actual port at all - use the `port_name` attribute to find
+ * related to the actual port at all - use the `address` attribute to find
  * a specific port.
  */
 //~autogen
@@ -393,8 +393,8 @@ export class LegoPort extends Device {
      * Returns the name of the port. See individual driver documentation for
      * the name that will be returned.
      */
-    get portName(): string {
-        return this.readString("port_name");
+    get address(): string {
+        return this.readString("address");
     }
 
     /**

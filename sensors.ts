@@ -7,13 +7,13 @@ export class SensorBase extends Device {
         return this._deviceIndex;
     }
 
-    constructor(driverTypeDirName: string, nameConvention: string, targetPort?: string, targetDriverName?: string | string[]) {
+    constructor(driverTypeDirName: string, nameConvention: string, targetAddress?: string, targetDriverName?: string | string[]) {
         super();
 
         var propertyConstraints: { [propertyName: string]: any } = {};
 
-        if (targetPort != undefined)
-            propertyConstraints['port_name'] = targetPort;
+        if (targetAddress != undefined)
+            propertyConstraints['address'] = targetAddress;
 
         if (targetDriverName != undefined)
             propertyConstraints['driver_name'] = [].concat(targetDriverName);
@@ -41,7 +41,7 @@ export class SensorBase extends Device {
  * if needed by `value<N>` / 10.0 ^ `decimals`.
  * 
  * Since the name of the `sensor<N>` device node does not correspond to the port
- * that a sensor is plugged in to, you must look at the `port_name` attribute if
+ * that a sensor is plugged in to, you must look at the `address` attribute if
  * you need to know which port a sensor is plugged in to. However, if you don't
  * have more than one sensor of each type, you can just look for a matching
  * `driver_name`. Then it will not matter which port a sensor is plugged in to - your
@@ -132,8 +132,8 @@ export class Sensor extends SensorBase {
      * Returns the name of the port that the sensor is connected to, e.g. `ev3:in1`.
      * I2C sensors also include the I2C address (decimal), e.g. `ev3:in1:i2c8`.
      */
-    get portName(): string {
-        return this.readString("port_name");
+    get address(): string {
+        return this.readString("address");
     }
 
     /**

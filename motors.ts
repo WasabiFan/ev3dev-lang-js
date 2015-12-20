@@ -12,13 +12,13 @@ export class MotorBase extends Device {
         return this._deviceIndex;
     }
 
-    constructor(driverTypeDirName: string, nameConvention: string, targetPort?: string, targetDriverName?: string | string[]) {
+    constructor(driverTypeDirName: string, nameConvention: string, targetAddress?: string, targetDriverName?: string | string[]) {
         super();
 
         var propertyConstraints: {[propertyName: string]: any} = {};
 
-        if (targetPort != undefined)
-            propertyConstraints['port_name'] = targetPort;
+        if (targetAddress != undefined)
+            propertyConstraints['address'] = targetAddress;
 
         if (targetDriverName != undefined)
             propertyConstraints['driver_name'] = [].concat(targetDriverName);
@@ -179,10 +179,10 @@ export class Motor extends MotorBase {
     }
     
     /**
-     * Returns the name of the port that the motor is connected to.
+     * Returns the name of the port that this motor is connected to.
      */
-    get portName(): string {
-        return this.readString("port_name");
+    get address(): string {
+        return this.readString("address");
     }
 
     /**
@@ -616,10 +616,10 @@ export class DCMotor extends MotorBase {
     }
     
     /**
-     * Returns the name of the port that the motor is connected to.
+     * Returns the name of the port that this motor is connected to.
      */
-    get portName(): string {
-        return this.readString("port_name");
+    get address(): string {
+        return this.readString("address");
     }
 
     /**
@@ -814,10 +814,10 @@ export class ServoMotor extends MotorBase {
     }
     
     /**
-     * Returns the name of the port that the motor is connected to.
+     * Returns the name of the port that this motor is connected to.
      */
-    get portName(): string {
-        return this.readString("port_name");
+    get address(): string {
+        return this.readString("address");
     }
 
     /**

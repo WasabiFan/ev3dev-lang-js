@@ -1,6 +1,6 @@
 var ev3dev = require('../bin/index.js');
 
-var touchSensor = new ev3dev.Sensor(ev3dev.INPUT_AUTO, ["lego-ev3-touch","lego-nxt-touch"]);
+var touchSensor = new ev3dev.TouchSensor();
 if(!touchSensor.connected) {
     console.error("No touch sensor could be found! Please verify that a touch sensor is plugged in and try again.");
     process.exit(1);
@@ -14,7 +14,7 @@ if(!motor.connected) {
 
 motor.speedRegulationEnabled = 'off';
 
-console.log("Connected to touch sensor on port " + touchSensor.portName + " and tacho motor on port " + motor.portName);
+console.log("Connected to touch sensor at address " + touchSensor.address + " and tacho motor at address " + motor.address);
 console.log("Press the touch sensor to spin the motor.");
 
 setInterval(function() {
