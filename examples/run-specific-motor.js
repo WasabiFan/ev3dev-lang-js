@@ -6,13 +6,16 @@ if(!motor.connected) {
     process.exit(1);
 }
 
-console.log("Running the motor for 180 tacho counts...");
 motor.speedRegulationEnabled = 'on';
 motor.positionSp = 180;
+motor.speedSp = 500;
+motor.stopCommand = 'brake';
 motor.command = "run-to-rel-pos";
+
+console.log("Running the motor for 180 tacho counts...");
 
 // Prevent Node from exiting until motor is done
 var cancellationToken = setInterval(function() {
     if(motor.state.indexOf("running") == -1)
-        cancelInterval(cancellationToken);
+        clearInterval(cancellationToken);
 }, 10);
