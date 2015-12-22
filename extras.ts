@@ -13,15 +13,18 @@ import Device = IO.Device;
  */
 //~autogen
 export class PowerSupply extends Device {
-    public deviceName: string = 'legoev3-battery';
+    public deviceName;
 
     constructor(deviceName: string) {
         super();
 
-        if (deviceName != undefined)
+        var deviceConstraints = { };
+        if (deviceName == undefined)
+            deviceConstraints["scope"] = "System";
+        else
             this.deviceName = deviceName;
 
-        this.connect('power_supply', deviceName);
+        this.connect('power_supply', deviceName, deviceConstraints);
     }
 
     //PROPERTIES

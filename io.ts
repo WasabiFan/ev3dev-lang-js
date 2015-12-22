@@ -42,14 +42,14 @@ export class Device {
     private sysClassDir: string = '/sys/class';
 
     public connect(driverName: string, nameConvention: string, propertyConstraints?: { [propertyName: string]: any }) {
-        var nameRegex = new RegExp(nameConvention);
+        var nameRegex = nameConvention == undefined ? undefined : new RegExp(nameConvention);
         
         var deviceSearchDir = path.join(this.sysClassDir, driverName);
         var availableDevices: string[] = fs.readdirSync(deviceSearchDir);
         for (var deviceDirIndex in availableDevices) {
             var currentDeviceDirName = availableDevices[deviceDirIndex];
 
-            if (!nameRegex.test(currentDeviceDirName))
+            if (nameRegex != undefined && !nameRegex.test(currentDeviceDirName))
                 continue;
 
             var currentDeviceDir = path.join(deviceSearchDir, currentDeviceDirName);
