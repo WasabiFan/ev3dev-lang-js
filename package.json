@@ -1,5 +1,5 @@
 {
-  "name": "ev3dev",
+  "name": "ev3dev-lang-js",
   "version": "0.9.3",
   "description": "An interface to control an EV3 running ev3dev from JavaScript.",
   "keywords": [
