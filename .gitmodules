@@ -1,3 +1,6 @@
 [submodule "docs"]
 	path = docs
 	url = https://github.com/wasabifan/ev3dev-lang-js
+[submodule "ev3dev-lang"]
+	path = ev3dev-lang
+	url = https://github.com/ev3dev/ev3dev-lang

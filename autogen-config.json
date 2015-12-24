@@ -1,0 +1,9 @@
+{
+    "files": [
+        "extras.ts",
+        "motors.ts",
+        "sensors.ts",
+        "index.ts"
+    ],
+    "templateDir": "templates/"
+}
