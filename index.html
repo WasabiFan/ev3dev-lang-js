@@ -66,12 +66,17 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="node-js-language-binding-for-ev3dev-">Node.js Language Binding for ev3dev </h1>
-				<p>This is a Node.js module that exposes the features of the <a href="http://github.com/ev3dev/ev3dev">ev3dev</a> API in an easy-to-use structure. It is part of the &quot;unified&quot; bindings project for ev3dev, which means it follows our abstract API specification. This specification is implemented in multiple languages so that one can easily carry the same code concepts from one language to another.</p>
+				<p>This is a Node.js module that exposes the features of the <a href="http://github.com/ev3dev/ev3dev">ev3dev</a> API in an easy-to-use structure. It is part of the &quot;unified&quot; bindings project for ev3dev, which means it implements our abstract API specification. This specification is implemented in multiple languages so that one can easily carry the same code concepts from one language to another, and all the core ev3dev APIs are supported universally.</p>
+				<h2 id="quickstart">Quickstart</h2>
+				<p>Install the module from <code>npm</code>:</p>
+				<pre><code>$ npm <span class="hljs-keyword">install</span> ev3dev-lang
+</code></pre><p>Now add a <code>require</code> statement to your <code>.js</code> file:</p>
+				<pre><code><span class="hljs-tag">var</span> ev3dev = <span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">'ev3dev-lang`);</span></span></span>
+</code></pre><p>Now check out the <strong><a href="http://wasabifan.github.io/ev3dev-lang-js/">online documentation</a></strong> to see what you can do. Note that all the classes listed in the docs are available in the <code>ev3dev</code> object that you imported above.</p>
 				<h2 id="getting-the-module">Getting the Module</h2>
 				<h3 id="installing-the-latest-release-from-npm">Installing the latest release from npm</h3>
-				<p><strong>NOTE:</strong> The npm module is currently outdated. We recommend that you build from source until we have published updates to npm.</p>
 				<p>The easiest way to get the module is to install it through <code>npm</code>:</p>
-				<pre><code>$ npm <span class="hljs-keyword">install</span> ev3dev
+				<pre><code>$ npm <span class="hljs-keyword">install</span> ev3dev-lang
 </code></pre><p>And then <code>require()</code> it for use in your code.</p>
 				<h3 id="downloading-the-source-code-and-compiling-yourself">Downloading the source code and compiling yourself</h3>
 				<p>You can also download the source from GitHub directly, either from the releases page or via git. If you do it this way, you will need to follow the building instructions below to make it usable from Node.</p>
@@ -85,7 +90,7 @@
 				<pre><code><span class="hljs-variable">$ </span>grunt tsc
 </code></pre><p>The build job should have put the generated JavaScript in the <code>bin</code> folder.</p>
 				<h2 id="getting-started-with-the-api">Getting started with the API</h2>
-				<p>We recommend that you start by running the files in the <code>examples/</code> subdirectory of the repo so that you can make sure that your system is set up correctly. Assuming you don&#39;t get any errors, you can create your own <code>js</code> file and <code>require</code> the ev3dev module to start writing your own code. For reference, you can take a look at the example scripts or check out the <a href="http://wasabifan.github.io/ev3dev-lang-js/">online documentation</a>.</p>
+				<p>We recommend that you start by running the files in the <code>examples/</code> subdirectory of the repo so that you can make sure that your system is set up correctly. Assuming you don&#39;t get any errors, you can create your own <code>js</code> file and <code>require</code> the <code>ev3dev-lang</code> module to start writing your own code. For reference, you can take a look at the example scripts or check out the <a href="http://wasabifan.github.io/ev3dev-lang-js/">online documentation</a>.</p>
 				<h2 id="executing-your-node-js-scripts">Executing your Node.js scripts</h2>
 				<p>The simplest way is to run your code from the command line with the <code>node</code> command. This can be done over an SSH session or directly on the brick. To run a <code>.js</code> file, execute:</p>
 				<pre><code class="lang-bash">$ node path/to/file.js
