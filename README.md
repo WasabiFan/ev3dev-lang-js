@@ -1,18 +1,32 @@
 Node.js Language Binding for ev3dev 
 =============
 
-This is a Node.js module that exposes the features of the [ev3dev](http://github.com/ev3dev/ev3dev) API in an easy-to-use structure. It is part of the "unified" bindings project for ev3dev, which means it follows our abstract API specification. This specification is implemented in multiple languages so that one can easily carry the same code concepts from one language to another.
+This is a Node.js module that exposes the features of the [ev3dev](http://github.com/ev3dev/ev3dev) API in an easy-to-use structure. It is part of the "unified" bindings project for ev3dev, which means it implements our abstract API specification. This specification is implemented in multiple languages so that one can easily carry the same code concepts from one language to another, and all the core ev3dev APIs are supported universally.
+
+## Quickstart
+
+Install the module from `npm`:
+
+```
+$ npm install ev3dev-lang
+```
+
+Now add a `require` statement to your `.js` file:
+
+```
+var ev3dev = require('ev3dev-lang');
+```
+
+Now check out the **[online documentation](http://wasabifan.github.io/ev3dev-lang-js/)** to see what you can do. Note that all the classes listed in the docs are available in the `ev3dev` object that you imported above.
 
 ## Getting the Module
 
 ### Installing the latest release from npm
 
-**NOTE:** The npm module is currently outdated. We recommend that you build from source until we have published updates to npm.
-
 The easiest way to get the module is to install it through `npm`:
 
 ```
-$ npm install ev3dev
+$ npm install ev3dev-lang
 ```
 
 And then `require()` it for use in your code.
@@ -42,7 +56,7 @@ $ grunt tsc
 The build job should have put the generated JavaScript in the `bin` folder.
 
 ## Getting started with the API
-We recommend that you start by running the files in the `examples/` subdirectory of the repo so that you can make sure that your system is set up correctly. Assuming you don't get any errors, you can create your own `js` file and `require` the ev3dev module to start writing your own code. For reference, you can take a look at the example scripts or check out the [online documentation](http://wasabifan.github.io/ev3dev-lang-js/).
+We recommend that you start by running the files in the `examples/` subdirectory of the repo so that you can make sure that your system is set up correctly. Assuming you don't get any errors, you can create your own `js` file and `require` the `ev3dev-lang` module to start writing your own code. For reference, you can take a look at the example scripts or check out the [online documentation](http://wasabifan.github.io/ev3dev-lang-js/).
 
 ## Executing your Node.js scripts
 The simplest way is to run your code from the command line with the `node` command. This can be done over an SSH session or directly on the brick. To run a `.js` file, execute:
@@ -50,7 +64,7 @@ The simplest way is to run your code from the command line with the `node` comma
 $ node path/to/file.js
 ```
 
-If you want to be able to execute your scripts from brickman's file browser, you can add a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) and make it executable. You first must add the following code to the top of your `.js` file:
+If you want to be able to execute your scripts from brickman's file browser, you can add a [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) and make it executable. You first must add the following code to the top of your `.js` file:
 ```
 #!/usr/bin/env node
 ```

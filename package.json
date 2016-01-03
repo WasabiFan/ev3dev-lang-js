@@ -1,16 +1,16 @@
 {
-  "name": "ev3dev-lang-js",
+  "name": "ev3dev-lang",
   "version": "0.9.3",
-  "description": "An interface to control an EV3 running ev3dev from JavaScript.",
+  "description": "An interface to control an EV3 or other supported platform running ev3dev from JavaScript.",
   "keywords": [
     "ev3dev",
     "ev3",
     "lego",
     "robotics"
   ],
-  "homepage": "http://github.com/ev3dev/ev3dev-lang",
+  "homepage": "http://github.com/wasabifan/ev3dev-lang-js",
   "bugs": {
-    "url": "http://github.com/ev3dev/ev3dev-lang/issues"
+    "url": "http://github.com/wasabifan/ev3dev-lang-js/issues"
   },
   "author": {
     "name": "WasabiFan",
@@ -35,6 +35,6 @@
   "main": "bin/index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/ev3dev/ev3dev-lang.git"
+    "url": "http://github.com/wasabifan/ev3dev-lang-js.git"
   }
 }
