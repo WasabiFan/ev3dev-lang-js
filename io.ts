@@ -43,9 +43,16 @@ export class Device {
 
     public connect(driverName: string, nameConvention: string, propertyConstraints?: { [propertyName: string]: any }) {
         var nameRegex = nameConvention == undefined ? undefined : new RegExp(nameConvention);
-        
+
         var deviceSearchDir = path.join(this.sysClassDir, driverName);
-        var availableDevices: string[] = fs.readdirSync(deviceSearchDir);
+        var availableDevices: string[];
+        try {
+            availableDevices = fs.readdirSync(deviceSearchDir);
+        }
+        catch (error) {
+            return;
+        }
+
         for (var deviceDirIndex in availableDevices) {
             var currentDeviceDirName = availableDevices[deviceDirIndex];
 

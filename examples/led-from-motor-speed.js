@@ -16,7 +16,7 @@ console.log("Connected to motor " + motor.portName);
 console.log("Timer running... Rotate the motor and watch the on-board LEDs.");
 
 setInterval(function() {
-    var rpsSpeed = Math.abs(motor.speed) / motor.countPerRot;
+    var rpsSpeed = Math.min(Math.abs(motor.speed) / motor.countPerRot, 1);
     
     var ledColor = [rpsSpeed, 1 - rpsSpeed];
     ev3dev.Ev3Leds.left.setColor(ledColor);
