@@ -24,6 +24,7 @@
     "grunt-typedoc": "0.2.3",
     "grunt-typescript": "^0.8.0",
     "typescript": ">=1.0.0",
+    "mocha": "2.3.4",
     "python-shell": "*"
   },
   "scripts": {
