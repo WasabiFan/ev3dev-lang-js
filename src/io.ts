@@ -35,6 +35,8 @@ export class TraceError {
 }
 
 export class Device {
+    public static overrideSysClassDir: string = null;
+
     public deviceRoot: string;
     public deviceDirName: string;
     public connected: boolean = false;
@@ -44,7 +46,8 @@ export class Device {
     public connect(driverName: string, nameConvention: string, propertyConstraints?: { [propertyName: string]: any }) {
         var nameRegex = nameConvention == undefined ? undefined : new RegExp(nameConvention);
 
-        var deviceSearchDir = path.join(this.sysClassDir, driverName);
+        var deviceSearchDir = path.join(Device.overrideSysClassDir || this.sysClassDir, driverName);
+
         var availableDevices: string[];
         try {
             availableDevices = fs.readdirSync(deviceSearchDir);
@@ -56,8 +59,9 @@ export class Device {
         for (var deviceDirIndex in availableDevices) {
             var currentDeviceDirName = availableDevices[deviceDirIndex];
 
-            if (nameRegex != undefined && !nameRegex.test(currentDeviceDirName))
+            if (nameRegex != undefined && !nameRegex.test(currentDeviceDirName)) {
                 continue;
+            }
 
             var currentDeviceDir = path.join(deviceSearchDir, currentDeviceDirName);
 
