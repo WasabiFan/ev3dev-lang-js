@@ -2,7 +2,7 @@ var PythonShell = require('python-shell');
 var assert = require('assert');
 var path = require('path');
 
-var fakeSysRootDir = path.resolve(__dirname, "/fake-sys/");
+var fakeSysRootDir = path.resolve(__dirname, "fake-sys/");
 
 module.exports.cleanArena = function (callback) {
     PythonShell.run(path.resolve(fakeSysRootDir, "clean_arena.py"), function (err) {
