@@ -27,7 +27,7 @@
     "python-shell": "*"
   },
   "scripts": {
-    "test": "grunt tsc && mocha"
+    "test": "grunt tsc && ./node_modules/mocha/bin/mocha"
   },
   "files": [
     "bin/"
