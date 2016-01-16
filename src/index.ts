@@ -37,6 +37,12 @@ export var ServoMotor = motors.ServoMotor;
 export var Sensor = sensors.Sensor;
 export var I2CSensor = sensors.I2CSensor;
 export var TouchSensor = sensors.TouchSensor;
+export var ColorSensor = sensors.ColorSensor;
+export var UltrasonicSensor = sensors.UltrasonicSensor;
+export var GyroSensor = sensors.GyroSensor;
+export var InfraredSensor = sensors.InfraredSensor;
+export var SoundSensor = sensors.SoundSensor;
+export var LightSensor = sensors.LightSensor;
 
 // Extras
 export var PowerSupply = extras.PowerSupply;
