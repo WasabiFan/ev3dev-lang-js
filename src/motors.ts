@@ -1,5 +1,5 @@
 ﻿//~autogen autogen-header
-// Sections of the following code were auto-generated based on spec v1.0.0.
+// Sections of the following code were auto-generated based on spec v1.1.0.
 
 //~autogen
 
@@ -52,7 +52,7 @@ export class Motor extends MotorBase {
 
     public constructor(port?: string, targetDriverName?: string[] | string) {
         //~autogen connect-super-call classes.motor>currentClass "port,targetDriverName">extraParams
-        super('tacho-motor', 'motor(\\d*)', port,targetDriverName);
+        super('tacho-motor', '*', port,targetDriverName);
 //~autogen
     }
 
@@ -109,11 +109,19 @@ export class Motor extends MotorBase {
     /**
      * Returns the number of tacho counts in one rotation of the motor. Tacho counts
      * are used by the position and speed attributes, so you can use this value
-     * to convert rotations or degrees to tacho counts. In the case of linear
-     * actuators, the units here will be counts per centimeter.
+     * to convert rotations or degrees to tacho counts. (rotation motors only)
      */
     get countPerRot(): number {
         return this.readNumber("count_per_rot");
+    }
+
+    /**
+     * Returns the number of tacho counts in one meter of travel of the motor. Tacho
+     * counts are used by the position and speed attributes, so you can use this
+     * value to convert from distance to tacho counts. (linear motors only)
+     */
+    get countPerM(): number {
+        return this.readNumber("count_per_m");
     }
 
     /**
@@ -134,8 +142,7 @@ export class Motor extends MotorBase {
     /**
      * Writing sets the duty cycle setpoint. Reading returns the current value.
      * Units are in percent. Valid values are -100 to 100. A negative value causes
-     * the motor to rotate in reverse. This value is only used when `speed_regulation`
-     * is off.
+     * the motor to rotate in reverse.
      */
     get dutyCycleSp(): number {
         return this.readNumber("duty_cycle_sp");
@@ -143,8 +150,7 @@ export class Motor extends MotorBase {
     /**
      * Writing sets the duty cycle setpoint. Reading returns the current value.
      * Units are in percent. Valid values are -100 to 100. A negative value causes
-     * the motor to rotate in reverse. This value is only used when `speed_regulation`
-     * is off.
+     * the motor to rotate in reverse.
      */
     set dutyCycleSp(value: number) {
         this.setNumber("duty_cycle_sp", value);
@@ -171,6 +177,15 @@ export class Motor extends MotorBase {
         this.setString("encoder_polarity", value);
     }
     
+    /**
+     * Returns the number of tacho counts in the full travel of the motor. When
+     * combined with the `count_per_m` atribute, you can use this value to
+     * calculate the maximum travel distance of the motor. (linear motors only)
+     */
+    get fullTravelCount(): number {
+        return this.readNumber("full_travel_count");
+    }
+
     /**
      * Sets the polarity of the motor. With `normal` polarity, a positive duty
      * cycle will cause the motor to rotate clockwise. With `inversed` polarity,
@@ -268,6 +283,15 @@ export class Motor extends MotorBase {
     }
     
     /**
+     * Returns the maximum value that is accepted by the `speed_sp` attribute. This
+     * may be slightly different than the maximum speed that a particular motor can
+     * reach - it's the maximum theoretical speed.
+     */
+    get maxSpeed(): number {
+        return this.readNumber("max_speed");
+    }
+
+    /**
      * Returns the current motor speed in tacho counts per second. Note, this is
      * not necessarily degrees (although it is for LEGO motors). Use the `count_per_rot`
      * attribute to convert this value to RPM or deg/sec.
@@ -277,17 +301,23 @@ export class Motor extends MotorBase {
     }
 
     /**
-     * Writing sets the target speed in tacho counts per second used when `speed_regulation`
-     * is on. Reading returns the current value.  Use the `count_per_rot` attribute
-     * to convert RPM or deg/sec to tacho counts per second.
+     * Writing sets the target speed in tacho counts per second used for all `run-*`
+     * commands except `run-direct`. Reading returns the current value. A negative
+     * value causes the motor to rotate in reverse with the exception of `run-to-*-pos`
+     * commands where the sign is ignored. Use the `count_per_rot` attribute to convert
+     * RPM or deg/sec to tacho counts per second. Use the `count_per_m` attribute to
+     * convert m/s to tacho counts per second.
      */
     get speedSp(): number {
         return this.readNumber("speed_sp");
     }
     /**
-     * Writing sets the target speed in tacho counts per second used when `speed_regulation`
-     * is on. Reading returns the current value.  Use the `count_per_rot` attribute
-     * to convert RPM or deg/sec to tacho counts per second.
+     * Writing sets the target speed in tacho counts per second used for all `run-*`
+     * commands except `run-direct`. Reading returns the current value. A negative
+     * value causes the motor to rotate in reverse with the exception of `run-to-*-pos`
+     * commands where the sign is ignored. Use the `count_per_rot` attribute to convert
+     * RPM or deg/sec to tacho counts per second. Use the `count_per_m` attribute to
+     * convert m/s to tacho counts per second.
      */
     set speedSp(value: number) {
         this.setNumber("speed_sp", value);
@@ -295,20 +325,20 @@ export class Motor extends MotorBase {
     
     /**
      * Writing sets the ramp up setpoint. Reading returns the current value. Units
-     * are in milliseconds. When set to a value > 0, the motor will ramp the power
-     * sent to the motor from 0 to 100% duty cycle over the span of this setpoint
-     * when starting the motor. If the maximum duty cycle is limited by `duty_cycle_sp`
-     * or speed regulation, the actual ramp time duration will be less than the setpoint.
+     * are in milliseconds and must be positive. When set to a non-zero value, the
+     * motor speed will increase from 0 to 100% of `max_speed` over the span of this
+     * setpoint. The actual ramp time is the ratio of the difference between the
+     * `speed_sp` and the current `speed` and max_speed multiplied by `ramp_up_sp`.
      */
     get rampUpSp(): number {
         return this.readNumber("ramp_up_sp");
     }
     /**
      * Writing sets the ramp up setpoint. Reading returns the current value. Units
-     * are in milliseconds. When set to a value > 0, the motor will ramp the power
-     * sent to the motor from 0 to 100% duty cycle over the span of this setpoint
-     * when starting the motor. If the maximum duty cycle is limited by `duty_cycle_sp`
-     * or speed regulation, the actual ramp time duration will be less than the setpoint.
+     * are in milliseconds and must be positive. When set to a non-zero value, the
+     * motor speed will increase from 0 to 100% of `max_speed` over the span of this
+     * setpoint. The actual ramp time is the ratio of the difference between the
+     * `speed_sp` and the current `speed` and max_speed multiplied by `ramp_up_sp`.
      */
     set rampUpSp(value: number) {
         this.setNumber("ramp_up_sp", value);
@@ -316,82 +346,61 @@ export class Motor extends MotorBase {
     
     /**
      * Writing sets the ramp down setpoint. Reading returns the current value. Units
-     * are in milliseconds. When set to a value > 0, the motor will ramp the power
-     * sent to the motor from 100% duty cycle down to 0 over the span of this setpoint
-     * when stopping the motor. If the starting duty cycle is less than 100%, the
-     * ramp time duration will be less than the full span of the setpoint.
+     * are in milliseconds and must be positive. When set to a non-zero value, the
+     * motor speed will decrease from 0 to 100% of `max_speed` over the span of this
+     * setpoint. The actual ramp time is the ratio of the difference between the
+     * `speed_sp` and the current `speed` and max_speed multiplied by `ramp_down_sp`.
      */
     get rampDownSp(): number {
         return this.readNumber("ramp_down_sp");
     }
     /**
      * Writing sets the ramp down setpoint. Reading returns the current value. Units
-     * are in milliseconds. When set to a value > 0, the motor will ramp the power
-     * sent to the motor from 100% duty cycle down to 0 over the span of this setpoint
-     * when stopping the motor. If the starting duty cycle is less than 100%, the
-     * ramp time duration will be less than the full span of the setpoint.
+     * are in milliseconds and must be positive. When set to a non-zero value, the
+     * motor speed will decrease from 0 to 100% of `max_speed` over the span of this
+     * setpoint. The actual ramp time is the ratio of the difference between the
+     * `speed_sp` and the current `speed` and max_speed multiplied by `ramp_down_sp`.
      */
     set rampDownSp(value: number) {
         this.setNumber("ramp_down_sp", value);
     }
     
     /**
-     * Turns speed regulation on or off. If speed regulation is on, the motor
-     * controller will vary the power supplied to the motor to try to maintain the
-     * speed specified in `speed_sp`. If speed regulation is off, the controller
-     * will use the power specified in `duty_cycle_sp`. Valid values are `on` and
-     * `off`.
-     */
-    get speedRegulationEnabled(): string {
-        return this.readString("speed_regulation");
-    }
-    /**
-     * Turns speed regulation on or off. If speed regulation is on, the motor
-     * controller will vary the power supplied to the motor to try to maintain the
-     * speed specified in `speed_sp`. If speed regulation is off, the controller
-     * will use the power specified in `duty_cycle_sp`. Valid values are `on` and
-     * `off`.
-     */
-    set speedRegulationEnabled(value: string) {
-        this.setString("speed_regulation", value);
-    }
-    
-    /**
      * The proportional constant for the speed regulation PID.
      */
-    get speedRegulationP(): number {
+    get speedP(): number {
         return this.readNumber("speed_pid/Kp");
     }
     /**
      * The proportional constant for the speed regulation PID.
      */
-    set speedRegulationP(value: number) {
+    set speedP(value: number) {
         this.setNumber("speed_pid/Kp", value);
     }
     
     /**
      * The integral constant for the speed regulation PID.
      */
-    get speedRegulationI(): number {
+    get speedI(): number {
         return this.readNumber("speed_pid/Ki");
     }
     /**
      * The integral constant for the speed regulation PID.
      */
-    set speedRegulationI(value: number) {
+    set speedI(value: number) {
         this.setNumber("speed_pid/Ki", value);
     }
     
     /**
      * The derivative constant for the speed regulation PID.
      */
-    get speedRegulationD(): number {
+    get speedD(): number {
         return this.readNumber("speed_pid/Kd");
     }
     /**
      * The derivative constant for the speed regulation PID.
      */
-    set speedRegulationD(value: number) {
+    set speedD(value: number) {
         this.setNumber("speed_pid/Kd", value);
     }
     
