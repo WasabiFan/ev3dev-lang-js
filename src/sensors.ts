@@ -68,6 +68,14 @@ export class Sensor extends SensorBase {
     //PROPERTIES
     //~autogen generic-get-set classes.sensor>currentClass
     /**
+     * Returns the name of the port that the sensor is connected to, e.g. `ev3:in1`.
+     * I2C sensors also include the I2C address (decimal), e.g. `ev3:in1:i2c8`.
+     */
+    get address(): string {
+        return this.readString("address");
+    }
+
+    /**
      * Sends a command to the sensor.
      */
     set command(value: string) {
@@ -126,14 +134,6 @@ export class Sensor extends SensorBase {
      */
     get numValues(): number {
         return this.readNumber("num_values");
-    }
-
-    /**
-     * Returns the name of the port that the sensor is connected to, e.g. `ev3:in1`.
-     * I2C sensors also include the I2C address (decimal), e.g. `ev3:in1:i2c8`.
-     */
-    get address(): string {
-        return this.readString("address");
     }
 
     /**

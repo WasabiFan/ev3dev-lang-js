@@ -1,5 +1,5 @@
 ﻿//~autogen autogen-header
-// Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2.
+// Sections of the following code were auto-generated based on spec v1.0.0.
 
 //~autogen
 
@@ -41,6 +41,11 @@ export class MotorBase extends Device {
  * positional and directional feedback such as the EV3 and NXT motors.
  * This feedback allows for precise control of the motors. This is the
  * most common type of motor, so we just call it `motor`.
+ * 
+ * The way to configure a motor is to set the '_sp' attributes when
+ * calling a command or before. Only in 'run_direct' mode attribute
+ * changes are processed immediately, in the other modes they only
+ * take place when a new command is issued.
  */
 //~autogen
 export class Motor extends MotorBase {
@@ -61,6 +66,13 @@ export class Motor extends MotorBase {
 
     //PROPERTIES
     //~autogen generic-get-set classes.motor>currentClass
+    /**
+     * Returns the name of the port that this motor is connected to.
+     */
+    get address(): string {
+        return this.readString("address");
+    }
+
     /**
      * Sends a command to the motor controller. See `commands` for a list of
      * possible values.
@@ -179,13 +191,6 @@ export class Motor extends MotorBase {
     }
     
     /**
-     * Returns the name of the port that this motor is connected to.
-     */
-    get address(): string {
-        return this.readString("address");
-    }
-
-    /**
      * Returns the current position of the motor in pulses of the rotary
      * encoder. When the motor rotates clockwise, the position will increase.
      * Likewise, rotating counter-clockwise causes the position to decrease.
@@ -263,7 +268,7 @@ export class Motor extends MotorBase {
     }
     
     /**
-     * Returns the current motor speed in tacho counts per second. Not, this is
+     * Returns the current motor speed in tacho counts per second. Note, this is
      * not necessarily degrees (although it is for LEGO motors). Use the `count_per_rot`
      * attribute to convert this value to RPM or deg/sec.
      */
@@ -553,6 +558,13 @@ export class DCMotor extends MotorBase {
 
     //~autogen generic-get-set classes.dcMotor>currentClass
     /**
+     * Returns the name of the port that this motor is connected to.
+     */
+    get address(): string {
+        return this.readString("address");
+    }
+
+    /**
      * Sets the command for the motor. Possible values are `run-forever`, `run-timed` and
      * `stop`. Not all commands may be supported, so be sure to check the contents
      * of the `commands` attribute.
@@ -615,13 +627,6 @@ export class DCMotor extends MotorBase {
         this.setString("polarity", value);
     }
     
-    /**
-     * Returns the name of the port that this motor is connected to.
-     */
-    get address(): string {
-        return this.readString("address");
-    }
-
     /**
      * Sets the time in milliseconds that it take the motor to ramp down from 100%
      * to 0%. Valid values are 0 to 10000 (10 seconds). Default is 0.
@@ -716,6 +721,13 @@ export class ServoMotor extends MotorBase {
     //PROPERTIES
 
     //~autogen generic-get-set classes.servoMotor>currentClass
+    /**
+     * Returns the name of the port that this motor is connected to.
+     */
+    get address(): string {
+        return this.readString("address");
+    }
+
     /**
      * Sets the command for the servo. Valid values are `run` and `float`. Setting
      * to `run` will cause the servo to be driven to the position_sp set in the
@@ -813,13 +825,6 @@ export class ServoMotor extends MotorBase {
         this.setString("polarity", value);
     }
     
-    /**
-     * Returns the name of the port that this motor is connected to.
-     */
-    get address(): string {
-        return this.readString("address");
-    }
-
     /**
      * Reading returns the current position_sp of the servo. Writing instructs the
      * servo to move to the specified position_sp. Units are percent. Valid values

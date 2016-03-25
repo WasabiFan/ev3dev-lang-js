@@ -76,8 +76,8 @@ export class Ev3Leds {
 //~autogen led-platform-class platforms.brickpi>currentPlatform "BrickpiLeds">currentPlatformClassName
 export class BrickpiLeds {
 
-    public static blueLed1 = new extras.LED("brickpi1:blue:ev3dev");
-    public static blueLed2 = new extras.LED("brickpi2:blue:ev3dev");
+    public static blueLed1 = new extras.LED("brickpi:led1:blue:ev3dev");
+    public static blueLed2 = new extras.LED("brickpi:led2:blue:ev3dev");
 
     public static led1 = new extras.LEDGroup(BrickpiLeds.blueLed1);
     public static led2 = new extras.LEDGroup(BrickpiLeds.blueLed2);
