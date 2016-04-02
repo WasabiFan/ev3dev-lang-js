@@ -1,10 +1,10 @@
 module.exports = function (grunt) {
-    grunt.loadNpmTasks('grunt-typescript');
+    grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-typedoc');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        typescript: {
+        ts: {
             main: {
                 src: "src/index.ts",
                 dest: 'bin/',
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['typescript', 'typedoc']);
-    grunt.registerTask('tsc', ['typescript']);
-    grunt.registerTask('doc', ['typescript', 'typedoc']);
+    grunt.registerTask('default', ['ts', 'typedoc']);
+    grunt.registerTask('tsc', ['ts']);
+    grunt.registerTask('doc', ['ts', 'typedoc']);
 }
