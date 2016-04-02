@@ -77,7 +77,7 @@ export class Motor extends MotorBase {
      * Sends a command to the motor controller. See `commands` for a list of
      * possible values.
      */
-    set command(value: string) {
+    set command(value: ('run-forever' | 'run-to-abs-pos' | 'run-to-rel-pos' | 'run-timed' | 'run-direct' | 'stop' | 'reset')) {
         this.setString("command", value);
     }
     
@@ -157,8 +157,8 @@ export class Motor extends MotorBase {
      * value if you are using a unsupported device. Valid values are `normal` and
      * `inversed`.
      */
-    get encoderPolarity(): string {
-        return this.readString("encoder_polarity");
+    get encoderPolarity(): ('normal' | 'inversed') {
+        return this.readStringAsType<('normal' | 'inversed')>("encoder_polarity");
     }
     /**
      * Sets the polarity of the rotary encoder. This is an advanced feature to all
@@ -167,7 +167,7 @@ export class Motor extends MotorBase {
      * value if you are using a unsupported device. Valid values are `normal` and
      * `inversed`.
      */
-    set encoderPolarity(value: string) {
+    set encoderPolarity(value: ('normal' | 'inversed')) {
         this.setString("encoder_polarity", value);
     }
     
@@ -177,8 +177,8 @@ export class Motor extends MotorBase {
      * a positive duty cycle will cause the motor to rotate counter-clockwise.
      * Valid values are `normal` and `inversed`.
      */
-    get polarity(): string {
-        return this.readString("polarity");
+    get polarity(): ('normal' | 'inversed') {
+        return this.readStringAsType<('normal' | 'inversed')>("polarity");
     }
     /**
      * Sets the polarity of the motor. With `normal` polarity, a positive duty
@@ -186,7 +186,7 @@ export class Motor extends MotorBase {
      * a positive duty cycle will cause the motor to rotate counter-clockwise.
      * Valid values are `normal` and `inversed`.
      */
-    set polarity(value: string) {
+    set polarity(value: ('normal' | 'inversed')) {
         this.setString("polarity", value);
     }
     
@@ -409,8 +409,8 @@ export class Motor extends MotorBase {
      * Also, it determines the motors behavior when a run command completes. See
      * `stop_commands` for a list of possible values.
      */
-    get stopCommand(): string {
-        return this.readString("stop_command");
+    get stopCommand(): ('coast' | 'brake' | 'hold') {
+        return this.readStringAsType<('coast' | 'brake' | 'hold')>("stop_command");
     }
     /**
      * Reading returns the current stop command. Writing sets the stop command.
@@ -418,7 +418,7 @@ export class Motor extends MotorBase {
      * Also, it determines the motors behavior when a run command completes. See
      * `stop_commands` for a list of possible values.
      */
-    set stopCommand(value: string) {
+    set stopCommand(value: ('coast' | 'brake' | 'hold')) {
         this.setString("stop_command", value);
     }
     
@@ -471,7 +471,7 @@ export class Motor extends MotorBase {
         }
     }
 
-    public sendCommand(commandName: string) {
+    public sendCommand(commandName: ('run-forever' | 'run-to-abs-pos' | 'run-to-rel-pos' | 'run-timed' | 'run-direct' | 'stop' | 'reset')) {
 
         if (this.commands.indexOf(commandName) < 0)
             throw new Error('The command ' + commandName + ' is not supported by the device.');
@@ -569,7 +569,7 @@ export class DCMotor extends MotorBase {
      * `stop`. Not all commands may be supported, so be sure to check the contents
      * of the `commands` attribute.
      */
-    set command(value: string) {
+    set command(value: ('run-forever' | 'run-timed' | 'run-direct' | 'stop')) {
         this.setString("command", value);
     }
     
@@ -617,13 +617,13 @@ export class DCMotor extends MotorBase {
     /**
      * Sets the polarity of the motor. Valid values are `normal` and `inversed`.
      */
-    get polarity(): string {
-        return this.readString("polarity");
+    get polarity(): ('normal' | 'inversed') {
+        return this.readStringAsType<('normal' | 'inversed')>("polarity");
     }
     /**
      * Sets the polarity of the motor. Valid values are `normal` and `inversed`.
      */
-    set polarity(value: string) {
+    set polarity(value: ('normal' | 'inversed')) {
         this.setString("polarity", value);
     }
     
@@ -671,7 +671,7 @@ export class DCMotor extends MotorBase {
      * Sets the stop command that will be used when the motor stops. Read
      * `stop_commands` to get the list of valid values.
      */
-    set stopCommand(value: string) {
+    set stopCommand(value: ('coast' | 'brake')) {
         this.setString("stop_command", value);
     }
     
@@ -733,7 +733,7 @@ export class ServoMotor extends MotorBase {
      * to `run` will cause the servo to be driven to the position_sp set in the
      * `position_sp` attribute. Setting to `float` will remove power from the motor.
      */
-    set command(value: string) {
+    set command(value: ('run' | 'float')) {
         this.setString("command", value);
     }
     
@@ -812,8 +812,8 @@ export class ServoMotor extends MotorBase {
      * inversed. i.e `-100` will correspond to `max_pulse_sp`, and `100` will
      * correspond to `min_pulse_sp`.
      */
-    get polarity(): string {
-        return this.readString("polarity");
+    get polarity(): ('normal' | 'inversed') {
+        return this.readStringAsType<('normal' | 'inversed')>("polarity");
     }
     /**
      * Sets the polarity of the servo. Valid values are `normal` and `inversed`.
@@ -821,7 +821,7 @@ export class ServoMotor extends MotorBase {
      * inversed. i.e `-100` will correspond to `max_pulse_sp`, and `100` will
      * correspond to `min_pulse_sp`.
      */
-    set polarity(value: string) {
+    set polarity(value: ('normal' | 'inversed')) {
         this.setString("polarity", value);
     }
     

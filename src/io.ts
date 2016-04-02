@@ -108,6 +108,10 @@ export class Device {
         var value = this.readProperty(property, deviceRoot);
         return String(value);
     }
+    
+    public readStringAsType<T>(property: string, deviceRoot?: string): T {
+        return <any>this.readString(property, deviceRoot) as T;
+    }
 
     public readStringArray(property: string, deviceRoot?: string): string[]{
         return this.readString(property, deviceRoot)
