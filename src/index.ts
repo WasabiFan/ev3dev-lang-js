@@ -61,11 +61,12 @@ export class Ev3Leds {
     public static left = new extras.LEDGroup(Ev3Leds.redLeft, Ev3Leds.greenLeft);
     public static right = new extras.LEDGroup(Ev3Leds.redRight, Ev3Leds.greenRight);
 
+    public static blackColor = [0, 0];
     public static redColor = [1, 0];
     public static greenColor = [0, 1];
     public static amberColor = [1, 1];
     public static orangeColor = [1, 0.5];
-    public static yellowColor = [0.5, 1];
+    public static yellowColor = [0.1, 1];
 
     public static get isConnected(): boolean {
         return Ev3Leds.redLeft.connected && Ev3Leds.redRight.connected && Ev3Leds.greenLeft.connected && Ev3Leds.greenRight.connected;
@@ -82,6 +83,7 @@ export class BrickpiLeds {
     public static led1 = new extras.LEDGroup(BrickpiLeds.blueLed1);
     public static led2 = new extras.LEDGroup(BrickpiLeds.blueLed2);
 
+    public static blackColor = [0];
     public static blueColor = [1];
 
     public static get isConnected(): boolean {
