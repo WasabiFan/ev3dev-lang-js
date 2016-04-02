@@ -2,10 +2,10 @@ var PythonShell = require('python-shell');
 var assert = require('assert');
 var path = require('path');
 
-var fakeSysRootDir = path.join(__dirname, "fake-sys/");
+var fakeSysRootDir = path.relative(".", path.join(__dirname, "fake-sys/"));
 
 module.exports.cleanArena = function (callback) {
-    PythonShell.run(path.resolve(fakeSysRootDir, "clean_arena.py"), function (err) {
+    PythonShell.run(path.join(fakeSysRootDir, "/clean_arena.py"), function (err) {
         if (err) throw err;
 
         callback();
@@ -25,7 +25,7 @@ module.exports.populateArena = function (deviceConfiguration, callback) {
         var shellOptions = {
             args: deviceParams
         };
-        var populateShell = new PythonShell(path.resolve(fakeSysRootDir, "populate_arena.py"), shellOptions);
+        var populateShell = new PythonShell(path.join(fakeSysRootDir, "/populate_arena.py"), shellOptions);
 
         var pathMapping = {};
         populateShell.on("message", function (message) {
