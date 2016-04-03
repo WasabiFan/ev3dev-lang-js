@@ -6,11 +6,7 @@ if(!motor.connected) {
     process.exit(1);
 }
 
-motor.speedRegulationEnabled = 'on';
-motor.positionSp = 180;
-motor.speedSp = 500;
-motor.stopCommand = 'brake';
-motor.command = "run-to-rel-pos";
+motor.runForDistance(180, ev3dev.MotorSpeedSp.fromRegulated(500), 'brake');
 
 console.log("Running the motor for 180 tacho counts...");
 

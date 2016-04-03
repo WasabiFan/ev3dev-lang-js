@@ -12,15 +12,13 @@ if (!motor.connected)
 
 console.log(' Port: ' + motor.portName);
 console.log(' Driver: ' + motor.driverName);
+console.log(' Available commands: ' + motor.commands);
 
-console.log('Setting motor properties...');
+console.log('Sending motor command...');
+
 motor.rampUpSp = 100;
 motor.rampDownSp = 100;
-motor.timeSp = 1000;
-motor.dutyCycleSp = 50;
-console.log('Available commands: ' + motor.commands);
-console.log('Sending motor command...');
-motor.command = 'run-timed';
+motor.runForTime(1000, ev3dev.MotorSpeedSp.fromUnregulated(50), 'brake');
 
 do {
     console.log("Motor speed: " + motor.speed);

@@ -488,42 +488,74 @@ export class Motor extends MotorBase {
 
         this.command = commandName;
     }
+    
+    public setStopCommand(stopCommand: StopCommandValue) {
 
-    public runForever(sp?: MotorSpeedSp | number) {
+        if (this.stopCommands.indexOf(stopCommand) < 0)
+            throw new Error('The stop command ' + stopCommand + ' is not supported by the device.');
+
+        this.stopCommand = stopCommand;
+    }
+
+    public runForever(sp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
         if (sp != undefined)
             this.applySpeedSp(sp);
+        
+        if(stopCommand != undefined)
+            this.setStopCommand(stopCommand);
 
         this.sendCommand('run-forever');
     }
 
-    public start(sp?: MotorSpeedSp | number) {
-        this.runForever(sp);
+    public start(sp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+        this.runForever(sp, stopCommand);
+    }
+    
+    public runToPosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+        this.runToAbsolutePosition(position, speedSp, stopCommand);
     }
 
-    public runToPosition(position?: number, speedSp?: MotorSpeedSp | number) {
-        this.runToAbsolutePosition(position, speedSp);
-    }
-
-    public runToAbsolutePosition(position?: number, speedSp?: MotorSpeedSp | number) {
+    public runToAbsolutePosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
         if (speedSp != undefined)
             this.applySpeedSp(speedSp);
+            
         if (position != undefined)
             this.positionSp = position;
-
+        
+        if(stopCommand != undefined)
+            this.setStopCommand(stopCommand);
+        
         this.sendCommand('run-to-abs-pos');
     }
 
-    public runForDistance(distance?: number, speedSp?: MotorSpeedSp | number) {
-        this.runToRelativePosition(distance, speedSp);
+    public runForDistance(distance?: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+        this.runToRelativePosition(distance, speedSp, stopCommand);
     }
 
-    public runToRelativePosition(relPos?: number, speedSp?: MotorSpeedSp | number) {
+    public runToRelativePosition(relPos?: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
         if (speedSp != undefined)
             this.applySpeedSp(speedSp);
+            
         if (relPos != undefined)
             this.positionSp = relPos;
-
+        
+        if(stopCommand != undefined)
+            this.setStopCommand(stopCommand);
+            
         this.sendCommand('run-to-rel-pos');
+    }
+    
+    public runForTime(timeMs: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+        if (speedSp != undefined)
+            this.applySpeedSp(speedSp);
+        
+        if (timeMs != undefined)
+            this.timeSp = timeMs;
+        
+        if(stopCommand != undefined)
+            this.setStopCommand(stopCommand);
+            
+        this.sendCommand('run-timed');
     }
 }
 
