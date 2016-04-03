@@ -7,13 +7,7 @@
             assign type = 'string' %}{%
             for propertyVals in currentClass.propertyValues %}{%
                 if propertyVals.propertyName == prop.name %}{%
-                    assign type = '' %}{%
-                    for propVal in propertyVals.values %}{%
-                        assign type = type | append: "'" %}{%
-                        assign type = type | append: propVal.name %}{%
-                        assign type = type | append: "' " %}{%
-                    endfor %}{%
-                    assign type = type | prepend: '(' | trim | replace: ' ', ' | ' | append: ')' %}{%
+                    assign type = prop.name | camel_case | capitalize | append: 'Value' %}{%
                     assign specialReadCall = 'AsType<' | append: type | append: '>' %}{%
                 endif %}{%
             endfor %}{%
