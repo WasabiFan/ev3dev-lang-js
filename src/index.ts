@@ -27,11 +27,39 @@ export var Device = io.Device;
 
 // Motors
 export var Motor = motors.Motor;
-export var DCMotor = motors.DCMotor;
+export var DcMotor = motors.DcMotor;
 export var LargeMotor = motors.LargeMotor;
 export var MediumMotor = motors.MediumMotor;
 export var MotorSpeedSp = motors.MotorSpeedSp;
 export var ServoMotor = motors.ServoMotor;
+
+//~autogen export-string-literal-types classes.motor>currentClass "motors">module
+export module Motor {
+
+    export type CommandValue = motors.Motor.CommandValue;
+    export type EncoderPolarityValue = motors.Motor.EncoderPolarityValue;
+    export type PolarityValue = motors.Motor.PolarityValue;
+    export type SpeedRegulationValue = motors.Motor.SpeedRegulationValue;
+    export type StopCommandValue = motors.Motor.StopCommandValue;
+}
+//~autogen
+
+//~autogen export-string-literal-types classes.servoMotor>currentClass "motors">module
+export module ServoMotor {
+
+    export type CommandValue = motors.ServoMotor.CommandValue;
+    export type PolarityValue = motors.ServoMotor.PolarityValue;
+}
+//~autogen
+
+//~autogen export-string-literal-types classes.dcMotor>currentClass "motors">module
+export module DcMotor {
+
+    export type CommandValue = motors.DcMotor.CommandValue;
+    export type PolarityValue = motors.DcMotor.PolarityValue;
+    export type StopCommandValue = motors.DcMotor.StopCommandValue;
+}
+//~autogen
 
 // Sensors
 export var Sensor = sensors.Sensor;

@@ -607,7 +607,7 @@ export class MediumMotor extends Motor {
  * and LEGO Power Functions motors.
  */
 //~autogen
-export class DCMotor extends MotorBase {
+export class DcMotor extends MotorBase {
 
     constructor(port: string) {
         //~autogen connect-super-call classes.dcMotor>currentClass "port">extraParams
