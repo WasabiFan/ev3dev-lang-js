@@ -247,19 +247,7 @@ export class Device {
             this.eventTimerCancellationToken = null;
         }
     }
-
-    public when(eventPredicate: (userData?: any) => boolean, userCallbackData?: any): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.registerEventCallback((err?) => {
-                if (err)
-                    reject(err);
-                else
-                    resolve(userCallbackData);
-
-            }, eventPredicate, true, userCallbackData);
-        });
-    }
-
+    
     public registerEventCallback(
         callbackFunction: (err?: Error, userData?: any) => void,
         eventPredicate: (userData?: any) => boolean,
@@ -273,5 +261,17 @@ export class Device {
 
         this.pendingEventRequests.push(newEventRequest);
         this.updateEventTimerState();
+    }
+
+    public registerEventPromise(eventPredicate: (userData?: any) => boolean, userCallbackData?: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.registerEventCallback((err?) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(userCallbackData);
+
+            }, eventPredicate, true, userCallbackData);
+        });
     }
 }
