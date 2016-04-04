@@ -7,13 +7,32 @@ import IO = require('./io');
 import Device = IO.Device;
 
 //~autogen def-string-literal-types classes.motor>currentClass
+export module Motor {
 
-export type CommandValue = 'run-forever' | 'run-to-abs-pos' | 'run-to-rel-pos' | 'run-timed' | 'run-direct' | 'stop' | 'reset';
-export type EncoderPolarityValue = 'normal' | 'inversed';
-export type PolarityValue = 'normal' | 'inversed';
-export type SpeedRegulationValue = 'on' | 'off';
-export type StopCommandValue = 'coast' | 'brake' | 'hold';
+    export type CommandValue = 'run-forever' | 'run-to-abs-pos' | 'run-to-rel-pos' | 'run-timed' | 'run-direct' | 'stop' | 'reset';
+    export type EncoderPolarityValue = 'normal' | 'inversed';
+    export type PolarityValue = 'normal' | 'inversed';
+    export type SpeedRegulationValue = 'on' | 'off';
+    export type StopCommandValue = 'coast' | 'brake' | 'hold';
+}
+//~autogen
 
+//~autogen def-string-literal-types classes.dcMotor>currentClass
+export module DcMotor {
+
+    export type CommandValue = 'run-forever' | 'run-timed' | 'run-direct' | 'stop';
+    export type PolarityValue = 'normal' | 'inversed';
+    export type StopCommandValue = 'coast' | 'brake';
+}
+//~autogen
+
+
+//~autogen def-string-literal-types classes.servoMotor>currentClass
+export module ServoMotor {
+
+    export type CommandValue = 'run' | 'float';
+    export type PolarityValue = 'normal' | 'inversed';
+}
 //~autogen
 
 export class MotorBase extends Device {
@@ -87,7 +106,7 @@ export class Motor extends MotorBase {
      * Sends a command to the motor controller. See `commands` for a list of
      * possible values.
      */
-    set command(value: CommandValue) {
+    set command(value: Motor.CommandValue) {
         this.setString("command", value);
     }
     
@@ -167,8 +186,8 @@ export class Motor extends MotorBase {
      * value if you are using a unsupported device. Valid values are `normal` and
      * `inversed`.
      */
-    get encoderPolarity(): EncoderPolarityValue {
-        return this.readStringAsType<EncoderPolarityValue>("encoder_polarity");
+    get encoderPolarity(): Motor.EncoderPolarityValue {
+        return this.readStringAsType<Motor.EncoderPolarityValue>("encoder_polarity");
     }
     /**
      * Sets the polarity of the rotary encoder. This is an advanced feature to all
@@ -177,7 +196,7 @@ export class Motor extends MotorBase {
      * value if you are using a unsupported device. Valid values are `normal` and
      * `inversed`.
      */
-    set encoderPolarity(value: EncoderPolarityValue) {
+    set encoderPolarity(value: Motor.EncoderPolarityValue) {
         this.setString("encoder_polarity", value);
     }
     
@@ -187,8 +206,8 @@ export class Motor extends MotorBase {
      * a positive duty cycle will cause the motor to rotate counter-clockwise.
      * Valid values are `normal` and `inversed`.
      */
-    get polarity(): PolarityValue {
-        return this.readStringAsType<PolarityValue>("polarity");
+    get polarity(): Motor.PolarityValue {
+        return this.readStringAsType<Motor.PolarityValue>("polarity");
     }
     /**
      * Sets the polarity of the motor. With `normal` polarity, a positive duty
@@ -196,7 +215,7 @@ export class Motor extends MotorBase {
      * a positive duty cycle will cause the motor to rotate counter-clockwise.
      * Valid values are `normal` and `inversed`.
      */
-    set polarity(value: PolarityValue) {
+    set polarity(value: Motor.PolarityValue) {
         this.setString("polarity", value);
     }
     
@@ -419,8 +438,8 @@ export class Motor extends MotorBase {
      * Also, it determines the motors behavior when a run command completes. See
      * `stop_commands` for a list of possible values.
      */
-    get stopCommand(): StopCommandValue {
-        return this.readStringAsType<StopCommandValue>("stop_command");
+    get stopCommand(): Motor.StopCommandValue {
+        return this.readStringAsType<Motor.StopCommandValue>("stop_command");
     }
     /**
      * Reading returns the current stop command. Writing sets the stop command.
@@ -428,7 +447,7 @@ export class Motor extends MotorBase {
      * Also, it determines the motors behavior when a run command completes. See
      * `stop_commands` for a list of possible values.
      */
-    set stopCommand(value: StopCommandValue) {
+    set stopCommand(value: Motor.StopCommandValue) {
         this.setString("stop_command", value);
     }
     
@@ -481,7 +500,7 @@ export class Motor extends MotorBase {
         }
     }
 
-    public sendCommand(commandName: CommandValue) {
+    public sendCommand(commandName: Motor.CommandValue) {
 
         if (this.commands.indexOf(commandName) < 0)
             throw new Error('The command ' + commandName + ' is not supported by the device.');
@@ -489,7 +508,7 @@ export class Motor extends MotorBase {
         this.command = commandName;
     }
     
-    public setStopCommand(stopCommand: StopCommandValue) {
+    public setStopCommand(stopCommand: Motor.StopCommandValue) {
 
         if (this.stopCommands.indexOf(stopCommand) < 0)
             throw new Error('The stop command ' + stopCommand + ' is not supported by the device.');
@@ -497,7 +516,7 @@ export class Motor extends MotorBase {
         this.stopCommand = stopCommand;
     }
 
-    public runForever(sp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+    public runForever(sp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         if (sp != undefined)
             this.applySpeedSp(sp);
         
@@ -507,15 +526,15 @@ export class Motor extends MotorBase {
         this.sendCommand('run-forever');
     }
 
-    public start(sp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+    public start(sp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         this.runForever(sp, stopCommand);
     }
     
-    public runToPosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+    public runToPosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         this.runToAbsolutePosition(position, speedSp, stopCommand);
     }
 
-    public runToAbsolutePosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+    public runToAbsolutePosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         if (speedSp != undefined)
             this.applySpeedSp(speedSp);
             
@@ -528,11 +547,11 @@ export class Motor extends MotorBase {
         this.sendCommand('run-to-abs-pos');
     }
 
-    public runForDistance(distance?: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+    public runForDistance(distance?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         this.runToRelativePosition(distance, speedSp, stopCommand);
     }
 
-    public runToRelativePosition(relPos?: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+    public runToRelativePosition(relPos?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         if (speedSp != undefined)
             this.applySpeedSp(speedSp);
             
@@ -545,7 +564,7 @@ export class Motor extends MotorBase {
         this.sendCommand('run-to-rel-pos');
     }
     
-    public runForTime(timeMs: number, speedSp?: MotorSpeedSp | number, stopCommand?: StopCommandValue) {
+    public runForTime(timeMs: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         if (speedSp != undefined)
             this.applySpeedSp(speedSp);
         
@@ -611,7 +630,7 @@ export class DCMotor extends MotorBase {
      * `stop`. Not all commands may be supported, so be sure to check the contents
      * of the `commands` attribute.
      */
-    set command(value: CommandValue) {
+    set command(value: DcMotor.CommandValue) {
         this.setString("command", value);
     }
     
@@ -659,13 +678,13 @@ export class DCMotor extends MotorBase {
     /**
      * Sets the polarity of the motor. Valid values are `normal` and `inversed`.
      */
-    get polarity(): PolarityValue {
-        return this.readStringAsType<PolarityValue>("polarity");
+    get polarity(): DcMotor.PolarityValue {
+        return this.readStringAsType<DcMotor.PolarityValue>("polarity");
     }
     /**
      * Sets the polarity of the motor. Valid values are `normal` and `inversed`.
      */
-    set polarity(value: PolarityValue) {
+    set polarity(value: DcMotor.PolarityValue) {
         this.setString("polarity", value);
     }
     
@@ -713,7 +732,7 @@ export class DCMotor extends MotorBase {
      * Sets the stop command that will be used when the motor stops. Read
      * `stop_commands` to get the list of valid values.
      */
-    set stopCommand(value: StopCommandValue) {
+    set stopCommand(value: DcMotor.StopCommandValue) {
         this.setString("stop_command", value);
     }
     
@@ -775,7 +794,7 @@ export class ServoMotor extends MotorBase {
      * to `run` will cause the servo to be driven to the position_sp set in the
      * `position_sp` attribute. Setting to `float` will remove power from the motor.
      */
-    set command(value: CommandValue) {
+    set command(value: ServoMotor.CommandValue) {
         this.setString("command", value);
     }
     
@@ -854,8 +873,8 @@ export class ServoMotor extends MotorBase {
      * inversed. i.e `-100` will correspond to `max_pulse_sp`, and `100` will
      * correspond to `min_pulse_sp`.
      */
-    get polarity(): PolarityValue {
-        return this.readStringAsType<PolarityValue>("polarity");
+    get polarity(): ServoMotor.PolarityValue {
+        return this.readStringAsType<ServoMotor.PolarityValue>("polarity");
     }
     /**
      * Sets the polarity of the servo. Valid values are `normal` and `inversed`.
@@ -863,7 +882,7 @@ export class ServoMotor extends MotorBase {
      * inversed. i.e `-100` will correspond to `max_pulse_sp`, and `100` will
      * correspond to `min_pulse_sp`.
      */
-    set polarity(value: PolarityValue) {
+    set polarity(value: ServoMotor.PolarityValue) {
         this.setString("polarity", value);
     }
     

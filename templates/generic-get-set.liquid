@@ -7,7 +7,8 @@
             assign type = 'string' %}{%
             for propertyVals in currentClass.propertyValues %}{%
                 if propertyVals.propertyName == prop.name %}{%
-                    assign type = prop.name | camel_case | capitalize | append: 'Value' %}{%
+                    assign typeQualifier = currentClass.friendlyName | camel_case | capitalize | append: '.' %}{%
+                    assign type = prop.name | camel_case | capitalize | append: 'Value' | prepend: typeQualifier %}{%
                     assign specialReadCall = 'AsType<' | append: type | append: '>' %}{%
                 endif %}{%
             endfor %}{%
