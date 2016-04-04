@@ -3,7 +3,14 @@
 
 import fs = require('fs');
 import path = require('path');
-import Promise = require("bluebird");
+var Promise: PromiseConstructor = null;
+try {
+    Promise = require('bluebird');
+}
+catch( e ) {
+    // Promises are not available
+}
+
 
 class XError {
     public message: string;
@@ -264,6 +271,10 @@ export class Device {
     }
 
     public registerEventPromise(eventPredicate: (userData?: any) => boolean, userCallbackData?: any): Promise<any> {
+        if(Promise == null) {
+            throw new Error("Promises are currently unavailable. Install the 'bluebird' package or use 'registerEventCallback(...)' instead.");
+        }
+        
         return new Promise((resolve, reject) => {
             this.registerEventCallback((err?) => {
                 if (err)
