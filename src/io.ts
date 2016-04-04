@@ -1,7 +1,9 @@
 ﻿/// <reference path="../lib/node.d.ts" />
+/// <reference path="../lib/bluebird.d.ts" />
 
 import fs = require('fs');
 import path = require('path');
+import Promise = require("bluebird");
 
 class XError {
     public message: string;
@@ -34,14 +36,61 @@ export class TraceError {
     }
 }
 
+class EventNotificationRequest {
+    private callbackFunction: (err?: Error) => void;
+    private eventPredicate: (userData?: any) => boolean;
+    private userData: any;
+    private firstTriggerOnly: boolean;
+
+    constructor(callbackFunction: (err?: Error) => void, eventPredicate: (userData?: any) => boolean, firstTriggerOnly: boolean = true, userData?: any) {
+        this.callbackFunction = callbackFunction;
+        this.eventPredicate = eventPredicate;
+        this.userData = userData;
+
+        this.firstTriggerOnly = firstTriggerOnly;
+    }
+
+    /**
+     * Calls this event's predicate and invokes its callback if the
+     * predicate signals for the event to fire. Returns a boolean
+     * indicating whether the event should continue to be updated.
+     */
+    public handleUpdate(): boolean {
+
+        var predicateResult: boolean;
+
+        try {
+            predicateResult = this.eventPredicate(this.userData)
+        }
+        catch (e) {
+            this.callbackFunction(e);
+            return false;
+        }
+
+        if (predicateResult) {
+            this.callbackFunction();
+
+            if (this.firstTriggerOnly)
+                return false;
+        }
+
+        return true;
+    }
+}
+
 export class Device {
     public static overrideSysClassDir: string = null;
+
+    private static eventTimerInterval = 50;
 
     public deviceRoot: string;
     public deviceDirName: string;
     public connected: boolean = false;
 
     private sysClassDir: string = '/sys/class';
+
+    private pendingEventRequests: EventNotificationRequest[] = [];
+    private eventTimerCancellationToken: NodeJS.Timer = null;
 
     public connect(driverName: string, nameConvention: string, propertyConstraints?: { [propertyName: string]: any }) {
         var nameRegex = nameConvention == undefined ? undefined : new RegExp(nameConvention);
@@ -108,12 +157,12 @@ export class Device {
         var value = this.readProperty(property, deviceRoot);
         return String(value);
     }
-    
+
     public readStringAsType<T>(property: string, deviceRoot?: string): T {
         return <any>this.readString(property, deviceRoot) as T;
     }
 
-    public readStringArray(property: string, deviceRoot?: string): string[]{
+    public readStringArray(property: string, deviceRoot?: string): string[] {
         return this.readString(property, deviceRoot)
             .split(' ')
             .map((value: string) => value.replace(/^\[|\]$/g, ''));
@@ -179,5 +228,50 @@ export class Device {
         for (var key in propertyDefs) {
             this.setProperty(key, propertyDefs[key]);
         }
+    }
+
+    private updatePendingEventRequests() {
+        this.pendingEventRequests = this.pendingEventRequests.filter(
+            (eventRequest, index, arr) =>
+                eventRequest.handleUpdate());
+
+        this.updateEventTimerState();
+    }
+
+    private updateEventTimerState() {
+        if (this.pendingEventRequests.length > 0 && this.eventTimerCancellationToken == null) {
+            this.eventTimerCancellationToken = setInterval(() => this.updatePendingEventRequests(), Device.eventTimerInterval);
+        }
+        else if (this.pendingEventRequests.length <= 0 && this.eventTimerCancellationToken != null) {
+            clearInterval(this.eventTimerCancellationToken);
+            this.eventTimerCancellationToken = null;
+        }
+    }
+
+    public when(eventPredicate: (userData?: any) => boolean, userCallbackData?: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.registerEventCallback((err?) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(userCallbackData);
+
+            }, eventPredicate, true, userCallbackData);
+        });
+    }
+
+    public registerEventCallback(
+        callbackFunction: (err?: Error, userData?: any) => void,
+        eventPredicate: (userData?: any) => boolean,
+        firstTriggerOnly: boolean = false,
+        userCallbackData?: any) {
+
+        var newEventRequest: EventNotificationRequest = new EventNotificationRequest(
+            (err?) => {
+                callbackFunction(err, userCallbackData);
+            }, eventPredicate, firstTriggerOnly, userCallbackData);
+
+        this.pendingEventRequests.push(newEventRequest);
+        this.updateEventTimerState();
     }
 }
