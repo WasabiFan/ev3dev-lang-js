@@ -26,7 +26,6 @@ export module DcMotor {
 }
 //~autogen
 
-
 //~autogen def-string-literal-types classes.servoMotor>currentClass
 export module ServoMotor {
 
@@ -84,6 +83,51 @@ export class Motor extends MotorBase {
         super('tacho-motor', 'motor(\\d*)', port,targetDriverName);
 //~autogen
     }
+
+    //~autogen property-value-constants classes.motor>currentClass
+
+    public get commandValues() {
+        return { 
+            runForever: "run-forever",
+            runToAbsPos: "run-to-abs-pos",
+            runToRelPos: "run-to-rel-pos",
+            runTimed: "run-timed",
+            runDirect: "run-direct",
+            stop: "stop",
+            reset: "reset"
+        }
+    }
+    
+    public get encoderPolarityValues() {
+        return { 
+            normal: "normal",
+            inversed: "inversed"
+        }
+    }
+    
+    public get polarityValues() {
+        return { 
+            normal: "normal",
+            inversed: "inversed"
+        }
+    }
+    
+    public get speedRegulationValues() {
+        return { 
+            on: "on",
+            off: "off"
+        }
+    }
+    
+    public get stopCommandValues() {
+        return { 
+            coast: "coast",
+            brake: "brake",
+            hold: "hold"
+        }
+    }
+    
+//~autogen
 
     public reset() {
         this.command = 'reset';
@@ -615,6 +659,33 @@ export class DcMotor extends MotorBase {
 //~autogen
     }
 
+    //~autogen property-value-constants classes.dcMotor>currentClass
+
+    public get commandValues() {
+        return { 
+            runForever: "run-forever",
+            runTimed: "run-timed",
+            runDirect: "run-direct",
+            stop: "stop"
+        }
+    }
+    
+    public get polarityValues() {
+        return { 
+            normal: "normal",
+            inversed: "inversed"
+        }
+    }
+    
+    public get stopCommandValues() {
+        return { 
+            coast: "coast",
+            brake: "brake"
+        }
+    }
+    
+//~autogen
+
     //PROPERTIES
 
     //~autogen generic-get-set classes.dcMotor>currentClass
@@ -778,6 +849,24 @@ export class ServoMotor extends MotorBase {
         super('servo-motor', 'motor(\\d*)', port);
 //~autogen
     }
+    
+    //~autogen property-value-constants classes.servoMotor>currentClass
+
+    public get commandValues() {
+        return { 
+            run: "run",
+            float: "float"
+        }
+    }
+    
+    public get polarityValues() {
+        return { 
+            normal: "normal",
+            inversed: "inversed"
+        }
+    }
+    
+//~autogen
     
     //PROPERTIES
 

@@ -1,0 +1,12 @@
+{% for propertyVals in currentClass.propertyValues %}{%
+    assign type = '' %}{%
+    assign type = type | trim | replace: ' ', ' | ' %}
+    public get {{ propertyVals.propertyName | camel_case }}Values() {
+        return { {%
+    for propVal in propertyVals.values %}
+            {{ propVal.name | camel_case }}: "{{ propVal.name }}"{% unless forloop.last %},{% endunless %}{%
+    endfor %}
+        }
+    }
+    {%
+endfor %}
