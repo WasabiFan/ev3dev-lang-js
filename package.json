@@ -1,6 +1,6 @@
 {
   "name": "ev3dev-lang",
-  "version": "0.9.4",
+  "version": "1.0.0-beta.0",
   "description": "An interface to control an EV3 or other supported platform running ev3dev from JavaScript.",
   "keywords": [
     "ev3dev",
