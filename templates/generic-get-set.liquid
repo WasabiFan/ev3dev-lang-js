@@ -1,9 +1,17 @@
 {% for prop in currentClass.systemProperties %}{%
+        assign specialReadCall = '' %}{%
         if prop.type contains 'int' or prop.type contains 'float' %}{%
             assign type     = 'number' %}{%
             assign typeCaps = 'Number' %}{%
         else %}{%
-            assign type     = 'string' %}{%
+            assign type = 'string' %}{%
+            for propertyVals in currentClass.propertyValues %}{%
+                if propertyVals.propertyName == prop.name %}{%
+                    assign typeQualifier = currentClass.friendlyName | camel_case | capitalize | append: '.' %}{%
+                    assign type = prop.name | camel_case | capitalize | append: 'Value' | prepend: typeQualifier %}{%
+                    assign specialReadCall = 'AsType<' | append: type | append: '>' %}{%
+                endif %}{%
+            endfor %}{%
             assign typeCaps = 'String' %}{%
         endif %}{%
         if prop.type contains 'array' %}{%
@@ -24,7 +32,7 @@ endfor %}
     elsif prop.type contains 'selector'
     %}    return this.read{{ typeCaps }}Selector("{{ prop.systemName }}");{%
     else
-    %}    return this.read{{ typeCaps }}("{{ prop.systemName }}");{%
+    %}    return this.read{{ typeCaps }}{{ specialReadCall }}("{{ prop.systemName }}");{%
     endif %}
     }
 {%

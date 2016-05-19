@@ -1,10 +1,10 @@
 module.exports = function (grunt) {
-    grunt.loadNpmTasks('grunt-typescript');
+    grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-typedoc');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        typescript: {
+        ts: {
             main: {
                 src: "src/index.ts",
                 dest: 'bin/',
@@ -21,7 +21,7 @@ module.exports = function (grunt) {
                 src: "src/index.ts",
                 options: {
                     out: './docs',
-                    name: 'ev3dev-lang for Node.JS',
+                    name: 'ev3dev-lang for Node.js',
                     target: 'es5',
                     disableOutputCheck: '',
                     module: 'commonjs'
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['typescript', 'typedoc']);
-    grunt.registerTask('tsc', ['typescript']);
-    grunt.registerTask('doc', ['typescript', 'typedoc']);
+    grunt.registerTask('default', ['ts', 'typedoc']);
+    grunt.registerTask('tsc', ['ts']);
+    grunt.registerTask('doc', ['ts', 'typedoc']);
 }

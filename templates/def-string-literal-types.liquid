@@ -1,0 +1,12 @@
+export module {{ currentClass.friendlyName | camel_case | capitalize }} {
+{% for propertyVals in currentClass.propertyValues %}{%
+    assign type = '' %}{%
+    for propVal in propertyVals.values %}{%
+        assign type = type | append: "'" %}{%
+        assign type = type | append: propVal.name %}{%
+        assign type = type | append: "' " %}{%
+    endfor %}{%
+    assign type = type | trim | replace: ' ', ' | ' %}
+    export type {{ propertyVals.propertyName | camel_case | capitalize }}Value = {{ type }};{%
+endfor %}
+}

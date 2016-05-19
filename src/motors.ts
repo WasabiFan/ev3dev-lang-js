@@ -6,6 +6,34 @@
 import IO = require('./io');
 import Device = IO.Device;
 
+//~autogen def-string-literal-types classes.motor>currentClass
+export module Motor {
+
+    export type CommandValue = 'run-forever' | 'run-to-abs-pos' | 'run-to-rel-pos' | 'run-timed' | 'run-direct' | 'stop' | 'reset';
+    export type EncoderPolarityValue = 'normal' | 'inversed';
+    export type PolarityValue = 'normal' | 'inversed';
+    export type SpeedRegulationValue = 'on' | 'off';
+    export type StopCommandValue = 'coast' | 'brake' | 'hold';
+}
+//~autogen
+
+//~autogen def-string-literal-types classes.dcMotor>currentClass
+export module DcMotor {
+
+    export type CommandValue = 'run-forever' | 'run-timed' | 'run-direct' | 'stop';
+    export type PolarityValue = 'normal' | 'inversed';
+    export type StopCommandValue = 'coast' | 'brake';
+}
+//~autogen
+
+//~autogen def-string-literal-types classes.servoMotor>currentClass
+export module ServoMotor {
+
+    export type CommandValue = 'run' | 'float';
+    export type PolarityValue = 'normal' | 'inversed';
+}
+//~autogen
+
 export class MotorBase extends Device {
     protected _deviceIndex: number = -1;
     get deviceIndex(): number {
@@ -56,6 +84,51 @@ export class Motor extends MotorBase {
 //~autogen
     }
 
+    //~autogen property-value-constants classes.motor>currentClass
+
+    public get commandValues() {
+        return { 
+            runForever: "run-forever",
+            runToAbsPos: "run-to-abs-pos",
+            runToRelPos: "run-to-rel-pos",
+            runTimed: "run-timed",
+            runDirect: "run-direct",
+            stop: "stop",
+            reset: "reset"
+        }
+    }
+    
+    public get encoderPolarityValues() {
+        return { 
+            normal: "normal",
+            inversed: "inversed"
+        }
+    }
+    
+    public get polarityValues() {
+        return { 
+            normal: "normal",
+            inversed: "inversed"
+        }
+    }
+    
+    public get speedRegulationValues() {
+        return { 
+            on: "on",
+            off: "off"
+        }
+    }
+    
+    public get stopCommandValues() {
+        return { 
+            coast: "coast",
+            brake: "brake",
+            hold: "hold"
+        }
+    }
+    
+//~autogen
+
     public reset() {
         this.command = 'reset';
     }
@@ -77,7 +150,7 @@ export class Motor extends MotorBase {
      * Sends a command to the motor controller. See `commands` for a list of
      * possible values.
      */
-    set command(value: string) {
+    set command(value: Motor.CommandValue) {
         this.setString("command", value);
     }
     
@@ -163,8 +236,8 @@ export class Motor extends MotorBase {
      * value if you are using a unsupported device. Valid values are `normal` and
      * `inversed`.
      */
-    get encoderPolarity(): string {
-        return this.readString("encoder_polarity");
+    get encoderPolarity(): Motor.EncoderPolarityValue {
+        return this.readStringAsType<Motor.EncoderPolarityValue>("encoder_polarity");
     }
     /**
      * Sets the polarity of the rotary encoder. This is an advanced feature to all
@@ -173,7 +246,7 @@ export class Motor extends MotorBase {
      * value if you are using a unsupported device. Valid values are `normal` and
      * `inversed`.
      */
-    set encoderPolarity(value: string) {
+    set encoderPolarity(value: Motor.EncoderPolarityValue) {
         this.setString("encoder_polarity", value);
     }
     
@@ -192,8 +265,8 @@ export class Motor extends MotorBase {
      * a positive duty cycle will cause the motor to rotate counter-clockwise.
      * Valid values are `normal` and `inversed`.
      */
-    get polarity(): string {
-        return this.readString("polarity");
+    get polarity(): Motor.PolarityValue {
+        return this.readStringAsType<Motor.PolarityValue>("polarity");
     }
     /**
      * Sets the polarity of the motor. With `normal` polarity, a positive duty
@@ -201,7 +274,7 @@ export class Motor extends MotorBase {
      * a positive duty cycle will cause the motor to rotate counter-clockwise.
      * Valid values are `normal` and `inversed`.
      */
-    set polarity(value: string) {
+    set polarity(value: Motor.PolarityValue) {
         this.setString("polarity", value);
     }
     
@@ -418,8 +491,8 @@ export class Motor extends MotorBase {
      * Also, it determines the motors behavior when a run command completes. See
      * `stop_commands` for a list of possible values.
      */
-    get stopCommand(): string {
-        return this.readString("stop_command");
+    get stopCommand(): Motor.StopCommandValue {
+        return this.readStringAsType<Motor.StopCommandValue>("stop_command");
     }
     /**
      * Reading returns the current stop command. Writing sets the stop command.
@@ -427,7 +500,7 @@ export class Motor extends MotorBase {
      * Also, it determines the motors behavior when a run command completes. See
      * `stop_commands` for a list of possible values.
      */
-    set stopCommand(value: string) {
+    set stopCommand(value: Motor.StopCommandValue) {
         this.setString("stop_command", value);
     }
     
@@ -480,49 +553,81 @@ export class Motor extends MotorBase {
         }
     }
 
-    public sendCommand(commandName: string) {
+    public sendCommand(commandName: Motor.CommandValue) {
 
         if (this.commands.indexOf(commandName) < 0)
             throw new Error('The command ' + commandName + ' is not supported by the device.');
 
         this.command = commandName;
     }
+    
+    public setStopCommand(stopCommand: Motor.StopCommandValue) {
 
-    public runForever(sp?: MotorSpeedSp | number) {
+        if (this.stopCommands.indexOf(stopCommand) < 0)
+            throw new Error('The stop command ' + stopCommand + ' is not supported by the device.');
+
+        this.stopCommand = stopCommand;
+    }
+
+    public runForever(sp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         if (sp != undefined)
             this.applySpeedSp(sp);
+        
+        if(stopCommand != undefined)
+            this.setStopCommand(stopCommand);
 
         this.sendCommand('run-forever');
     }
 
-    public start(sp?: MotorSpeedSp | number) {
-        this.runForever(sp);
+    public start(sp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
+        this.runForever(sp, stopCommand);
+    }
+    
+    public runToPosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
+        this.runToAbsolutePosition(position, speedSp, stopCommand);
     }
 
-    public runToPosition(position?: number, speedSp?: MotorSpeedSp | number) {
-        this.runToAbsolutePosition(position, speedSp);
-    }
-
-    public runToAbsolutePosition(position?: number, speedSp?: MotorSpeedSp | number) {
+    public runToAbsolutePosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         if (speedSp != undefined)
             this.applySpeedSp(speedSp);
+            
         if (position != undefined)
             this.positionSp = position;
-
+        
+        if(stopCommand != undefined)
+            this.setStopCommand(stopCommand);
+        
         this.sendCommand('run-to-abs-pos');
     }
 
-    public runForDistance(distance?: number, speedSp?: MotorSpeedSp | number) {
-        this.runToRelativePosition(distance, speedSp);
+    public runForDistance(distance?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
+        this.runToRelativePosition(distance, speedSp, stopCommand);
     }
 
-    public runToRelativePosition(relPos?: number, speedSp?: MotorSpeedSp | number) {
+    public runToRelativePosition(relPos?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
         if (speedSp != undefined)
             this.applySpeedSp(speedSp);
+            
         if (relPos != undefined)
             this.positionSp = relPos;
-
+        
+        if(stopCommand != undefined)
+            this.setStopCommand(stopCommand);
+            
         this.sendCommand('run-to-rel-pos');
+    }
+    
+    public runForTime(timeMs: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
+        if (speedSp != undefined)
+            this.applySpeedSp(speedSp);
+        
+        if (timeMs != undefined)
+            this.timeSp = timeMs;
+        
+        if(stopCommand != undefined)
+            this.setStopCommand(stopCommand);
+            
+        this.sendCommand('run-timed');
     }
 }
 
@@ -555,13 +660,40 @@ export class MediumMotor extends Motor {
  * and LEGO Power Functions motors.
  */
 //~autogen
-export class DCMotor extends MotorBase {
+export class DcMotor extends MotorBase {
 
     constructor(port: string) {
         //~autogen connect-super-call classes.dcMotor>currentClass "port">extraParams
         super('dc-motor', 'motor(\\d*)', port);
 //~autogen
     }
+
+    //~autogen property-value-constants classes.dcMotor>currentClass
+
+    public get commandValues() {
+        return { 
+            runForever: "run-forever",
+            runTimed: "run-timed",
+            runDirect: "run-direct",
+            stop: "stop"
+        }
+    }
+    
+    public get polarityValues() {
+        return { 
+            normal: "normal",
+            inversed: "inversed"
+        }
+    }
+    
+    public get stopCommandValues() {
+        return { 
+            coast: "coast",
+            brake: "brake"
+        }
+    }
+    
+//~autogen
 
     //PROPERTIES
 
@@ -578,7 +710,7 @@ export class DCMotor extends MotorBase {
      * `stop`. Not all commands may be supported, so be sure to check the contents
      * of the `commands` attribute.
      */
-    set command(value: string) {
+    set command(value: DcMotor.CommandValue) {
         this.setString("command", value);
     }
     
@@ -626,13 +758,13 @@ export class DCMotor extends MotorBase {
     /**
      * Sets the polarity of the motor. Valid values are `normal` and `inversed`.
      */
-    get polarity(): string {
-        return this.readString("polarity");
+    get polarity(): DcMotor.PolarityValue {
+        return this.readStringAsType<DcMotor.PolarityValue>("polarity");
     }
     /**
      * Sets the polarity of the motor. Valid values are `normal` and `inversed`.
      */
-    set polarity(value: string) {
+    set polarity(value: DcMotor.PolarityValue) {
         this.setString("polarity", value);
     }
     
@@ -680,7 +812,7 @@ export class DCMotor extends MotorBase {
      * Sets the stop command that will be used when the motor stops. Read
      * `stop_commands` to get the list of valid values.
      */
-    set stopCommand(value: string) {
+    set stopCommand(value: DcMotor.StopCommandValue) {
         this.setString("stop_command", value);
     }
     
@@ -727,6 +859,24 @@ export class ServoMotor extends MotorBase {
 //~autogen
     }
     
+    //~autogen property-value-constants classes.servoMotor>currentClass
+
+    public get commandValues() {
+        return { 
+            run: "run",
+            float: "float"
+        }
+    }
+    
+    public get polarityValues() {
+        return { 
+            normal: "normal",
+            inversed: "inversed"
+        }
+    }
+    
+//~autogen
+    
     //PROPERTIES
 
     //~autogen generic-get-set classes.servoMotor>currentClass
@@ -742,7 +892,7 @@ export class ServoMotor extends MotorBase {
      * to `run` will cause the servo to be driven to the position_sp set in the
      * `position_sp` attribute. Setting to `float` will remove power from the motor.
      */
-    set command(value: string) {
+    set command(value: ServoMotor.CommandValue) {
         this.setString("command", value);
     }
     
@@ -821,8 +971,8 @@ export class ServoMotor extends MotorBase {
      * inversed. i.e `-100` will correspond to `max_pulse_sp`, and `100` will
      * correspond to `min_pulse_sp`.
      */
-    get polarity(): string {
-        return this.readString("polarity");
+    get polarity(): ServoMotor.PolarityValue {
+        return this.readStringAsType<ServoMotor.PolarityValue>("polarity");
     }
     /**
      * Sets the polarity of the servo. Valid values are `normal` and `inversed`.
@@ -830,7 +980,7 @@ export class ServoMotor extends MotorBase {
      * inversed. i.e `-100` will correspond to `max_pulse_sp`, and `100` will
      * correspond to `min_pulse_sp`.
      */
-    set polarity(value: string) {
+    set polarity(value: ServoMotor.PolarityValue) {
         this.setString("polarity", value);
     }
     

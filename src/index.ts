@@ -27,11 +27,39 @@ export var Device = io.Device;
 
 // Motors
 export var Motor = motors.Motor;
-export var DCMotor = motors.DCMotor;
+export var DcMotor = motors.DcMotor;
 export var LargeMotor = motors.LargeMotor;
 export var MediumMotor = motors.MediumMotor;
 export var MotorSpeedSp = motors.MotorSpeedSp;
 export var ServoMotor = motors.ServoMotor;
+
+//~autogen export-string-literal-types classes.motor>currentClass "motors">module
+export module Motor {
+
+    export type CommandValue = motors.Motor.CommandValue;
+    export type EncoderPolarityValue = motors.Motor.EncoderPolarityValue;
+    export type PolarityValue = motors.Motor.PolarityValue;
+    export type SpeedRegulationValue = motors.Motor.SpeedRegulationValue;
+    export type StopCommandValue = motors.Motor.StopCommandValue;
+}
+//~autogen
+
+//~autogen export-string-literal-types classes.servoMotor>currentClass "motors">module
+export module ServoMotor {
+
+    export type CommandValue = motors.ServoMotor.CommandValue;
+    export type PolarityValue = motors.ServoMotor.PolarityValue;
+}
+//~autogen
+
+//~autogen export-string-literal-types classes.dcMotor>currentClass "motors">module
+export module DcMotor {
+
+    export type CommandValue = motors.DcMotor.CommandValue;
+    export type PolarityValue = motors.DcMotor.PolarityValue;
+    export type StopCommandValue = motors.DcMotor.StopCommandValue;
+}
+//~autogen
 
 // Sensors
 export var Sensor = sensors.Sensor;
@@ -61,11 +89,12 @@ export class Ev3Leds {
     public static left = new extras.LEDGroup(Ev3Leds.redLeft, Ev3Leds.greenLeft);
     public static right = new extras.LEDGroup(Ev3Leds.redRight, Ev3Leds.greenRight);
 
+    public static blackColor = [0, 0];
     public static redColor = [1, 0];
     public static greenColor = [0, 1];
     public static amberColor = [1, 1];
     public static orangeColor = [1, 0.5];
-    public static yellowColor = [0.5, 1];
+    public static yellowColor = [0.1, 1];
 
     public static get isConnected(): boolean {
         return Ev3Leds.redLeft.connected && Ev3Leds.redRight.connected && Ev3Leds.greenLeft.connected && Ev3Leds.greenRight.connected;
@@ -82,6 +111,7 @@ export class BrickpiLeds {
     public static led1 = new extras.LEDGroup(BrickpiLeds.blueLed1);
     public static led2 = new extras.LEDGroup(BrickpiLeds.blueLed2);
 
+    public static blackColor = [0];
     public static blueColor = [1];
 
     public static get isConnected(): boolean {
