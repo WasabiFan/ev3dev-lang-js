@@ -1,5 +1,5 @@
 ﻿//~autogen autogen-header
-// Sections of the following code were auto-generated based on spec v1.1.0.
+// Sections of the following code were auto-generated based on spec v1.2.0.
 
 //~autogen
 

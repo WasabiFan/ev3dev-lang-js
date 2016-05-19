@@ -1,5 +1,5 @@
 ﻿//~autogen autogen-header
-// Sections of the following code were auto-generated based on spec v1.1.0.
+// Sections of the following code were auto-generated based on spec v1.2.0.
 
 //~autogen
 
@@ -12,8 +12,7 @@ export module Motor {
     export type CommandValue = 'run-forever' | 'run-to-abs-pos' | 'run-to-rel-pos' | 'run-timed' | 'run-direct' | 'stop' | 'reset';
     export type EncoderPolarityValue = 'normal' | 'inversed';
     export type PolarityValue = 'normal' | 'inversed';
-    export type SpeedRegulationValue = 'on' | 'off';
-    export type StopCommandValue = 'coast' | 'brake' | 'hold';
+    export type StopActionValue = 'coast' | 'brake' | 'hold';
 }
 //~autogen
 
@@ -22,7 +21,7 @@ export module DcMotor {
 
     export type CommandValue = 'run-forever' | 'run-timed' | 'run-direct' | 'stop';
     export type PolarityValue = 'normal' | 'inversed';
-    export type StopCommandValue = 'coast' | 'brake';
+    export type StopActionValue = 'coast' | 'brake';
 }
 //~autogen
 
@@ -112,14 +111,7 @@ export class Motor extends MotorBase {
         }
     }
     
-    public get speedRegulationValues() {
-        return { 
-            on: "on",
-            off: "off"
-        }
-    }
-    
-    public get stopCommandValues() {
+    public get stopActionValues() {
         return { 
             coast: "coast",
             brake: "brake",
@@ -227,27 +219,6 @@ export class Motor extends MotorBase {
      */
     set dutyCycleSp(value: number) {
         this.setNumber("duty_cycle_sp", value);
-    }
-    
-    /**
-     * Sets the polarity of the rotary encoder. This is an advanced feature to all
-     * use of motors that send inversed encoder signals to the EV3. This should
-     * be set correctly by the driver of a device. It You only need to change this
-     * value if you are using a unsupported device. Valid values are `normal` and
-     * `inversed`.
-     */
-    get encoderPolarity(): Motor.EncoderPolarityValue {
-        return this.readStringAsType<Motor.EncoderPolarityValue>("encoder_polarity");
-    }
-    /**
-     * Sets the polarity of the rotary encoder. This is an advanced feature to all
-     * use of motors that send inversed encoder signals to the EV3. This should
-     * be set correctly by the driver of a device. It You only need to change this
-     * value if you are using a unsupported device. Valid values are `normal` and
-     * `inversed`.
-     */
-    set encoderPolarity(value: Motor.EncoderPolarityValue) {
-        this.setString("encoder_polarity", value);
     }
     
     /**
@@ -486,38 +457,38 @@ export class Motor extends MotorBase {
     }
 
     /**
-     * Reading returns the current stop command. Writing sets the stop command.
+     * Reading returns the current stop action. Writing sets the stop action.
      * The value determines the motors behavior when `command` is set to `stop`.
      * Also, it determines the motors behavior when a run command completes. See
-     * `stop_commands` for a list of possible values.
+     * `stop_actions` for a list of possible values.
      */
-    get stopCommand(): Motor.StopCommandValue {
-        return this.readStringAsType<Motor.StopCommandValue>("stop_command");
+    get stopAction(): Motor.StopActionValue {
+        return this.readStringAsType<Motor.StopActionValue>("stop_action");
     }
     /**
-     * Reading returns the current stop command. Writing sets the stop command.
+     * Reading returns the current stop action. Writing sets the stop action.
      * The value determines the motors behavior when `command` is set to `stop`.
      * Also, it determines the motors behavior when a run command completes. See
-     * `stop_commands` for a list of possible values.
+     * `stop_actions` for a list of possible values.
      */
-    set stopCommand(value: Motor.StopCommandValue) {
-        this.setString("stop_command", value);
+    set stopAction(value: Motor.StopActionValue) {
+        this.setString("stop_action", value);
     }
     
     /**
-     * Returns a list of stop modes supported by the motor controller.
+     * Returns a list of stop actions supported by the motor controller.
      * Possible values are `coast`, `brake` and `hold`. `coast` means that power will
      * be removed from the motor and it will freely coast to a stop. `brake` means
      * that power will be removed from the motor and a passive electrical load will
      * be placed on the motor. This is usually done by shorting the motor terminals
      * together. This load will absorb the energy from the rotation of the motors and
      * cause the motor to stop more quickly than coasting. `hold` does not remove
-     * power from the motor. Instead it actively try to hold the motor at the current
+     * power from the motor. Instead it actively tries to hold the motor at the current
      * position. If an external force tries to turn the motor, the motor will 'push
      * back' to maintain its position.
      */
-    get stopCommands(): string[] {
-        return this.readStringArray("stop_commands");
+    get stopActions(): string[] {
+        return this.readStringArray("stop_actions");
     }
 
     /**
@@ -539,19 +510,6 @@ export class Motor extends MotorBase {
     
 
 //~autogen
-    
-    public applySpeedSp(newSp: number | MotorSpeedSp) {
-        if (typeof newSp === "number") {
-            this.applySpeedSp(new MotorSpeedSp(newSp));
-        }
-        else {
-            this.speedRegulationEnabled = newSp.regulationEnabled;
-            if (newSp.dutyCycleSp != undefined)
-                this.dutyCycleSp = newSp.dutyCycleSp;
-            if (newSp.speedSp != undefined)
-                this.speedSp = newSp.speedSp;
-        }
-    }
 
     public sendCommand(commandName: Motor.CommandValue) {
 
@@ -561,71 +519,71 @@ export class Motor extends MotorBase {
         this.command = commandName;
     }
     
-    public setStopCommand(stopCommand: Motor.StopCommandValue) {
+    public setStopAction(stopAction: Motor.StopActionValue) {
 
-        if (this.stopCommands.indexOf(stopCommand) < 0)
-            throw new Error('The stop command ' + stopCommand + ' is not supported by the device.');
+        if (this.stopActions.indexOf(stopAction) < 0)
+            throw new Error('The stop command ' + stopAction + ' is not supported by the device.');
 
-        this.stopCommand = stopCommand;
+        this.stopAction = stopAction;
     }
 
-    public runForever(sp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
+    public runForever(sp?: number, stopAction?: Motor.StopActionValue) {
         if (sp != undefined)
-            this.applySpeedSp(sp);
+            this.speedSp = sp;
         
-        if(stopCommand != undefined)
-            this.setStopCommand(stopCommand);
+        if(stopAction != undefined)
+            this.setStopAction(stopAction);
 
         this.sendCommand('run-forever');
     }
 
-    public start(sp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
-        this.runForever(sp, stopCommand);
+    public start(sp?: number, stopAction?: Motor.StopActionValue) {
+        this.runForever(sp, stopAction);
     }
     
-    public runToPosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
-        this.runToAbsolutePosition(position, speedSp, stopCommand);
+    public runToPosition(position?: number, speedSp?: number, stopAction?: Motor.StopActionValue) {
+        this.runToAbsolutePosition(position, speedSp, stopAction);
     }
 
-    public runToAbsolutePosition(position?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
+    public runToAbsolutePosition(position?: number, speedSp?: number, stopAction?: Motor.StopActionValue) {
         if (speedSp != undefined)
-            this.applySpeedSp(speedSp);
+            this.speedSp = speedSp;
             
         if (position != undefined)
             this.positionSp = position;
         
-        if(stopCommand != undefined)
-            this.setStopCommand(stopCommand);
+        if(stopAction != undefined)
+            this.setStopAction(stopAction);
         
         this.sendCommand('run-to-abs-pos');
     }
 
-    public runForDistance(distance?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
-        this.runToRelativePosition(distance, speedSp, stopCommand);
+    public runForDistance(distance?: number, speedSp?: number, stopAction?: Motor.StopActionValue) {
+        this.runToRelativePosition(distance, speedSp, stopAction);
     }
 
-    public runToRelativePosition(relPos?: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
+    public runToRelativePosition(relPos?: number, speedSp?: number, stopAction?: Motor.StopActionValue) {
         if (speedSp != undefined)
-            this.applySpeedSp(speedSp);
+            this.speedSp = speedSp;
             
         if (relPos != undefined)
             this.positionSp = relPos;
         
-        if(stopCommand != undefined)
-            this.setStopCommand(stopCommand);
+        if(stopAction != undefined)
+            this.setStopAction(stopAction);
             
         this.sendCommand('run-to-rel-pos');
     }
     
-    public runForTime(timeMs: number, speedSp?: MotorSpeedSp | number, stopCommand?: Motor.StopCommandValue) {
+    public runForTime(timeMs: number, speedSp?: number, stopAction?: Motor.StopActionValue) {
         if (speedSp != undefined)
-            this.applySpeedSp(speedSp);
+            this.speedSp = speedSp;
         
         if (timeMs != undefined)
             this.timeSp = timeMs;
         
-        if(stopCommand != undefined)
-            this.setStopCommand(stopCommand);
+        if(stopAction != undefined)
+            this.setStopAction(stopAction);
             
         this.sendCommand('run-timed');
     }
@@ -686,7 +644,7 @@ export class DcMotor extends MotorBase {
         }
     }
     
-    public get stopCommandValues() {
+    public get stopActionValues() {
         return { 
             coast: "coast",
             brake: "brake"
@@ -809,19 +767,19 @@ export class DcMotor extends MotorBase {
     }
 
     /**
-     * Sets the stop command that will be used when the motor stops. Read
+     * Sets the stop action that will be used when the motor stops. Read
      * `stop_commands` to get the list of valid values.
      */
-    set stopCommand(value: DcMotor.StopCommandValue) {
-        this.setString("stop_command", value);
+    set stopAction(value: DcMotor.StopActionValue) {
+        this.setString("stop_action", value);
     }
     
     /**
-     * Gets a list of stop commands. Valid values are `coast`
+     * Gets a list of stop actions. Valid values are `coast`
      * and `brake`.
      */
-    get stopCommands(): string[] {
-        return this.readStringArray("stop_commands");
+    get stopActions(): string[] {
+        return this.readStringArray("stop_actions");
     }
 
     /**
@@ -1037,37 +995,4 @@ export class ServoMotor extends MotorBase {
 
 
 //~autogen
-}
-
-/**
- * Describes a setpoint for a motor's power/speed. Supports both
- * unregulated (raw power) and regulated (specific speed) modes.
- */
-export class MotorSpeedSp {
-    public regulationEnabled: string;
-    public dutyCycleSp: number;
-    public speedSp: number;
-
-    constructor(dutyCycleSp?: number) {
-        if (dutyCycleSp != undefined) {
-            this.regulationEnabled = 'off';
-            this.dutyCycleSp = dutyCycleSp;
-        }
-    }
-
-    public static fromRegulated(speedSp: number): MotorSpeedSp {
-        var setpoint = new MotorSpeedSp();
-        setpoint.regulationEnabled = 'on';
-        setpoint.speedSp = speedSp;
-
-        return setpoint;
-    }
-
-    public static fromUnregulated(dutyCycleSp: number): MotorSpeedSp {
-        var setpoint = new MotorSpeedSp();
-        setpoint.regulationEnabled = 'off';
-        setpoint.dutyCycleSp = dutyCycleSp;
-
-        return setpoint;
-    }
 }
