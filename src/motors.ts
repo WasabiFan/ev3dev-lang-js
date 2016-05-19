@@ -5,6 +5,7 @@
 
 import IO = require('./io');
 import Device = IO.Device;
+import IndexedDevice = IO.IndexedDevice;
 
 //~autogen def-string-literal-types classes.motor>currentClass
 export module Motor {
@@ -33,32 +34,9 @@ export module ServoMotor {
 }
 //~autogen
 
-export class MotorBase extends Device {
-    protected _deviceIndex: number = -1;
-    get deviceIndex(): number {
-        return this._deviceIndex;
-    }
-
-    constructor(driverTypeDirName: string, nameConvention: string, targetAddress?: string, targetDriverName?: string | string[]) {
-        super();
-
-        var propertyConstraints: {[propertyName: string]: any} = {};
-
-        if (targetAddress != undefined)
-            propertyConstraints['address'] = targetAddress;
-
-        if (targetDriverName != undefined)
-            propertyConstraints['driver_name'] = [].concat(targetDriverName);
-
-        this.connect(driverTypeDirName, nameConvention, propertyConstraints);
-
-        if (this.connected) {
-            var matches = new RegExp(nameConvention).exec(this.deviceDirName);
-            
-            if (matches != null && matches[0] != undefined) {
-                this._deviceIndex = Number(matches[1]);
-            }
-        }
+export class MotorBase extends IndexedDevice {
+    constructor(driverTypeDirName: string, nameConvention?: string, targetAddress?: string, targetDriverName?: string | string[]) {
+        super(driverTypeDirName, nameConvention, targetAddress, targetDriverName);
     }
 }
 
