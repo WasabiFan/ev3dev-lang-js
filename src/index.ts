@@ -39,6 +39,7 @@ export module Motor {
     export type CommandValue = motors.Motor.CommandValue;
     export type EncoderPolarityValue = motors.Motor.EncoderPolarityValue;
     export type PolarityValue = motors.Motor.PolarityValue;
+    export type StateValue = motors.Motor.StateValue;
     export type StopActionValue = motors.Motor.StopActionValue;
 }
 //~autogen

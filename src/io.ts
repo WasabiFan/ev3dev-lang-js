@@ -174,6 +174,10 @@ export class Device {
             .split(' ')
             .map((value: string) => value.replace(/^\[|\]$/g, ''));
     }
+    
+    public readStringArrayAsType<T>(property: string, deviceRoot?: string): T[] {
+        return <any>this.readStringArrayAsType(property, deviceRoot) as T[];
+    }
 
     public readStringSelector(property: string, deviceRoot?: string): string {
         var bracketedParts = this.readString(property, deviceRoot)

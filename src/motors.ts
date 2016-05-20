@@ -13,6 +13,7 @@ export module Motor {
     export type CommandValue = 'run-forever' | 'run-to-abs-pos' | 'run-to-rel-pos' | 'run-timed' | 'run-direct' | 'stop' | 'reset';
     export type EncoderPolarityValue = 'normal' | 'inversed';
     export type PolarityValue = 'normal' | 'inversed';
+    export type StateValue = 'running' | 'ramping' | 'holding' | 'overloaded' | 'stalled';
     export type StopActionValue = 'coast' | 'brake' | 'hold';
 }
 //~autogen
@@ -86,6 +87,16 @@ export class Motor extends MotorBase {
         return { 
             normal: "normal",
             inversed: "inversed"
+        }
+    }
+    
+    public get stateValues(): { running: Motor.StateValue, ramping: Motor.StateValue, holding: Motor.StateValue, overloaded: Motor.StateValue, stalled: Motor.StateValue } {
+        return { 
+            running: "running",
+            ramping: "ramping",
+            holding: "holding",
+            overloaded: "overloaded",
+            stalled: "stalled"
         }
     }
     
@@ -430,8 +441,8 @@ export class Motor extends MotorBase {
      * Reading returns a list of state flags. Possible flags are
      * `running`, `ramping`, `holding`, `overloaded` and `stalled`.
      */
-    get state(): string[] {
-        return this.readStringArray("state");
+    get state(): Motor.StateValue[] {
+        return this.readStringArrayAsType<Motor.StateValue>("state");
     }
 
     /**

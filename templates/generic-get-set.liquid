@@ -28,7 +28,7 @@ endfor %}
      */
     get {{ prop.name | camel_case }}(): {{ type }}{{ array }} {
     {% if array
-    %}    return this.read{{ typeCaps }}Array("{{ prop.systemName }}");{%
+    %}    return this.read{{ typeCaps }}Array{{ specialReadCall }}("{{ prop.systemName }}");{%
     elsif prop.type contains 'selector'
     %}    return this.read{{ typeCaps }}Selector("{{ prop.systemName }}");{%
     else
