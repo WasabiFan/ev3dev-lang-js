@@ -83,8 +83,22 @@ module.exports.setDeviceProperty = function(device, key, value) {
     assert.doesNotThrow(function() {
         var propFilePath = path.normalize(path.join(device.deviceRoot, key));
         if(!fs.existsSync(propFilePath))
-            throw new Error("The requested property does not exist.");
+            throw new Error("The requested property does not exist: " + key);
 
         fs.writeFileSync(propFilePath, value);
     });
+}
+
+
+module.exports.getDeviceProperty = function(device, key) {
+    var readResult = null;
+    assert.doesNotThrow(function() {
+        var propFilePath = path.normalize(path.join(device.deviceRoot, key));
+        if(!fs.existsSync(propFilePath))
+            throw new Error("The requested property does not exist: " + key);
+
+        readResult = fs.readFileSync(propFilePath).toString();
+    });
+    
+    return readResult;
 }
