@@ -8,58 +8,6 @@ var touchSensorData = {
     index: 0
 }
 
-describe('Device', function () {
-    before(function () {
-        ev3dev.Device.overrideSysClassDir = path.join(__dirname, "fake-sys", "arena");
-    });
-
-    it('should connect to any device if no criteria are provided', function (done) {
-        utils.populateArena({
-            "in1": touchSensorData
-        }, function (pathMapping) {
-
-            var currentDevice = new ev3dev.Device();
-            currentDevice.connect("lego-sensor", "sensor(\\d*)");
-
-            utils.assertDeviceConnected(currentDevice, pathMapping["in1"].path);
-
-            done();
-        });
-    });
-
-    it('should connect to a specific device if a single criterion is specified', function (done) {
-        utils.populateArena({
-            "in3": touchSensorData
-        }, function (pathMapping) {
-
-            var currentDevice = new ev3dev.Device();
-            currentDevice.connect("lego-sensor", "sensor(\\d*)", {
-                address: "in3"
-            });
-
-            utils.assertDeviceConnected(currentDevice, pathMapping["in3"].path);
-
-            done();
-        });
-    });
-
-    it('should not connect to any device if no devices matching criteria are found', function (done) {
-        utils.populateArena({
-            "in3": touchSensorData
-        }, function (pathMapping) {
-
-            var currentDevice = new ev3dev.Device();
-            currentDevice.connect("lego-sensor", "sensor(\\d*)", {
-                address: "thisDoesntExist"
-            });
-
-            assert.equal(currentDevice.connected, false);
-
-            done();
-        });
-    });
-});
-
 describe('TouchSensor', function () {
     before(function () {
         ev3dev.Device.overrideSysClassDir = path.join(__dirname, "fake-sys", "arena");
