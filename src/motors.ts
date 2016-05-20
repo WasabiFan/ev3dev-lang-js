@@ -63,7 +63,7 @@ export class Motor extends MotorBase {
 
     //~autogen property-value-constants classes.motor>currentClass
 
-    public get commandValues() {
+    public get commandValues(): { runForever: Motor.CommandValue, runToAbsPos: Motor.CommandValue, runToRelPos: Motor.CommandValue, runTimed: Motor.CommandValue, runDirect: Motor.CommandValue, stop: Motor.CommandValue, reset: Motor.CommandValue } {
         return { 
             runForever: "run-forever",
             runToAbsPos: "run-to-abs-pos",
@@ -75,21 +75,21 @@ export class Motor extends MotorBase {
         }
     }
     
-    public get encoderPolarityValues() {
+    public get encoderPolarityValues(): { normal: Motor.EncoderPolarityValue, inversed: Motor.EncoderPolarityValue } {
         return { 
             normal: "normal",
             inversed: "inversed"
         }
     }
     
-    public get polarityValues() {
+    public get polarityValues(): { normal: Motor.PolarityValue, inversed: Motor.PolarityValue } {
         return { 
             normal: "normal",
             inversed: "inversed"
         }
     }
     
-    public get stopActionValues() {
+    public get stopActionValues(): { coast: Motor.StopActionValue, brake: Motor.StopActionValue, hold: Motor.StopActionValue } {
         return { 
             coast: "coast",
             brake: "brake",
@@ -100,11 +100,11 @@ export class Motor extends MotorBase {
 //~autogen
 
     public reset() {
-        this.command = 'reset';
+        this.command = this.commandValues.reset;
     }
 
     public stop() {
-        this.command = 'stop';
+        this.command = this.commandValues.stop;
     }
 
     //PROPERTIES
@@ -131,17 +131,17 @@ export class Motor extends MotorBase {
      * 
      * - `run-forever` will cause the motor to run until another command is sent.
      * - `run-to-abs-pos` will run to an absolute position specified by `position_sp`
-     *   and then stop using the command specified in `stop_command`.
+     *   and then stop using the action specified in `stop_action`.
      * - `run-to-rel-pos` will run to a position relative to the current `position` value.
      *   The new position will be current `position` + `position_sp`. When the new
-     *   position is reached, the motor will stop using the command specified by `stop_command`.
+     *   position is reached, the motor will stop using the action specified by `stop_action`.
      * - `run-timed` will run the motor for the amount of time specified in `time_sp`
-     *   and then stop the motor using the command specified by `stop_command`.
+     *   and then stop the motor using the action specified by `stop_action`.
      * - `run-direct` will run the motor at the duty cycle specified by `duty_cycle_sp`.
      *   Unlike other run commands, changing `duty_cycle_sp` while running *will*
      *   take effect immediately.
      * - `stop` will stop any of the run commands before they are complete using the
-     *   command specified by `stop_command`.
+     *   action specified by `stop_action`.
      * - `reset` will reset all of the motor parameter attributes to their default value.
      *   This will also have the effect of stopping the motor.
      */
@@ -512,7 +512,7 @@ export class Motor extends MotorBase {
         if(stopAction != undefined)
             this.setStopAction(stopAction);
 
-        this.sendCommand('run-forever');
+        this.sendCommand(this.commandValues.runForever);
     }
 
     public start(sp?: number, stopAction?: Motor.StopActionValue) {
@@ -533,7 +533,7 @@ export class Motor extends MotorBase {
         if(stopAction != undefined)
             this.setStopAction(stopAction);
         
-        this.sendCommand('run-to-abs-pos');
+        this.sendCommand(this.commandValues.runToAbsPos);
     }
 
     public runForDistance(distance?: number, speedSp?: number, stopAction?: Motor.StopActionValue) {
@@ -550,7 +550,7 @@ export class Motor extends MotorBase {
         if(stopAction != undefined)
             this.setStopAction(stopAction);
             
-        this.sendCommand('run-to-rel-pos');
+        this.sendCommand(this.commandValues.runToRelPos);
     }
     
     public runForTime(timeMs: number, speedSp?: number, stopAction?: Motor.StopActionValue) {
@@ -563,7 +563,7 @@ export class Motor extends MotorBase {
         if(stopAction != undefined)
             this.setStopAction(stopAction);
             
-        this.sendCommand('run-timed');
+        this.sendCommand(this.commandValues.runTimed);
     }
 }
 
@@ -606,7 +606,7 @@ export class DcMotor extends MotorBase {
 
     //~autogen property-value-constants classes.dcMotor>currentClass
 
-    public get commandValues() {
+    public get commandValues(): { runForever: DcMotor.CommandValue, runTimed: DcMotor.CommandValue, runDirect: DcMotor.CommandValue, stop: DcMotor.CommandValue } {
         return { 
             runForever: "run-forever",
             runTimed: "run-timed",
@@ -615,14 +615,14 @@ export class DcMotor extends MotorBase {
         }
     }
     
-    public get polarityValues() {
+    public get polarityValues(): { normal: DcMotor.PolarityValue, inversed: DcMotor.PolarityValue } {
         return { 
             normal: "normal",
             inversed: "inversed"
         }
     }
     
-    public get stopActionValues() {
+    public get stopActionValues(): { coast: DcMotor.StopActionValue, brake: DcMotor.StopActionValue } {
         return { 
             coast: "coast",
             brake: "brake"
@@ -746,7 +746,7 @@ export class DcMotor extends MotorBase {
 
     /**
      * Sets the stop action that will be used when the motor stops. Read
-     * `stop_commands` to get the list of valid values.
+     * `stop_actions` to get the list of valid values.
      */
     set stopAction(value: DcMotor.StopActionValue) {
         this.setString("stop_action", value);
@@ -797,14 +797,14 @@ export class ServoMotor extends MotorBase {
     
     //~autogen property-value-constants classes.servoMotor>currentClass
 
-    public get commandValues() {
+    public get commandValues(): { run: ServoMotor.CommandValue, float: ServoMotor.CommandValue } {
         return { 
             run: "run",
             float: "float"
         }
     }
     
-    public get polarityValues() {
+    public get polarityValues(): { normal: ServoMotor.PolarityValue, inversed: ServoMotor.PolarityValue } {
         return { 
             normal: "normal",
             inversed: "inversed"
