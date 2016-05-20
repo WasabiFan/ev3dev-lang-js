@@ -1,6 +1,7 @@
 var PythonShell = require('python-shell');
 var assert = require('assert');
 var path = require('path');
+var fs = require('fs');
 
 var fakeSysRootDir = path.relative(".", path.join(__dirname, "fake-sys/"));
 
@@ -76,4 +77,14 @@ module.exports.assertDeviceConnected = function (device, targetPath, targetIndex
             assert.fail(undefined, undefined, "Cannot assert that device is connected at a given address if this device doesn't have an address property.");
         }
     }
+}
+
+module.exports.setDeviceProperty = function(device, key, value) {
+    assert.doesNotThrow(function() {
+        var propFilePath = path.normalize(path.join(device.deviceRoot, key));
+        if(!fs.existsSync(propFilePath))
+            throw new Error("The requested property does not exist.");
+
+        fs.writeFileSync(propFilePath, value);
+    });
 }
