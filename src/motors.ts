@@ -428,7 +428,7 @@ export class Motor extends MotorBase {
     
     /**
      * Reading returns a list of state flags. Possible flags are
-     * `running`, `ramping` `holding` and `stalled`.
+     * `running`, `ramping`, `holding`, `overloaded` and `stalled`.
      */
     get state(): string[] {
         return this.readStringArray("state");
