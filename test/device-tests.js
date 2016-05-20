@@ -9,6 +9,8 @@ var touchSensorData = {
 }
 
 describe('Device', function () {
+    this.timeout(4000);
+    
     before(function () {
         ev3dev.Device.overrideSysClassDir = path.join(__dirname, "fake-sys", "arena");
     });
