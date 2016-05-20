@@ -56,8 +56,8 @@ export class MotorBase extends IndexedDevice {
 export class Motor extends MotorBase {
 
     public constructor(port?: string, targetDriverName?: string[] | string) {
-        //~autogen connect-super-call classes.motor>currentClass "port,targetDriverName">extraParams
-        super('tacho-motor', '*', port,targetDriverName);
+        //~autogen connect-super-call classes.motor>currentClass "port,targetDriverName">extraParams "true">omitNameConvention
+        super('tacho-motor', null, port,targetDriverName);
 //~autogen
     }
 
@@ -599,8 +599,8 @@ export class MediumMotor extends Motor {
 export class DcMotor extends MotorBase {
 
     constructor(port: string) {
-        //~autogen connect-super-call classes.dcMotor>currentClass "port">extraParams
-        super('dc-motor', 'motor(\\d*)', port);
+        //~autogen connect-super-call classes.dcMotor>currentClass "port">extraParams "true">omitNameConvention
+        super('dc-motor', null, port);
 //~autogen
     }
 
@@ -790,8 +790,8 @@ export class DcMotor extends MotorBase {
 export class ServoMotor extends MotorBase {
 
     constructor(port: string) {
-        //~autogen connect-super-call classes.servoMotor>currentClass "port">extraParams
-        super('servo-motor', 'motor(\\d*)', port);
+        //~autogen connect-super-call classes.servoMotor>currentClass "port">extraParams "true">omitNameConvention
+        super('servo-motor', null, port);
 //~autogen
     }
     

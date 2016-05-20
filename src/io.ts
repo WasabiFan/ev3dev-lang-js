@@ -99,8 +99,8 @@ export class Device {
     private pendingEventRequests: EventNotificationRequest[] = [];
     private eventTimerCancellationToken: NodeJS.Timer = null;
 
-    public connect(driverName: string, nameConvention: string, propertyConstraints?: { [propertyName: string]: any }) {
-        var nameRegex = nameConvention == undefined ? undefined : new RegExp(nameConvention);
+    public connect(driverName: string, nameConvention?: string, propertyConstraints?: { [propertyName: string]: any }) {
+        var nameRegex = nameConvention? new RegExp(nameConvention) : undefined;
 
         var deviceSearchDir = path.join(Device.overrideSysClassDir || this.sysClassDir, driverName);
 
