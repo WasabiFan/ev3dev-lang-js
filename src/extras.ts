@@ -1,5 +1,5 @@
 ﻿//~autogen autogen-header
-// Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2.
+// Sections of the following code were auto-generated based on spec v1.2.0.
 
 //~autogen
 
@@ -359,6 +359,14 @@ export class LegoPort extends Device {
     //PROPERTIES
     //~autogen generic-get-set classes.legoPort>currentClass
     /**
+     * Returns the name of the port. See individual driver documentation for
+     * the name that will be returned.
+     */
+    get address(): string {
+        return this.readString("address");
+    }
+
+    /**
      * Returns the name of the driver that loaded this device. You can find the
      * complete list of drivers in the [list of port drivers].
      */
@@ -392,14 +400,6 @@ export class LegoPort extends Device {
         this.setString("mode", value);
     }
     
-    /**
-     * Returns the name of the port. See individual driver documentation for
-     * the name that will be returned.
-     */
-    get address(): string {
-        return this.readString("address");
-    }
-
     /**
      * For modes that support it, writing the name of a driver will cause a new
      * device to be registered for that driver and attached to this port. For

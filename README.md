@@ -3,6 +3,10 @@ Node.js Language Binding for ev3dev
 
 This is a Node.js module that exposes the features of the [ev3dev](http://github.com/ev3dev/ev3dev) API in an easy-to-use structure. It is part of the "unified" bindings project for ev3dev, which means it implements our abstract API specification. This specification is implemented in multiple languages so that one can easily carry the same code concepts from one language to another, and all the core ev3dev APIs are supported universally.
 
+**Note:** Node.js can take 4+ seconds to load on the EV3, whicih makes it hard to iterate on code quickly. If you are looking for a way to get started with ev3dev development quickly and do not fit any of the use cases outlined in the "Use cases for JavaScript on the EV3" section below, I recommend that you look into other language options. Python is a good choice for beginners.
+
+**Current supported kernel version:** `*-11-ev3dev-*`
+
 ## Quickstart
 
 Install the module from `npm`:
@@ -89,5 +93,6 @@ Situations to use JavaScript:
 
 
 Situations in which you should use other languages:
-- Sequential actions that run linearly
+- Sequential actions that must run in a specific order
 - Precise timing and delay
+- Coordinating multiple motors, sensors, or other hardware devices

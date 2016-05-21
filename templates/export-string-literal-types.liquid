@@ -1,0 +1,5 @@
+export module {{ currentClass.friendlyName | camel_case | capitalize }} {
+{% for propertyVals in currentClass.propertyValues %}
+    export type {{ propertyVals.propertyName | camel_case | capitalize }}Value = {{ module }}.{{ currentClass.friendlyName | camel_case | capitalize }}.{{ propertyVals.propertyName | camel_case | capitalize }}Value;{%
+endfor %}
+}

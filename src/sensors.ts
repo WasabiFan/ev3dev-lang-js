@@ -1,32 +1,10 @@
 ﻿import IO = require('./io');
 import Device = IO.Device;
+import IndexedDevice = IO.IndexedDevice;
 
-export class SensorBase extends Device {
-    protected _deviceIndex: number = -1;
-    get deviceIndex(): number {
-        return this._deviceIndex;
-    }
-
-    constructor(driverTypeDirName: string, nameConvention: string, targetAddress?: string, targetDriverName?: string | string[]) {
-        super();
-
-        var propertyConstraints: { [propertyName: string]: any } = {};
-
-        if (targetAddress != undefined)
-            propertyConstraints['address'] = targetAddress;
-
-        if (targetDriverName != undefined)
-            propertyConstraints['driver_name'] = [].concat(targetDriverName);
-
-        this.connect(driverTypeDirName, nameConvention, propertyConstraints);
-
-        if (this.connected) {
-            var matches = new RegExp(nameConvention).exec(this.deviceDirName);
-
-            if (matches != null && matches[0] != undefined) {
-                this._deviceIndex = Number(matches[1]);
-            }
-        }
+export class SensorBase extends IndexedDevice {
+    constructor(driverTypeDirName: string, nameConvention?: string, targetAddress?: string, targetDriverName?: string | string[]) {
+        super(driverTypeDirName, nameConvention, targetAddress, targetDriverName);
     }
 }
 
@@ -67,6 +45,14 @@ export class Sensor extends SensorBase {
 
     //PROPERTIES
     //~autogen generic-get-set classes.sensor>currentClass
+    /**
+     * Returns the name of the port that the sensor is connected to, e.g. `ev3:in1`.
+     * I2C sensors also include the I2C address (decimal), e.g. `ev3:in1:i2c8`.
+     */
+    get address(): string {
+        return this.readString("address");
+    }
+
     /**
      * Sends a command to the sensor.
      */
@@ -126,14 +112,6 @@ export class Sensor extends SensorBase {
      */
     get numValues(): number {
         return this.readNumber("num_values");
-    }
-
-    /**
-     * Returns the name of the port that the sensor is connected to, e.g. `ev3:in1`.
-     * I2C sensors also include the I2C address (decimal), e.g. `ev3:in1:i2c8`.
-     */
-    get address(): string {
-        return this.readString("address");
     }
 
     /**

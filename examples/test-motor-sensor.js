@@ -10,17 +10,15 @@ var motor = new ev3dev.Motor();
 if (!motor.connected)
     console.log("No motor could be found. Are you sure that one is connected?");
 
-console.log(' Port: ' + motor.portName);
+console.log(' Port: ' + motor.address);
 console.log(' Driver: ' + motor.driverName);
+console.log(' Available commands: ' + motor.commands);
 
-console.log('Setting motor properties...');
+console.log('Sending motor command...');
+
 motor.rampUpSp = 100;
 motor.rampDownSp = 100;
-motor.timeSp = 1000;
-motor.dutyCycleSp = 50;
-console.log('Available commands: ' + motor.commands);
-console.log('Sending motor command...');
-motor.command = 'run-timed';
+motor.runForTime(1000, motor.maxSpeed / 2, motor.stopActionValues.brake);
 
 do {
     console.log("Motor speed: " + motor.speed);
@@ -44,7 +42,7 @@ var sensor = new ev3dev.Sensor();
 if (!sensor.connected)
     console.log("No sensor could be found. Are you sure that one is connected?");
 
-console.log(' Port: ' + sensor.portName);
+console.log(' Port: ' + sensor.address);
 console.log(' Driver: ' + sensor.driverName);
 
 console.log('Reading all sensor values...');

@@ -1,13 +1,12 @@
 module.exports = function (grunt) {
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-typescript');
+    grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-typedoc');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        typescript: {
+        ts: {
             main: {
-                src: "index.ts",
+                src: "src/index.ts",
                 dest: 'bin/',
                 options: {
                     target: 'es5',
@@ -19,24 +18,19 @@ module.exports = function (grunt) {
         },
         typedoc: {
             doc: {
-                src: "index.ts",
+                src: "src/index.ts",
                 options: {
                     out: './docs',
-                    name: 'ev3dev-lang for Node.JS',
+                    name: 'ev3dev-lang for Node.js',
                     target: 'es5',
                     disableOutputCheck: '',
                     module: 'commonjs'
                 }
             }
-        },
-        watch: {
-            files: __dirname + '/*.ts',
-            tasks: ['shell']
         }
     });
 
-    grunt.registerTask('default', ['typescript', 'typedoc']);
-    grunt.registerTask('watch', ['watch']); //Has issues, shouldn't use
-    grunt.registerTask('tsc', ['typescript']);
-    grunt.registerTask('doc', ['typescript', 'typedoc']);
+    grunt.registerTask('default', ['ts', 'typedoc']);
+    grunt.registerTask('tsc', ['ts']);
+    grunt.registerTask('doc', ['ts', 'typedoc']);
 }
