@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;sensors&quot; | ev3dev-lang for Node.js</title>
+	<title>Motor | ev3dev-lang for Node.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,16 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_sensors_.html">&quot;sensors&quot;</a>
+					<a href="_motors_.html">&quot;motors&quot;</a>
+				</li>
+				<li>
+					<a href="../classes/_motors_.mediummotor.html">MediumMotor</a>
+				</li>
+				<li>
+					<a href="_motors_.mediummotor.motor.html">Motor</a>
 				</li>
 			</ul>
-			<h1>External module &quot;sensors&quot;</h1>
+			<h1>Module Motor</h1>
 		</div>
 	</div>
 </header>
@@ -72,21 +78,69 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Classes</h3>
+							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.colorsensor.html" class="tsd-kind-icon">Color<wbr>Sensor</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.gyrosensor.html" class="tsd-kind-icon">Gyro<wbr>Sensor</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.i2csensor.html" class="tsd-kind-icon">I2CSensor</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.infraredsensor.html" class="tsd-kind-icon">Infrared<wbr>Sensor</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.lightsensor.html" class="tsd-kind-icon">Light<wbr>Sensor</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.sensor.html" class="tsd-kind-icon">Sensor</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.sensorbase.html" class="tsd-kind-icon">Sensor<wbr>Base</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.soundsensor.html" class="tsd-kind-icon">Sound<wbr>Sensor</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.touchsensor.html" class="tsd-kind-icon">Touch<wbr>Sensor</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-is-external"><a href="../classes/_sensors_.ultrasonicsensor.html" class="tsd-kind-icon">Ultrasonic<wbr>Sensor</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-external"><a href="_motors_.mediummotor.motor.html#commandvalue" class="tsd-kind-icon">Command<wbr>Value</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-external"><a href="_motors_.mediummotor.motor.html#encoderpolarityvalue" class="tsd-kind-icon">Encoder<wbr>Polarity<wbr>Value</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-external"><a href="_motors_.mediummotor.motor.html#polarityvalue" class="tsd-kind-icon">Polarity<wbr>Value</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-external"><a href="_motors_.mediummotor.motor.html#statevalue" class="tsd-kind-icon">State<wbr>Value</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-external"><a href="_motors_.mediummotor.motor.html#stopactionvalue" class="tsd-kind-icon">Stop<wbr>Action<wbr>Value</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+					<a name="commandvalue" class="tsd-anchor"></a>
+					<h3>Command<wbr>Value</h3>
+					<div class="tsd-signature tsd-kind-icon">Command<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"run-forever"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"run-to-abs-pos"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"run-to-rel-pos"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"run-timed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"run-direct"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"stop"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"reset"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/WasabiFan/ev3dev-lang-js/blob/b267a92/src/motors.ts#L13">motors.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+					<a name="encoderpolarityvalue" class="tsd-anchor"></a>
+					<h3>Encoder<wbr>Polarity<wbr>Value</h3>
+					<div class="tsd-signature tsd-kind-icon">Encoder<wbr>Polarity<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"normal"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"inversed"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/WasabiFan/ev3dev-lang-js/blob/b267a92/src/motors.ts#L14">motors.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+					<a name="polarityvalue" class="tsd-anchor"></a>
+					<h3>Polarity<wbr>Value</h3>
+					<div class="tsd-signature tsd-kind-icon">Polarity<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"normal"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"inversed"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/WasabiFan/ev3dev-lang-js/blob/b267a92/src/motors.ts#L15">motors.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+					<a name="statevalue" class="tsd-anchor"></a>
+					<h3>State<wbr>Value</h3>
+					<div class="tsd-signature tsd-kind-icon">State<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"running"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ramping"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"holding"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"overloaded"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"stalled"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/WasabiFan/ev3dev-lang-js/blob/b267a92/src/motors.ts#L16">motors.ts:16</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+					<a name="stopactionvalue" class="tsd-anchor"></a>
+					<h3>Stop<wbr>Action<wbr>Value</h3>
+					<div class="tsd-signature tsd-kind-icon">Stop<wbr>Action<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"coast"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"brake"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hold"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/WasabiFan/ev3dev-lang-js/blob/b267a92/src/motors.ts#L17">motors.ts:17</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -96,60 +150,24 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="label tsd-is-external">
-						<span>Internals</span>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Externals</span>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="_extras_.html">"extras"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="_io_.html">"io"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="_motors_.html">"motors"</a>
-					</li>
-					<li class="current tsd-kind-external-module tsd-is-external">
-						<a href="_sensors_.html">"sensors"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.colorsensor.html" class="tsd-kind-icon">Color<wbr>Sensor</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+						<a href="_motors_.mediummotor.motor.html#commandvalue" class="tsd-kind-icon">Command<wbr>Value</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.gyrosensor.html" class="tsd-kind-icon">Gyro<wbr>Sensor</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+						<a href="_motors_.mediummotor.motor.html#encoderpolarityvalue" class="tsd-kind-icon">Encoder<wbr>Polarity<wbr>Value</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.i2csensor.html" class="tsd-kind-icon">I2CSensor</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+						<a href="_motors_.mediummotor.motor.html#polarityvalue" class="tsd-kind-icon">Polarity<wbr>Value</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.infraredsensor.html" class="tsd-kind-icon">Infrared<wbr>Sensor</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+						<a href="_motors_.mediummotor.motor.html#statevalue" class="tsd-kind-icon">State<wbr>Value</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.lightsensor.html" class="tsd-kind-icon">Light<wbr>Sensor</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.sensor.html" class="tsd-kind-icon">Sensor</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.sensorbase.html" class="tsd-kind-icon">Sensor<wbr>Base</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.soundsensor.html" class="tsd-kind-icon">Sound<wbr>Sensor</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.touchsensor.html" class="tsd-kind-icon">Touch<wbr>Sensor</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="../classes/_sensors_.ultrasonicsensor.html" class="tsd-kind-icon">Ultrasonic<wbr>Sensor</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
+						<a href="_motors_.mediummotor.motor.html#stopactionvalue" class="tsd-kind-icon">Stop<wbr>Action<wbr>Value</a>
 					</li>
 				</ul>
 			</nav>

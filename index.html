@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ev3dev-lang for Node.JS</title>
+	<title>ev3dev-lang for Node.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">ev3dev-lang for Node.JS</a>
+					<a href="index.html" class="title">ev3dev-lang for Node.js</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -57,7 +57,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> ev3dev-lang for Node.JS</h1>
+			<h1> ev3dev-lang for Node.js</h1>
 		</div>
 	</div>
 </header>
@@ -67,6 +67,8 @@
 			<div class="tsd-panel tsd-typography">
 				<h1 id="node-js-language-binding-for-ev3dev-">Node.js Language Binding for ev3dev </h1>
 				<p>This is a Node.js module that exposes the features of the <a href="http://github.com/ev3dev/ev3dev">ev3dev</a> API in an easy-to-use structure. It is part of the &quot;unified&quot; bindings project for ev3dev, which means it implements our abstract API specification. This specification is implemented in multiple languages so that one can easily carry the same code concepts from one language to another, and all the core ev3dev APIs are supported universally.</p>
+				<p><strong>Note:</strong> Node.js can take 4+ seconds to load on the EV3, whicih makes it hard to iterate on code quickly. If you are looking for a way to get started with ev3dev development quickly and do not fit any of the use cases outlined in the &quot;Use cases for JavaScript on the EV3&quot; section below, I recommend that you look into other language options. Python is a good choice for beginners.</p>
+				<p><strong>Current supported kernel version:</strong> <code>*-11-ev3dev-*</code></p>
 				<h2 id="quickstart">Quickstart</h2>
 				<p>Install the module from <code>npm</code>:</p>
 				<pre><code>$ npm <span class="hljs-keyword">install</span> ev3dev-lang
@@ -82,7 +84,7 @@
 				<p>You can also download the source from GitHub directly, either from the releases page or via git. If you do it this way, you will need to follow the building instructions below to make it usable from Node.</p>
 				<p>This module is written in TypeScript, which means it cannot be directly used from JavaScript or Node.js. If you would like to make changes to the module or use a copy of the module from GitHub, you will need to follow these steps to build the module from source. The below steps should work on any modern OS, including Linux, OSX and Windows.</p>
 				<p>First, you will need to install some tools. Both building and running the module will require Node.js and <code>npm</code>, so make sure that you have both installed. Then install grunt, the task runner that we use to build the library:</p>
-				<pre><code>$ npm <span class="hljs-operator"><span class="hljs-keyword">install</span> -<span class="hljs-keyword">g</span> grunt-cli</span>
+				<pre><code>$ npm install -<span class="hljs-keyword">g</span> grunt-<span class="hljs-keyword">cli</span>
 </code></pre><p>Once you have done this, run <code>grunt --version</code> to make sure that everything was installed correctly (you may have to restart your terminal window first). Next you&#39;ll need to get the source code. You can <code>git clone</code> it to get the most recent changes, or download a release from the releases page. The following commands will need to be executed from the root directory of the source tree so <code>cd</code> in to that directory before continuing.</p>
 				<p>Now we will install the last few tools that we need. The list of dependencies for the module is pre-defined in the <code>package.json</code> file, so all we need to do is to tell <code>npm</code> to install them for us:</p>
 				<pre><code>$ npm <span class="hljs-keyword">install</span>
@@ -96,7 +98,7 @@
 				<pre><code class="lang-bash">$ node path/to/file.js
 </code></pre>
 				<p>If you want to be able to execute your scripts from brickman&#39;s file browser, you can add a <a href="https://en.wikipedia.org/wiki/Shebang_%28Unix%29">shebang</a> and make it executable. You first must add the following code to the top of your <code>.js</code> file:</p>
-				<pre><code><span class="hljs-shebang">#!/usr/bin/env node</span>
+				<pre><code><span class="hljs-meta">#!/usr/bin/env node</span>
 </code></pre><p>You can then make it executable from the command line:</p>
 				<pre><code class="lang-bash">$ chmod +x path/to/file.js
 </code></pre>
@@ -118,8 +120,9 @@
 				</ul>
 				<p>Situations in which you should use other languages:</p>
 				<ul>
-					<li>Sequential actions that run linearly</li>
+					<li>Sequential actions that must run in a specific order</li>
 					<li>Precise timing and delay</li>
+					<li>Coordinating multiple motors, sensors, or other hardware devices</li>
 				</ul>
 			</div>
 		</div>
