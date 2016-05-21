@@ -12,6 +12,6 @@ console.log("Running the motor for 180 tacho counts...");
 
 // Prevent Node from exiting until motor is done
 var cancellationToken = setInterval(function() {
-    if(motor.state.indexOf("running") == -1)
+    if(!motor.isRunning)
         clearInterval(cancellationToken);
-}, 10);
+}, 80);

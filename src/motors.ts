@@ -576,6 +576,30 @@ export class Motor extends MotorBase {
             
         this.sendCommand(this.commandValues.runTimed);
     }
+    
+    public hasState(stateValue: Motor.StateValue): boolean {
+        return this.state.indexOf(stateValue) >= 0;
+    }
+    
+    public get isRunning(): boolean {
+        return this.hasState(this.stateValues.running);
+    }
+    
+    public get isRamping(): boolean {
+        return this.hasState(this.stateValues.ramping);
+    }
+    
+    public get isHolding(): boolean {
+        return this.hasState(this.stateValues.holding);
+    }
+    
+    public get isOverloaded(): boolean {
+        return this.hasState(this.stateValues.overloaded);
+    }
+    
+    public get isStalled(): boolean {
+        return this.hasState(this.stateValues.stalled);
+    }
 }
 
 //~autogen generic-class-description classes.largeMotor>currentClass
