@@ -5,6 +5,8 @@ This is a Node.js module that exposes the features of the [ev3dev](http://github
 
 **Note:** Node.js can take 4+ seconds to load on the EV3, whicih makes it hard to iterate on code quickly. If you are looking for a way to get started with ev3dev development quickly and do not fit any of the use cases outlined in the "Use cases for JavaScript on the EV3" section below, I recommend that you look into other language options. Python is a good choice for beginners.
 
+**Current supported kernel version:** `*-11-ev3dev-*`
+
 ## Quickstart
 
 Install the module from `npm`:
