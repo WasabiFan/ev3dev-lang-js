@@ -6,7 +6,7 @@ if(!motor.connected) {
     process.exit(1);
 }
 
-motor.runForDistance(180, 500, motor.stopActionValues.brake);
+motor.runForDistance(360 * 10, 500, motor.stopActionValues.brake);
 
 console.log("Running the motor for 180 tacho counts...");
 
@@ -14,4 +14,4 @@ console.log("Running the motor for 180 tacho counts...");
 var cancellationToken = setInterval(function() {
     if(!motor.isRunning)
         clearInterval(cancellationToken);
-}, 80);
+}, 200);

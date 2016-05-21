@@ -176,7 +176,7 @@ export class Device {
     }
     
     public readStringArrayAsType<T>(property: string, deviceRoot?: string): T[] {
-        return <any>this.readStringArrayAsType(property, deviceRoot) as T[];
+        return <any>this.readStringArray(property, deviceRoot) as T[];
     }
 
     public readStringSelector(property: string, deviceRoot?: string): string {
