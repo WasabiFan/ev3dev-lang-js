@@ -18,7 +18,7 @@ console.log('Sending motor command...');
 
 motor.rampUpSp = 100;
 motor.rampDownSp = 100;
-motor.runForTime(1000, ev3dev.MotorSpeedSp.fromUnregulated(50), 'brake');
+motor.runForTime(1000, motor.maxSpeed / 2, motor.stopActionValues.brake);
 
 do {
     console.log("Motor speed: " + motor.speed);
