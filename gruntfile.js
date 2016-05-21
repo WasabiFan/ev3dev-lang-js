@@ -21,7 +21,7 @@ module.exports = function (grunt) {
                 src: "src/index.ts",
                 options: {
                     out: './docs',
-                    name: 'ev3dev-lang for Node.JS',
+                    name: 'ev3dev-lang for Node.js',
                     target: 'es5',
                     disableOutputCheck: '',
                     module: 'commonjs'

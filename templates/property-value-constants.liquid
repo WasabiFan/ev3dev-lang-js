@@ -1,7 +1,24 @@
 {% for propertyVals in currentClass.propertyValues %}{%
     assign type = '' %}{%
-    assign type = type | trim | replace: ' ', ' | ' %}
-    public get {{ propertyVals.propertyName | camel_case }}Values() {
+    for propVal in propertyVals.values %}{%
+        assign valName = propVal.name | camel_case %}{%
+        assign valNameCaps = valName | capitalize %}{%
+        assign className = currentClass.friendlyName | camel_case | capitalize %}{%
+        assign propName = propertyVals.propertyName | camel_case | capitalize %}{%
+        
+        assign type = type | append: valName %}{%
+        assign type = type | append: ": " %}{%
+        
+        assign type = type | append: className %}{%
+        assign type = type | append: "." %}{%
+        assign type = type | append: propName %}{%
+        assign type = type | append: "Value" %}{%
+        
+        unless forloop.last %}{%
+            assign type = type | append: ", " %}{%
+        endunless %}{%
+    endfor %}
+    public get {{ propertyVals.propertyName | camel_case }}Values(): { {{ type }} } {
         return { {%
     for propVal in propertyVals.values %}
             {{ propVal.name | camel_case }}: "{{ propVal.name }}"{% unless forloop.last %},{% endunless %}{%

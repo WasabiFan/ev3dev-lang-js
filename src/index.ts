@@ -24,13 +24,13 @@ export var OUTPUT_D = "outD";
 
 // IO
 export var Device = io.Device;
+export var IndexedDevice = io.IndexedDevice;
 
 // Motors
 export var Motor = motors.Motor;
 export var DcMotor = motors.DcMotor;
 export var LargeMotor = motors.LargeMotor;
 export var MediumMotor = motors.MediumMotor;
-export var MotorSpeedSp = motors.MotorSpeedSp;
 export var ServoMotor = motors.ServoMotor;
 
 //~autogen export-string-literal-types classes.motor>currentClass "motors">module
@@ -39,8 +39,8 @@ export module Motor {
     export type CommandValue = motors.Motor.CommandValue;
     export type EncoderPolarityValue = motors.Motor.EncoderPolarityValue;
     export type PolarityValue = motors.Motor.PolarityValue;
-    export type SpeedRegulationValue = motors.Motor.SpeedRegulationValue;
-    export type StopCommandValue = motors.Motor.StopCommandValue;
+    export type StateValue = motors.Motor.StateValue;
+    export type StopActionValue = motors.Motor.StopActionValue;
 }
 //~autogen
 
@@ -57,7 +57,7 @@ export module DcMotor {
 
     export type CommandValue = motors.DcMotor.CommandValue;
     export type PolarityValue = motors.DcMotor.PolarityValue;
-    export type StopCommandValue = motors.DcMotor.StopCommandValue;
+    export type StopActionValue = motors.DcMotor.StopActionValue;
 }
 //~autogen
 

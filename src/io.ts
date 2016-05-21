@@ -99,8 +99,8 @@ export class Device {
     private pendingEventRequests: EventNotificationRequest[] = [];
     private eventTimerCancellationToken: NodeJS.Timer = null;
 
-    public connect(driverName: string, nameConvention: string, propertyConstraints?: { [propertyName: string]: any }) {
-        var nameRegex = nameConvention == undefined ? undefined : new RegExp(nameConvention);
+    public connect(driverName: string, nameConvention?: string, propertyConstraints?: { [propertyName: string]: any }) {
+        var nameRegex = nameConvention? new RegExp(nameConvention) : undefined;
 
         var deviceSearchDir = path.join(Device.overrideSysClassDir || this.sysClassDir, driverName);
 
@@ -173,6 +173,10 @@ export class Device {
         return this.readString(property, deviceRoot)
             .split(' ')
             .map((value: string) => value.replace(/^\[|\]$/g, ''));
+    }
+    
+    public readStringArrayAsType<T>(property: string, deviceRoot?: string): T[] {
+        return <any>this.readStringArrayAsType(property, deviceRoot) as T[];
     }
 
     public readStringSelector(property: string, deviceRoot?: string): string {
@@ -284,5 +288,36 @@ export class Device {
 
             }, eventPredicate, true, userCallbackData);
         });
+    }
+}
+
+export class IndexedDevice extends Device {
+    protected deviceIndexRegex = new RegExp("(\\d+)", "g");
+    
+    protected _deviceIndex: number = -1;
+    get deviceIndex(): number {
+        return this._deviceIndex;
+    }
+
+    constructor(driverTypeDirName: string, nameConvention?: string, targetAddress?: string, targetDriverName?: string | string[]) {
+        super();
+
+        var propertyConstraints: {[propertyName: string]: any} = {};
+
+        if (targetAddress != undefined)
+            propertyConstraints['address'] = targetAddress;
+
+        if (targetDriverName != undefined)
+            propertyConstraints['driver_name'] = [].concat(targetDriverName);
+
+        this.connect(driverTypeDirName, nameConvention, propertyConstraints);
+
+        if (this.connected) {
+            var matches = this.deviceIndexRegex.exec(this.deviceDirName);
+            
+            if (matches != null && matches[0] != undefined) {
+                this._deviceIndex = Number(matches[1]);
+            }
+        }
     }
 }

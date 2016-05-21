@@ -12,12 +12,9 @@ if(!motor.connected) {
     process.exit(1);
 }
 
-motor.speedRegulationEnabled = 'off';
-
 console.log("Connected to touch sensor at address " + touchSensor.address + " and tacho motor at address " + motor.address);
 console.log("Press the touch sensor to spin the motor.");
 
 setInterval(function() {
-    motor.dutyCycleSp = 100 * touchSensor.getValue(0);
-    motor.command = 'run-forever';
+    motor.start(motor.maxSpeed * touchSensor.getValue(0), motor.stopActionValues.hold);
 }, 10);
