@@ -577,6 +577,16 @@ export class Motor extends MotorBase {
         this.sendCommand(this.commandValues.runTimed);
     }
     
+    /**
+     * Returns a speed value that is the specified percentage
+     * of this motor's max speed.
+     * 
+     * @param percentage A percentage value. Valid range is from -100 to 100.
+     */
+    public speedFromPercent(percentage: number): number {
+        return percentage / 100 * this.maxSpeed;
+    }
+    
     public hasState(stateValue: Motor.StateValue): boolean {
         return this.state.indexOf(stateValue) >= 0;
     }
